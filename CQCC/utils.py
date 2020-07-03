@@ -34,3 +34,19 @@ def hannwin(l):
     r += 1.
     r *= 0.5
     return r
+
+
+def _isseq(x):
+    try:
+        len(x)
+    except TypeError:
+        return False
+    return True
+
+
+def chkM(M, g):
+    if M is None:
+        M = np.array(list(map(len, g)))
+    elif not _isseq(M):
+        M = np.ones(len(g), dtype=int)*M
+    return M

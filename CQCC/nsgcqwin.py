@@ -115,6 +115,7 @@ def nsgcqwin(
         # TODO: fill this according to Matlab code
         raise ValueError("the case \"FRACTIONAL = 1\" has not yet been implemented!")
     else:
+        # TODO: set hannwin as input options among multiple windown functions
         g = np.array([utils.hannwin(x) for x in bw])
 
     M = BWFAC * np.ceil(M / BWFAC)  # TODO: add BWFAC as an input arg
