@@ -66,6 +66,7 @@ def cqt(
     cNyq = np.transpose(c[bins+1])
     c = c[1:(bins+1)]
     # TODO: c is an np array of np array, better flat to matrix
+    c = np.array([[i for i in x] for x in c])
 
     return c, cDC, cNyq
 
@@ -74,7 +75,8 @@ def cqt(
 if __name__ == "__main__":
     import os
     import librosa
-    audio_path = os.path.join(os.getcwd(), "CQCC/D18_1000001.wav")
+    filepath = os.path.dirname(os.path.abspath(__file__))
+    audio_path = os.path.join(filepath, "D18_1000001.wav")
     x, fs = librosa.core.load(audio_path, sr=None)
 
     print("length of raw audio data: " + str(len(x)))
