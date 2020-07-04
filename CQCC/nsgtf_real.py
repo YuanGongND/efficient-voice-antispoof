@@ -19,11 +19,8 @@ Original matlab code copyright follows:
 """
 
 import numpy as np
-from math import ceil
 from itertools import chain
-
 from utils import chkM
-from fft import fftp, ifftp
 
 
 def nsgtf_real(
@@ -50,14 +47,14 @@ def nsgtf_real(
     fill = np.sum(shift) - Ls
     if fill > 0:
         f = np.append(f, np.zeros((int(fill), ), dtype=float))
-    
+
     Lg = np.array([len(x) for x in g])
     tmp_arr = posit - np.floor(Lg/2) <= (Ls + fill) / 2
     find_N = np.argwhere(tmp_arr == True)
     if len(find_N) > 0:
         N = find_N[-1][0] + 1
 
-    c = np.empty(shape=[N,])
+    c = np.empty(shape=[N,], dtype=object)
 
     for ii in range(N):
         idx_iter = chain(
@@ -65,58 +62,44 @@ def nsgtf_real(
             range(0, int(np.ceil(Lg[ii]/2)))
         )
         idx = list(idx_iter)
-        win_range = np.mod(
-            posit[ii] + np.array(range(int(-np.floor(Lg[ii]/2)-1), int(np.ceil(Lg[ii]/2)-1))),
+        win_range = (np.mod(
+            posit[ii] + np.array(range(int(-np.floor(Lg[ii]/2)), int(np.ceil(Lg[ii]/2)))),
             Ls+fill
-        ) + 1
+        )).astype(int)
 
         if M[ii] < Lg[ii]:
             col = int(np.ceil(Lg[ii]/M[ii]))
-            temp = np.zeros(int(col*M[ii]), )
-            idx_tmp = [
-                end-floor(Lg(ii)/2)+1:end,
-                1:ceil(Lg(ii)/2)
-            ]
-            temp[   [end-floor(Lg(ii)/2)+1:end,1:ceil(Lg(ii)/2)],:    ]
+            temp = np.zeros((int(col*M[ii]), ), dtype=complex)
+            idx_tmp = list(
+                chain(
+                    # end-floor(Lg(ii)/2)+1:end,
+                    range(len(temp)-int(np.floor(Lg[ii]/2)), len(temp)),
+                    # 1:ceil(Lg(ii)/2)
+                    range(0, int(np.ceil(Lg[ii]/2)))
+                )
+            )
+            temp[idx_tmp] = f[win_range] * g[ii][idx]
+            # TODO: may have bugs for the following two lines
+            temp = np.reshape(temp, (M[ii], col))
+            c[ii] = np.squeeze(np.fft.ifft(np.sum(temp, 1)))
         else:
+            temp = np.zeros((int(M[ii]), ), dtype=complex)
+            idx_tmp = list(
+                chain(
+                    # end-floor(Lg(ii)/2)+1:end,
+                    range(len(temp)-int(np.floor(Lg[ii]/2)), len(temp)),
+                    # 1:ceil(Lg(ii)/2)
+                    range(0, int(np.ceil(Lg[ii]/2)))
+                )
+            )
+            temp[idx_tmp] = np.multiply(f[win_range], g[ii][idx])
 
-    print(0)
+            if phasemode == 'global':
+                fsNewBins = M[ii]
+                fkBins = posit[ii]
+                displace = fkBins - np.floor(fkBins/fsNewBins) * fsNewBins
+                temp = np.roll(temp, int(displace))
 
-    '''
-for ii = 1:N
-    idx = [ceil(Lg(ii)/2)+1:Lg(ii),1:ceil(Lg(ii)/2)];
-    win_range = mod(posit(ii)+(-floor(Lg(ii)/2):ceil(Lg(ii)/2)-1),...
-        Ls+fill)+1;
-    
-    if M(ii) < Lg(ii) % if the number of frequency channels is too small,
-        % aliasing is introduced (non-painless case)
-        col = ceil(Lg(ii)/M(ii));
-        temp = zeros(col*M(ii),CH);
-        
-        temp([end-floor(Lg(ii)/2)+1:end,1:ceil(Lg(ii)/2)],:) = ...
-            bsxfun(@times,f(win_range,:),g{ii}(idx));
-        temp = reshape(temp,M(ii),col,CH);
-        
-        c{ii} = squeeze(ifft(sum(temp,2)));
-        % Using c = cellfun(@(x) squeeze(ifft(x)),c,'UniformOutput',0);
-        % outside the loop instead does not provide speedup; instead it is
-        % slower in most cases.
-    else
-        temp = zeros(M(ii),CH);
-        temp([end-floor(Lg(ii)/2)+1:end,1:ceil(Lg(ii)/2)],:) = ...
-            bsxfun(@times,f(win_range,:),g{ii}(idx));
-        
-        if strcmp(phasemode,'global')
-            %apply frequency mapping function (see cqt)
-            fsNewBins = M(ii);
-            fkBins = posit(ii);
-            displace = fkBins - floor(fkBins/fsNewBins) * fsNewBins;
-            temp = circshift(temp, displace);
-        end
-        
-        c{ii} = ifft(temp);
-%         c{ii} = c{ii}.* ( 2* M(ii)/Lg(ii) ); %energy normalization
-    end
-end
-    '''
-    print(0)
+            c[ii] = np.fft.ifft(temp)
+
+    return c
