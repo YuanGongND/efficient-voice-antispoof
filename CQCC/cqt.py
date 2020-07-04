@@ -59,14 +59,15 @@ def cqt(
     g = np.array(
         [g[x] * normFacVec[x] for x in range(2 * bins + 2)]
     )
-    # c = nsgtf(f=x, g=g, wins=None, nn=0, M=M, real=True, multithreading=False)
+
     c = nsgtf_real(f=x, g=g, shift=shift, M=M, phasemode='global')
-    '''
 
-c = nsgtf_real(x,g,shift,M,phasemode);
-    '''
+    cDC = np.transpose(c[0])
+    cNyq = np.transpose(c[bins+1])
+    c = c[1:(bins+1)]
+    # TODO: c is an np array of np array, better flat to matrix
 
-    print(0)
+    return c, cDC, cNyq
 
 
 # the following main func is used for test run only
@@ -92,7 +93,7 @@ if __name__ == "__main__":
 
     gamma = 228.7 * (2 ** (1 / B) - 2 ** (-1 / B))
 
-    cqt(
+    c, cDC, cNyq = cqt(
         x=x,
         B=B,
         fs=fs,
