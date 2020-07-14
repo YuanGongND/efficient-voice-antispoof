@@ -14,19 +14,12 @@ on Mel-frequency cepstral coefficients (MFCC) features + Gaussian Mixture Models
 The main function here uses the ASVspoof 2017 dataset, details can be found at:
 """
 
-# imports
 import os
-import logging
 import numpy as np
 import pandas as pd
 import librosa
-from pathlib import Path
 from python_speech_features import mfcc
-
-
-# get the parent path of the given path
-def get_parent_dir(path: os.path, level: int = 1) -> os.path:
-    return Path(path).resolve().parents[level]
+from utils import get_parent_dir
 
 
 def main():
