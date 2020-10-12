@@ -3,3 +3,6 @@
 .DS_Store
 **/.DS_Store
 .vscode/
+*.pyc
+**/debug_main.py
+**debug_main.ipynb
