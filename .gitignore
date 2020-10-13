@@ -6,3 +6,5 @@
 *.pyc
 **/debug_main.py
 **debug_main.ipynb
+data/
+feat/
