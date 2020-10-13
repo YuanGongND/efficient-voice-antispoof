@@ -26,6 +26,7 @@ def parse_label(utt2label_file):
     return utt2label
 
 
+'''
 def load_feat(file_path):
     """
     load feature tensors from files and expand to fixed dims (M, 257)
@@ -39,6 +40,7 @@ def load_feat(file_path):
     tail = tensor[0:tail_dim, :]
 
     return torch.cat([head, tail], dim=0)
+'''
 
 
 class SpoofDataset(data.Dataset):
@@ -64,9 +66,8 @@ class SpoofDataset(data.Dataset):
         utt_id = self.key_list[index]
         # Load data and get label
         feat_file = os.path.join(self.feat_dir, utt_id+'.pt')
-        tensor = load_feat(feat_file)
-        # TODO: change load feat to directly compute feat
-        # using os.path.join(self.data_dir, utt_id+'.wav')
+        # tensor = load_feat(feat_file)
+        tensor = torch.load(feat_file)
         tensor = torch.transpose(tensor, 0, 1)
         X = np.expand_dims(tensor, axis=0)
         y = self.utt2label[utt_id]
