@@ -126,10 +126,10 @@ class AttenResNet5(nn.Module):
             self.conv1 = nn.Sequential( # channel compression 
                 nn.BatchNorm2d(atten_channel),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel, atten_channel/4, kernel_size=1, stride=1),
-                nn.BatchNorm2d(atten_channel/4),
+                nn.Conv2d(atten_channel, atten_channel//4, kernel_size=1, stride=1),
+                nn.BatchNorm2d(atten_channel//4),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel/4, 1, kernel_size=1, stride=1)
+                nn.Conv2d(atten_channel//4, 1, kernel_size=1, stride=1)
             )
        
         if atten_activation == 'softmax2':
@@ -675,10 +675,10 @@ class AttenResNet3(nn.Module):
             self.conv1 = nn.Sequential( # channel compression 
                 nn.BatchNorm2d(atten_channel),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel, atten_channel/4, kernel_size=1, stride=1),
-                nn.BatchNorm2d(atten_channel/4),
+                nn.Conv2d(atten_channel, atten_channel//4, kernel_size=1, stride=1),
+                nn.BatchNorm2d(atten_channel//4),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel/4, 1, kernel_size=1, stride=1)
+                nn.Conv2d(atten_channel//4, 1, kernel_size=1, stride=1)
             )
         
         if atten_activation == 'softmax':
@@ -974,10 +974,10 @@ class AttenResNet2(nn.Module):
             self.conv1 = nn.Sequential( # channel compression 
                 nn.BatchNorm2d(atten_channel),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel, atten_channel/4, kernel_size=1, stride=1),
-                nn.BatchNorm2d(atten_channel/4),
+                nn.Conv2d(atten_channel, atten_channel//4, kernel_size=1, stride=1),
+                nn.BatchNorm2d(atten_channel//4),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel/4, 1, kernel_size=1, stride=1)
+                nn.Conv2d(atten_channel//4, 1, kernel_size=1, stride=1)
             )
         
         if atten_activation == 'softmax':
@@ -1275,10 +1275,10 @@ class PreAttenResNet(nn.Module):
             self.channel_compression = nn.Sequential( # channel compression 
                 nn.BatchNorm2d(atten_channel),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel, atten_channel/4, kernel_size=1, stride=1),
-                nn.BatchNorm2d(atten_channel/4),
+                nn.Conv2d(atten_channel, atten_channel//4, kernel_size=1, stride=1),
+                nn.BatchNorm2d(atten_channel//4),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel/4, 1, kernel_size=1, stride=1)
+                nn.Conv2d(atten_channel//4, 1, kernel_size=1, stride=1)
             )
         
         if atten_activation == 'softmax':
@@ -1457,10 +1457,10 @@ class AttenResNet(nn.Module):
             self.conv1 = nn.Sequential( # channel compression 
                 nn.BatchNorm2d(atten_channel),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel, atten_channel/4, kernel_size=1, stride=1),
-                nn.BatchNorm2d(atten_channel/4),
+                nn.Conv2d(atten_channel, atten_channel//4, kernel_size=1, stride=1),
+                nn.BatchNorm2d(atten_channel//4),
                 nn.ReLU(inplace=True),
-                nn.Conv2d(atten_channel/4, 1, kernel_size=1, stride=1)
+                nn.Conv2d(atten_channel//4, 1, kernel_size=1, stride=1)
             )
         
         if atten_activation == 'softmax':
