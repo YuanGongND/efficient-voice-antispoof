@@ -27,9 +27,10 @@ def get_logspec(audio_path, device):
     )
     # apply sliding window cmvn normalization with 3s window
     cmvn_logspec = torchaudio.functional.sliding_window_cmn(logspec, cmn_window=3*sample_rate)  # noqa
-    min_lsp, max_lsp = torch.min(cmvn_logspec), torch.max(cmvn_logspec)
-    norm_logspec = (cmvn_logspec - min_lsp) / (max_lsp - min_lsp)
-    return norm_logspec
+    # min_lsp, max_lsp = torch.min(cmvn_logspec), torch.max(cmvn_logspec)
+    # norm_logspec = (cmvn_logspec - min_lsp) / (max_lsp - min_lsp)
+    # return norm_logspec
+    return cmvn_logspec
 
 
 def expand_logspec(tensor):
