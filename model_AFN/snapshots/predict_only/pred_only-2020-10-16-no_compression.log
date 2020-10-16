@@ -1,0 +1,45 @@
+2020-10-16 17:33:39,387 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 17:33:39,388 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:33:41,084 - model loading time: 1.6954369839804713
+2020-10-16 17:33:41,084 - Starting evaluation
+2020-10-16 17:34:36,979 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:34:36,979 - ===> evalidation set: Average loss: 0.0043	EER: 0.1325
+
+2020-10-16 17:34:36,980 - ===> elapsed time for prediction: 55.8961216089956
+2020-10-16 17:34:36,980 - ===> evalidation set: EER: 0.1325
+
+2020-10-16 17:34:36,980 - ################## Success #########################
+2020-10-16 17:34:36,980 - Total elapsed time: 57.594448785996065
+
+2020-10-16 17:34:36,980 - ====================================================
+
+2020-10-16 17:34:37,794 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 17:34:37,795 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:34:39,469 - model loading time: 1.6740539240126964
+2020-10-16 17:34:39,470 - Starting evaluation
+2020-10-16 17:35:11,451 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:35:11,451 - ===> evalidation set: Average loss: 0.2733	EER: 7.6842
+
+2020-10-16 17:35:11,452 - ===> elapsed time for prediction: 31.98191041199607
+2020-10-16 17:35:11,452 - ===> evalidation set: EER: 7.6842
+
+2020-10-16 17:35:11,452 - ################## Success #########################
+2020-10-16 17:35:11,452 - Total elapsed time: 33.65817005498684
+
+2020-10-16 17:35:11,452 - ====================================================
+
+2020-10-16 17:35:12,259 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 17:35:12,265 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:35:13,939 - model loading time: 1.6734217469929717
+2020-10-16 17:35:13,939 - Starting evaluation
+2020-10-16 17:39:22,592 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:39:22,593 - ===> evalidation set: Average loss: 1.1815	EER: 12.3605
+
+2020-10-16 17:39:22,598 - ===> elapsed time for prediction: 248.65893193302327
+2020-10-16 17:39:22,598 - ===> evalidation set: EER: 12.3605
+
+2020-10-16 17:39:22,598 - ################## Success #########################
+2020-10-16 17:39:22,598 - Total elapsed time: 250.33995038000285
+
+2020-10-16 17:39:22,598 - ====================================================
+
