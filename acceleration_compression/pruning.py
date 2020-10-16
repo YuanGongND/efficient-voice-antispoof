@@ -49,6 +49,16 @@ class NetworkPruning(object):
         print('Size (MB):', os.path.getsize("temp.p") / 1e6)
         os.remove('temp.p')
 
+    @staticmethod
+    def get_num_parameters(model, is_nonzero=False):
+        count = 0
+        for p in model.parameters():
+            if is_nonzero:
+                count += torch.nonzero(p, as_tuple=False).shape[0]
+            else:
+                count += p.numel()
+        return count
+
     def pruning(self):
         parameters_to_prune = self.get_prune_parameters()
         prune_method = self.get_prune_method()
