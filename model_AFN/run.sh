@@ -4,7 +4,10 @@
 # feature_plot.py : for visualizing attention heatmaps 
 # predict_only.py : for model forward passing 
 
+set -e
 stage="$1" # parse first argument 
+compress="$2"  # parse 2nd arg
+percentage="$3"  # parse 3rd arg
 
 # run train+validation+eval
 if [ $stage -eq 0 ]; then
@@ -33,6 +36,7 @@ fi
 
 # run prediction on every dataset and save eer scoring
 # rename --scoreing-txt and --lable-txt if change model
+# NO network compression applied
 if [ $stage -eq 2 ]; then
     CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
         --eval-dir ../feat_aligned/ASVspoof2017/train \
@@ -59,3 +63,59 @@ if [ $stage -eq 2 ]; then
 	    --label-txt snapshots/scoring/eval_att4_1rep_label.txt
 fi
 
+# similar to stage = 2, add extra args to support auto run for network compression
+if [ $stage -eq 3 ]; then
+    CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
+        --eval-dir ../feat_aligned/ASVspoof2017/train \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
+        --logging-dir snapshots/predict_only/ \
+        --test-batch-size 1 \
+        --compress $compress \
+        --prune-pct $percentage
+
+    CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
+        --eval-dir ../feat_aligned/ASVspoof2017/dev \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/dev.txt.utt2label \
+        --logging-dir snapshots/predict_only/ \
+        --test-batch-size 1 \
+        --compress $compress \
+        --prune-pct $percentage
+
+    CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
+        --eval-dir ../feat_aligned/ASVspoof2017/eval \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --logging-dir snapshots/predict_only/ \
+        --test-batch-size 1 \
+        --compress $compress \
+        --prune-pct $percentage
+fi
+
+# similar to stage = 3, only use CPU
+if [ $stage -eq 4 ]; then
+    CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
+        --eval-dir ../feat_aligned/ASVspoof2017/train \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
+        --logging-dir snapshots/predict_only/ \
+        --test-batch-size 1 \
+        --compress $compress \
+        --prune-pct $percentage \
+        --no-cuda
+
+    CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
+        --eval-dir ../feat_aligned/ASVspoof2017/dev \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/dev.txt.utt2label \
+        --logging-dir snapshots/predict_only/ \
+        --test-batch-size 1 \
+        --compress $compress \
+        --prune-pct $percentage \
+        --no-cuda
+
+    CUDA_VISIBLE_DEVICES='0,1' python predict_only.py \
+        --eval-dir ../feat_aligned/ASVspoof2017/eval \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --logging-dir snapshots/predict_only/ \
+        --test-batch-size 1 \
+        --compress $compress \
+        --prune-pct $percentage \
+        --no-cuda
+fi
