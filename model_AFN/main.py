@@ -106,11 +106,11 @@ def main():
     print('use_cuda is', use_cuda)
     # print('temperature is', temperature)
 
-    # Global timer
-    global_timer = timer()
-
     # Setup logs
     logger = setup_logs(args.logging_dir, run_name)
+
+    # Global timer
+    global_timer = timer()
 
     # Setting random seeds for reproducibility.
     np.random.seed(args.seed)
@@ -118,6 +118,7 @@ def main():
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
+    torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True  # CUDA determinism
 
     device = torch.device("cuda" if use_cuda else "cpu")
@@ -164,6 +165,7 @@ def main():
     best_eer, best_loss = np.inf, np.inf
     early_stopping, max_patience = 0, 5  # early stopping and maximum patience
     print(run_name)
+    total_train_time = []
     for epoch in range(1, args.epochs + 1):
         epoch_timer = timer()
 
@@ -200,8 +202,10 @@ def main():
             early_stopping += 1
         end_epoch_timer = timer()
         logger.info("#### End epoch {}/{}, elapsed time: {}".format(epoch, args.epochs, end_epoch_timer - epoch_timer))  # noqa
+        total_train_time.append(end_epoch_timer - epoch_timer)
         if early_stopping == max_patience:
             break
+    logger.info("#### Avg. training+validation time per epoch: {}".format(np.average(total_train_time)))  # noqa
     ###########################################################
     # Prediction
     logger.info('===> loading best model for prediction')
@@ -209,14 +213,15 @@ def main():
         os.path.join(args.logging_dir, run_name + '-model_best.pth')
     )
     # checkpoint = torch.load(
-    #     "/home/ndmobilecomp/efficient_spoof/Attentive-Filtering-Network/snapshots/attention/attention-2020-09-30_11_47_54-model_best.pth",
+    #     "/home/ndmobilecomp/efficient_spoof/efficient-voice-antispoof/model_AFN/snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth",
     #     map_location=torch.device('cpu')
     # )
     model.load_state_dict(checkpoint['state_dict'])
-
+    t_start_eval = timer()
     eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_utt2label, rnn)  # noqa
     ###########################################################
     end_global_timer = timer()
+    logger.info("#### Total prediction time: {}".format(end_global_timer - t_start_eval))
     logger.info("################## Success #########################")
     logger.info("Total elapsed time: %s" % (end_global_timer - global_timer))
 
