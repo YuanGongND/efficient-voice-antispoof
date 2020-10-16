@@ -6,7 +6,7 @@
 set -e
 data_dir=`pwd`/../data/ASVspoof2017
 label_dir=`pwd`/../data/ASVspoof2017/protocol_V2
-feat_dir=`pwd`/../feat_aligned/ASVspoof2017
+feat_dir=`pwd`/../feat/ASVspoof2017
 stage=0
 
 function check_sorted {
