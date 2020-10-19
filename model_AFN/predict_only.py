@@ -358,7 +358,7 @@ def main():
     t_start_load = timer()
     model = MODEL
     model.to(device)
-    checkpoint = torch.load(model_path)
+    checkpoint = torch.load(model_path, map_location=torch.device('cpu') if not use_cuda)
     model.load_state_dict(checkpoint['state_dict'])
     t_end_load = timer()
     logger.info('model loading time: {}'.format(t_end_load - t_start_load))
