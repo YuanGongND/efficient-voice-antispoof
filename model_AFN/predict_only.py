@@ -252,6 +252,40 @@ models = [model1]
 model_path = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
 
 
+def apply_net_prune(model, percentage, logger):
+    net_prune = NetworkPruning(model, percentage=percentage)
+    logger.info(
+        '# non-zero params before pruning: {}'
+        .format(net_prune.get_num_parameters(model, is_nonzero=True))
+    )
+    model = net_prune.pruning()
+    logger.info('apply PRUNING with percentage: {}'.format(percentage))
+    logger.info(
+        '# non-zero params after pruning: {}'
+        .format(net_prune.get_num_parameters(model, is_nonzero=True))
+    )
+    return model
+
+
+def apply_net_quant(model, logger, use_cuda):
+    # quantization has to be on CPU
+    model.to(torch.device('cpu'))
+    net_quant = NetworkQuantization(model)
+    logger.info(
+        '# non-zero params before quant: {}'
+        .format(net_quant.get_num_parameters(model, is_nonzero=True))
+    )
+    model = net_quant.quantization()
+    logger.info(
+        '# non-zero params after quant: {}'
+        .format(net_quant.get_num_parameters(model, is_nonzero=True))
+    )
+    # if use_cuda:
+    #     model.to(torch.device('cuda'))
+    #     print('model moved to GPU')
+    return model
+
+
 def main():
     ##############################################################
     # Settings
@@ -280,6 +314,9 @@ def main():
                         help='percentage for pruning')
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
+    if args.compress in ("quant", 'pq'):
+        use_cuda = False
+        print("Quantization can only run on CPU")
     print('use_cuda is', use_cuda)
     if use_cuda:
         torch.cuda.empty_cache()
@@ -299,11 +336,7 @@ def main():
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True  # CUDA determinism
 
-    if args.compress in ('quant', 'pq'):
-        device = torch.device('cpu')
-        use_cuda = False
-    else:
-        device = torch.device("cuda" if use_cuda else "cpu")
+    device = torch.device("cuda" if use_cuda else "cpu")
 
     ##############################################################
     # Loading the dataset
@@ -334,34 +367,12 @@ def main():
 
     #### for network pruning usage ####
     if args.compress == 'prune':
-        net_prune = NetworkPruning(model, percentage=float(args.prune_pct))
-        logger.info(
-            '# non-zero params before pruning: {}'
-            .format(net_prune.get_num_parameters(model, is_nonzero=True))
-        )
-        model = net_prune.pruning()
-        logger.info('apply PRUNING with percentage: {}'.format(args.prune_pct))
-        logger.info(
-            '# non-zero params after pruning: {}'
-            .format(net_prune.get_num_parameters(model, is_nonzero=True))
-        )
+        model = apply_net_prune(model, float(args.prune_pct), logger)
     elif args.compress == 'quant':
-        net_quant = NetworkQuantization(model)
-        logger.info(
-            '# non-zero params before quant: {}'
-            .format(net_quant.get_num_parameters(model, is_nonzero=True))
-        )
-        model = net_quant.quantization()
-        logger.info(
-            '# non-zero params after quant: {}'
-            .format(net_quant.get_num_parameters(model, is_nonzero=True))
-        )
+        model = apply_net_quant(model, logger, use_cuda)
     elif args.compress == 'pq':
-        # TODO: add params count log if necessary
-        net_prune = NetworkPruning(model, percentage=float(args.prune_pct))
-        model = net_prune.pruning()
-        net_quant = NetworkQuantization(model)
-        model = net_quant.quantization()
+        model = apply_net_prune(model, float(args.prune_pct), logger)
+        model = apply_net_quant(model, logger, use_cuda)
 
     ###################################
 

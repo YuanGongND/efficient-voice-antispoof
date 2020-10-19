@@ -27,5 +27,5 @@ if [ "${device}" = "CPU" ]; then
     for i in 0.{0..99..10}; do
         ./run.sh 4 $i
     done
-    ./run.sh 3 ${comp} 1.0
+    ./run.sh 4 ${comp} 1.0
 fi
