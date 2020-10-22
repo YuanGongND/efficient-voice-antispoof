@@ -116,10 +116,10 @@ class CAttenResNet1(nn.Module):
         self.channel_compression = nn.Sequential( 
             nn.BatchNorm2d(atten_channel),
             nn.ReLU(inplace=True),
-            nn.Conv2d(atten_channel, atten_channel/4, kernel_size=1, stride=1),
-            nn.BatchNorm2d(atten_channel/4),
+            nn.Conv2d(atten_channel, atten_channel//4, kernel_size=1, stride=1),
+            nn.BatchNorm2d(atten_channel//4),
             nn.ReLU(inplace=True),
-            nn.Conv2d(atten_channel/4, 1, kernel_size=1, stride=1)
+            nn.Conv2d(atten_channel//4, 1, kernel_size=1, stride=1)
         )
 
         ## attentive-filtering network: activation function 

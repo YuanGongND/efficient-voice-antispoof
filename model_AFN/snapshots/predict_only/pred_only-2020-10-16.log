@@ -1,0 +1,1204 @@
+2020-10-16 17:53:05,039 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 17:53:05,041 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:53:06,738 - model loading time: 1.6965183219872415
+2020-10-16 17:53:06,744 - # non-zero params before pruning: 185762
+2020-10-16 17:53:06,754 - apply PRUNING with percentage: 0.0
+2020-10-16 17:53:06,760 - # non-zero params after pruning: 185762
+2020-10-16 17:53:06,760 - Starting evaluation
+2020-10-16 17:54:02,602 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:54:02,602 - ===> evalidation set: Average loss: 0.0043	EER: 0.1325
+
+2020-10-16 17:54:02,603 - ===> elapsed time for prediction: 55.842821315978654
+2020-10-16 17:54:02,603 - ===> evalidation set: EER: 0.1325
+
+2020-10-16 17:54:02,603 - ################## Success #########################
+2020-10-16 17:54:02,603 - Total elapsed time: 57.564289142988855
+
+2020-10-16 17:54:02,603 - ====================================================
+
+2020-10-16 17:54:03,400 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 17:54:03,401 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:54:05,067 - model loading time: 1.666247144981753
+2020-10-16 17:54:05,073 - # non-zero params before pruning: 185762
+2020-10-16 17:54:05,084 - apply PRUNING with percentage: 0.0
+2020-10-16 17:54:05,089 - # non-zero params after pruning: 185762
+2020-10-16 17:54:05,089 - Starting evaluation
+2020-10-16 17:54:36,961 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:54:36,962 - ===> evalidation set: Average loss: 0.2733	EER: 7.6842
+
+2020-10-16 17:54:36,962 - ===> elapsed time for prediction: 31.87262847099919
+2020-10-16 17:54:36,962 - ===> evalidation set: EER: 7.6842
+
+2020-10-16 17:54:36,962 - ################## Success #########################
+2020-10-16 17:54:36,962 - Total elapsed time: 33.563152284012176
+
+2020-10-16 17:54:36,962 - ====================================================
+
+2020-10-16 17:54:37,767 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 17:54:37,774 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:54:39,443 - model loading time: 1.6685926619975362
+2020-10-16 17:54:39,449 - # non-zero params before pruning: 185762
+2020-10-16 17:54:39,459 - apply PRUNING with percentage: 0.0
+2020-10-16 17:54:39,465 - # non-zero params after pruning: 185762
+2020-10-16 17:54:39,465 - Starting evaluation
+2020-10-16 17:58:48,259 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:58:48,259 - ===> evalidation set: Average loss: 1.1815	EER: 12.3605
+
+2020-10-16 17:58:48,265 - ===> elapsed time for prediction: 248.79931755599682
+2020-10-16 17:58:48,265 - ===> evalidation set: EER: 12.3605
+
+2020-10-16 17:58:48,265 - ################## Success #########################
+2020-10-16 17:58:48,265 - Total elapsed time: 250.49780363499303
+
+2020-10-16 17:58:48,265 - ====================================================
+
+2020-10-16 17:58:49,069 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 17:58:49,071 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:58:50,733 - model loading time: 1.6618549859849736
+2020-10-16 17:58:50,739 - # non-zero params before pruning: 185762
+2020-10-16 17:58:50,751 - apply PRUNING with percentage: 0.10
+2020-10-16 17:58:50,757 - # non-zero params after pruning: 167331
+2020-10-16 17:58:50,757 - Starting evaluation
+2020-10-16 17:59:47,274 - ===> Final predictions done. Here is a snippet
+2020-10-16 17:59:47,274 - ===> evalidation set: Average loss: 0.0051	EER: 0.1325
+
+2020-10-16 17:59:47,275 - ===> elapsed time for prediction: 56.51790687799803
+2020-10-16 17:59:47,275 - ===> evalidation set: EER: 0.1325
+
+2020-10-16 17:59:47,275 - ################## Success #########################
+2020-10-16 17:59:47,275 - Total elapsed time: 58.206395271001384
+
+2020-10-16 17:59:47,275 - ====================================================
+
+2020-10-16 17:59:48,064 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 17:59:48,065 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 17:59:49,716 - model loading time: 1.6508442450140137
+2020-10-16 17:59:49,723 - # non-zero params before pruning: 185762
+2020-10-16 17:59:49,735 - apply PRUNING with percentage: 0.10
+2020-10-16 17:59:49,740 - # non-zero params after pruning: 167331
+2020-10-16 17:59:49,740 - Starting evaluation
+2020-10-16 18:00:21,883 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:00:21,883 - ===> evalidation set: Average loss: 0.2593	EER: 7.6842
+
+2020-10-16 18:00:21,884 - ===> elapsed time for prediction: 32.1433210419782
+2020-10-16 18:00:21,884 - ===> evalidation set: EER: 7.6842
+
+2020-10-16 18:00:21,884 - ################## Success #########################
+2020-10-16 18:00:21,884 - Total elapsed time: 33.82006573799299
+
+2020-10-16 18:00:21,884 - ====================================================
+
+2020-10-16 18:00:22,681 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:00:22,687 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:00:24,377 - model loading time: 1.6894139449868817
+2020-10-16 18:00:24,383 - # non-zero params before pruning: 185762
+2020-10-16 18:00:24,395 - apply PRUNING with percentage: 0.10
+2020-10-16 18:00:24,401 - # non-zero params after pruning: 167331
+2020-10-16 18:00:24,401 - Starting evaluation
+2020-10-16 18:04:33,377 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:04:33,378 - ===> evalidation set: Average loss: 1.1193	EER: 12.1726
+
+2020-10-16 18:04:33,383 - ===> elapsed time for prediction: 248.98199119599303
+2020-10-16 18:04:33,383 - ===> evalidation set: EER: 12.1726
+
+2020-10-16 18:04:33,383 - ################## Success #########################
+2020-10-16 18:04:33,383 - Total elapsed time: 250.70272481799475
+
+2020-10-16 18:04:33,383 - ====================================================
+
+2020-10-16 18:04:34,194 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:04:34,195 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:04:35,895 - model loading time: 1.699556246981956
+2020-10-16 18:04:35,901 - # non-zero params before pruning: 185762
+2020-10-16 18:04:35,913 - apply PRUNING with percentage: 0.20
+2020-10-16 18:04:35,919 - # non-zero params after pruning: 148899
+2020-10-16 18:04:35,919 - Starting evaluation
+2020-10-16 18:05:32,328 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:05:32,328 - ===> evalidation set: Average loss: 0.0055	EER: 0.3305
+
+2020-10-16 18:05:32,329 - ===> elapsed time for prediction: 56.409738946007565
+2020-10-16 18:05:32,329 - ===> evalidation set: EER: 0.3305
+
+2020-10-16 18:05:32,329 - ################## Success #########################
+2020-10-16 18:05:32,329 - Total elapsed time: 58.13623463601107
+
+2020-10-16 18:05:32,329 - ====================================================
+
+2020-10-16 18:05:33,138 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:05:33,139 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:05:34,826 - model loading time: 1.6872629020072054
+2020-10-16 18:05:34,832 - # non-zero params before pruning: 185762
+2020-10-16 18:05:34,844 - apply PRUNING with percentage: 0.20
+2020-10-16 18:05:34,850 - # non-zero params after pruning: 148899
+2020-10-16 18:05:34,859 - Starting evaluation
+2020-10-16 18:06:06,944 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:06:06,944 - ===> evalidation set: Average loss: 0.2913	EER: 7.6316
+
+2020-10-16 18:06:06,945 - ===> elapsed time for prediction: 32.08661321099498
+2020-10-16 18:06:06,945 - ===> evalidation set: EER: 7.6316
+
+2020-10-16 18:06:06,945 - ################## Success #########################
+2020-10-16 18:06:06,945 - Total elapsed time: 33.808317489980254
+
+2020-10-16 18:06:06,945 - ====================================================
+
+2020-10-16 18:06:07,748 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:06:07,755 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:06:09,428 - model loading time: 1.6729626769956667
+2020-10-16 18:06:09,434 - # non-zero params before pruning: 185762
+2020-10-16 18:06:09,446 - apply PRUNING with percentage: 0.20
+2020-10-16 18:06:09,452 - # non-zero params after pruning: 148899
+2020-10-16 18:06:09,452 - Starting evaluation
+2020-10-16 18:10:18,642 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:10:18,642 - ===> evalidation set: Average loss: 1.2129	EER: 11.4840
+
+2020-10-16 18:10:18,648 - ===> elapsed time for prediction: 249.19590295298258
+2020-10-16 18:10:18,648 - ===> evalidation set: EER: 11.4840
+
+2020-10-16 18:10:18,648 - ################## Success #########################
+2020-10-16 18:10:18,648 - Total elapsed time: 250.9003177570121
+
+2020-10-16 18:10:18,648 - ====================================================
+
+2020-10-16 18:10:19,470 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:10:19,471 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:10:21,161 - model loading time: 1.6894460119947325
+2020-10-16 18:10:21,167 - # non-zero params before pruning: 185762
+2020-10-16 18:10:21,179 - apply PRUNING with percentage: 0.30
+2020-10-16 18:10:21,185 - # non-zero params after pruning: 130468
+2020-10-16 18:10:21,185 - Starting evaluation
+2020-10-16 18:11:17,723 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:11:17,723 - ===> evalidation set: Average loss: 0.0082	EER: 0.0664
+
+2020-10-16 18:11:17,724 - ===> elapsed time for prediction: 56.53905103600118
+2020-10-16 18:11:17,724 - ===> evalidation set: EER: 0.0664
+
+2020-10-16 18:11:17,724 - ################## Success #########################
+2020-10-16 18:11:17,724 - Total elapsed time: 58.255179385014344
+
+2020-10-16 18:11:17,724 - ====================================================
+
+2020-10-16 18:11:18,534 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:11:18,535 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:11:20,205 - model loading time: 1.6708167680189945
+2020-10-16 18:11:20,212 - # non-zero params before pruning: 185762
+2020-10-16 18:11:20,224 - apply PRUNING with percentage: 0.30
+2020-10-16 18:11:20,230 - # non-zero params after pruning: 130468
+2020-10-16 18:11:20,230 - Starting evaluation
+2020-10-16 18:11:52,288 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:11:52,288 - ===> evalidation set: Average loss: 0.2923	EER: 8.0263
+
+2020-10-16 18:11:52,289 - ===> elapsed time for prediction: 32.05936827202095
+2020-10-16 18:11:52,289 - ===> evalidation set: EER: 8.0263
+
+2020-10-16 18:11:52,289 - ################## Success #########################
+2020-10-16 18:11:52,289 - Total elapsed time: 33.75622560697957
+
+2020-10-16 18:11:52,289 - ====================================================
+
+2020-10-16 18:11:53,092 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:11:53,099 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:11:54,779 - model loading time: 1.6804654430015944
+2020-10-16 18:11:54,785 - # non-zero params before pruning: 185762
+2020-10-16 18:11:54,797 - apply PRUNING with percentage: 0.30
+2020-10-16 18:11:54,803 - # non-zero params after pruning: 130468
+2020-10-16 18:11:54,803 - Starting evaluation
+2020-10-16 18:16:02,818 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:16:02,818 - ===> evalidation set: Average loss: 1.1693	EER: 12.5578
+
+2020-10-16 18:16:02,823 - ===> elapsed time for prediction: 248.0200652439962
+2020-10-16 18:16:02,823 - ===> evalidation set: EER: 12.5578
+
+2020-10-16 18:16:02,823 - ################## Success #########################
+2020-10-16 18:16:02,823 - Total elapsed time: 249.73184067598777
+
+2020-10-16 18:16:02,823 - ====================================================
+
+2020-10-16 18:16:03,628 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:16:03,630 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:16:05,311 - model loading time: 1.6811037759762257
+2020-10-16 18:16:05,318 - # non-zero params before pruning: 185762
+2020-10-16 18:16:05,338 - apply PRUNING with percentage: 0.40
+2020-10-16 18:16:05,343 - # non-zero params after pruning: 112036
+2020-10-16 18:16:05,344 - Starting evaluation
+2020-10-16 18:17:01,565 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:17:01,566 - ===> evalidation set: Average loss: 0.0294	EER: 0.5972
+
+2020-10-16 18:17:01,567 - ===> elapsed time for prediction: 56.22320047300309
+2020-10-16 18:17:01,567 - ===> evalidation set: EER: 0.5972
+
+2020-10-16 18:17:01,567 - ################## Success #########################
+2020-10-16 18:17:01,567 - Total elapsed time: 57.93896303800284
+
+2020-10-16 18:17:01,567 - ====================================================
+
+2020-10-16 18:17:02,372 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:17:02,373 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:17:04,079 - model loading time: 1.7063800570031162
+2020-10-16 18:17:04,086 - # non-zero params before pruning: 185762
+2020-10-16 18:17:04,098 - apply PRUNING with percentage: 0.40
+2020-10-16 18:17:04,104 - # non-zero params after pruning: 112036
+2020-10-16 18:17:04,104 - Starting evaluation
+2020-10-16 18:17:36,204 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:17:36,204 - ===> evalidation set: Average loss: 0.3219	EER: 9.6053
+
+2020-10-16 18:17:36,205 - ===> elapsed time for prediction: 32.10118212699308
+2020-10-16 18:17:36,205 - ===> evalidation set: EER: 9.6053
+
+2020-10-16 18:17:36,205 - ################## Success #########################
+2020-10-16 18:17:36,205 - Total elapsed time: 33.83418647799408
+
+2020-10-16 18:17:36,205 - ====================================================
+
+2020-10-16 18:17:37,017 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:17:37,023 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:17:38,707 - model loading time: 1.6830686329922173
+2020-10-16 18:17:38,713 - # non-zero params before pruning: 185762
+2020-10-16 18:17:38,725 - apply PRUNING with percentage: 0.40
+2020-10-16 18:17:38,731 - # non-zero params after pruning: 112036
+2020-10-16 18:17:38,731 - Starting evaluation
+2020-10-16 18:21:46,962 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:21:46,962 - ===> evalidation set: Average loss: 1.0799	EER: 14.5986
+
+2020-10-16 18:21:46,982 - ===> elapsed time for prediction: 248.25085250800475
+2020-10-16 18:21:46,982 - ===> evalidation set: EER: 14.5986
+
+2020-10-16 18:21:46,982 - ################## Success #########################
+2020-10-16 18:21:46,982 - Total elapsed time: 249.96550096099963
+
+2020-10-16 18:21:46,982 - ====================================================
+
+2020-10-16 18:21:47,805 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:21:47,807 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:21:49,514 - model loading time: 1.7068576969904825
+2020-10-16 18:21:49,520 - # non-zero params before pruning: 185762
+2020-10-16 18:21:49,533 - apply PRUNING with percentage: 0.50
+2020-10-16 18:21:49,538 - # non-zero params after pruning: 93605
+2020-10-16 18:21:49,538 - Starting evaluation
+2020-10-16 18:22:45,971 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:22:45,971 - ===> evalidation set: Average loss: 0.1623	EER: 5.1758
+
+2020-10-16 18:22:45,972 - ===> elapsed time for prediction: 56.43387547301245
+2020-10-16 18:22:45,972 - ===> evalidation set: EER: 5.1758
+
+2020-10-16 18:22:45,972 - ################## Success #########################
+2020-10-16 18:22:45,972 - Total elapsed time: 58.167616789985914
+
+2020-10-16 18:22:45,973 - ====================================================
+
+2020-10-16 18:22:46,776 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:22:46,777 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:22:48,469 - model loading time: 1.6918546429951675
+2020-10-16 18:22:48,475 - # non-zero params before pruning: 185762
+2020-10-16 18:22:48,488 - apply PRUNING with percentage: 0.50
+2020-10-16 18:22:48,493 - # non-zero params after pruning: 93605
+2020-10-16 18:22:48,494 - Starting evaluation
+2020-10-16 18:23:20,545 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:23:20,545 - ===> evalidation set: Average loss: 0.4050	EER: 17.9129
+
+2020-10-16 18:23:20,546 - ===> elapsed time for prediction: 32.052501875004964
+2020-10-16 18:23:20,546 - ===> evalidation set: EER: 17.9129
+
+2020-10-16 18:23:20,546 - ################## Success #########################
+2020-10-16 18:23:20,546 - Total elapsed time: 33.77089333499316
+
+2020-10-16 18:23:20,546 - ====================================================
+
+2020-10-16 18:23:21,356 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:23:21,362 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:23:23,030 - model loading time: 1.6679814200033434
+2020-10-16 18:23:23,037 - # non-zero params before pruning: 185762
+2020-10-16 18:23:23,049 - apply PRUNING with percentage: 0.50
+2020-10-16 18:23:23,055 - # non-zero params after pruning: 93605
+2020-10-16 18:23:23,055 - Starting evaluation
+2020-10-16 18:27:31,317 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:27:31,318 - ===> evalidation set: Average loss: 0.6822	EER: 21.3441
+
+2020-10-16 18:27:31,323 - ===> elapsed time for prediction: 248.26865632698173
+2020-10-16 18:27:31,323 - ===> evalidation set: EER: 21.3441
+
+2020-10-16 18:27:31,323 - ################## Success #########################
+2020-10-16 18:27:31,323 - Total elapsed time: 249.96818349897512
+
+2020-10-16 18:27:31,324 - ====================================================
+
+2020-10-16 18:27:32,139 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:27:32,141 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:27:33,829 - model loading time: 1.6749885799945332
+2020-10-16 18:27:33,835 - # non-zero params before pruning: 185762
+2020-10-16 18:27:33,847 - apply PRUNING with percentage: 0.60
+2020-10-16 18:27:33,853 - # non-zero params after pruning: 75174
+2020-10-16 18:27:33,853 - Starting evaluation
+2020-10-16 18:28:30,162 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:28:30,162 - ===> evalidation set: Average loss: 0.4413	EER: 12.1433
+
+2020-10-16 18:28:30,163 - ===> elapsed time for prediction: 56.31019786701654
+2020-10-16 18:28:30,163 - ===> evalidation set: EER: 12.1433
+
+2020-10-16 18:28:30,163 - ################## Success #########################
+2020-10-16 18:28:30,163 - Total elapsed time: 58.02427436201833
+
+2020-10-16 18:28:30,163 - ====================================================
+
+2020-10-16 18:28:30,961 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:28:30,962 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:28:32,620 - model loading time: 1.6581887200009078
+2020-10-16 18:28:32,627 - # non-zero params before pruning: 185762
+2020-10-16 18:28:32,639 - apply PRUNING with percentage: 0.60
+2020-10-16 18:28:32,645 - # non-zero params after pruning: 75174
+2020-10-16 18:28:32,645 - Starting evaluation
+2020-10-16 18:29:04,670 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:29:04,670 - ===> evalidation set: Average loss: 0.5415	EER: 24.6964
+
+2020-10-16 18:29:04,671 - ===> elapsed time for prediction: 32.02595978800673
+2020-10-16 18:29:04,671 - ===> evalidation set: EER: 24.6964
+
+2020-10-16 18:29:04,671 - ################## Success #########################
+2020-10-16 18:29:04,671 - Total elapsed time: 33.710383876023116
+
+2020-10-16 18:29:04,671 - ====================================================
+
+2020-10-16 18:29:05,467 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:29:05,474 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:29:07,148 - model loading time: 1.6743155450094491
+2020-10-16 18:29:07,154 - # non-zero params before pruning: 185762
+2020-10-16 18:29:07,167 - apply PRUNING with percentage: 0.60
+2020-10-16 18:29:07,173 - # non-zero params after pruning: 75174
+2020-10-16 18:29:07,173 - Starting evaluation
+2020-10-16 18:33:15,303 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:33:15,304 - ===> evalidation set: Average loss: 0.4085	EER: 28.4144
+
+2020-10-16 18:33:15,309 - ===> elapsed time for prediction: 248.13667823700234
+2020-10-16 18:33:15,309 - ===> evalidation set: EER: 28.4144
+
+2020-10-16 18:33:15,309 - ################## Success #########################
+2020-10-16 18:33:15,309 - Total elapsed time: 249.84272430700366
+
+2020-10-16 18:33:15,309 - ====================================================
+
+2020-10-16 18:33:16,123 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:33:16,125 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:33:17,850 - model loading time: 1.7252883329929318
+2020-10-16 18:33:17,856 - # non-zero params before pruning: 185762
+2020-10-16 18:33:17,869 - apply PRUNING with percentage: 0.70
+2020-10-16 18:33:17,875 - # non-zero params after pruning: 56742
+2020-10-16 18:33:17,875 - Starting evaluation
+2020-10-16 18:34:14,337 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:34:14,337 - ===> evalidation set: Average loss: 1.4572	EER: 3.4506
+
+2020-10-16 18:34:14,338 - ===> elapsed time for prediction: 56.46363976801513
+2020-10-16 18:34:14,338 - ===> evalidation set: EER: 3.4506
+
+2020-10-16 18:34:14,338 - ################## Success #########################
+2020-10-16 18:34:14,338 - Total elapsed time: 58.21580407200963
+
+2020-10-16 18:34:14,338 - ====================================================
+
+2020-10-16 18:34:15,151 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:34:15,152 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:34:16,821 - model loading time: 1.6693154459935613
+2020-10-16 18:34:16,828 - # non-zero params before pruning: 185762
+2020-10-16 18:34:16,840 - apply PRUNING with percentage: 0.70
+2020-10-16 18:34:16,846 - # non-zero params after pruning: 56742
+2020-10-16 18:34:16,846 - Starting evaluation
+2020-10-16 18:34:48,872 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:34:48,872 - ===> evalidation set: Average loss: 1.3714	EER: 12.9323
+
+2020-10-16 18:34:48,873 - ===> elapsed time for prediction: 32.0269763499964
+2020-10-16 18:34:48,873 - ===> evalidation set: EER: 12.9323
+
+2020-10-16 18:34:48,873 - ################## Success #########################
+2020-10-16 18:34:48,873 - Total elapsed time: 33.72246568699484
+
+2020-10-16 18:34:48,873 - ====================================================
+
+2020-10-16 18:34:49,676 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:34:49,682 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:34:51,363 - model loading time: 1.6807771830062848
+2020-10-16 18:34:51,369 - # non-zero params before pruning: 185762
+2020-10-16 18:34:51,381 - apply PRUNING with percentage: 0.70
+2020-10-16 18:34:51,387 - # non-zero params after pruning: 56742
+2020-10-16 18:34:51,387 - Starting evaluation
+2020-10-16 18:38:59,189 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:38:59,189 - ===> evalidation set: Average loss: 0.3126	EER: 20.7695
+
+2020-10-16 18:38:59,195 - ===> elapsed time for prediction: 247.8075598719879
+2020-10-16 18:38:59,195 - ===> evalidation set: EER: 20.7695
+
+2020-10-16 18:38:59,195 - ################## Success #########################
+2020-10-16 18:38:59,195 - Total elapsed time: 249.51968447701074
+
+2020-10-16 18:38:59,195 - ====================================================
+
+2020-10-16 18:39:00,005 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:39:00,006 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:39:01,672 - model loading time: 1.6654494899848942
+2020-10-16 18:39:01,678 - # non-zero params before pruning: 185762
+2020-10-16 18:39:01,690 - apply PRUNING with percentage: 0.80
+2020-10-16 18:39:01,696 - # non-zero params after pruning: 38311
+2020-10-16 18:39:01,696 - Starting evaluation
+2020-10-16 18:39:58,034 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:39:58,034 - ===> evalidation set: Average loss: 1.8150	EER: 7.5647
+
+2020-10-16 18:39:58,035 - ===> elapsed time for prediction: 56.339079956000205
+2020-10-16 18:39:58,035 - ===> evalidation set: EER: 7.5647
+
+2020-10-16 18:39:58,035 - ################## Success #########################
+2020-10-16 18:39:58,035 - Total elapsed time: 58.03120019301423
+
+2020-10-16 18:39:58,035 - ====================================================
+
+2020-10-16 18:39:58,841 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:39:58,842 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:40:00,510 - model loading time: 1.6681443260167725
+2020-10-16 18:40:00,516 - # non-zero params before pruning: 185762
+2020-10-16 18:40:00,529 - apply PRUNING with percentage: 0.80
+2020-10-16 18:40:00,534 - # non-zero params after pruning: 38311
+2020-10-16 18:40:00,534 - Starting evaluation
+2020-10-16 18:40:32,523 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:40:32,523 - ===> evalidation set: Average loss: 1.6278	EER: 12.9474
+
+2020-10-16 18:40:32,524 - ===> elapsed time for prediction: 31.989562551985728
+2020-10-16 18:40:32,524 - ===> evalidation set: EER: 12.9474
+
+2020-10-16 18:40:32,524 - ################## Success #########################
+2020-10-16 18:40:32,524 - Total elapsed time: 33.683784619002836
+
+2020-10-16 18:40:32,524 - ====================================================
+
+2020-10-16 18:40:33,329 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:40:33,336 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:40:35,011 - model loading time: 1.6755679980269633
+2020-10-16 18:40:35,018 - # non-zero params before pruning: 185762
+2020-10-16 18:40:35,030 - apply PRUNING with percentage: 0.80
+2020-10-16 18:40:35,036 - # non-zero params after pruning: 38311
+2020-10-16 18:40:35,036 - Starting evaluation
+2020-10-16 18:44:43,118 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:44:43,119 - ===> evalidation set: Average loss: 0.3750	EER: 23.1174
+
+2020-10-16 18:44:43,124 - ===> elapsed time for prediction: 248.0880927249964
+2020-10-16 18:44:43,124 - ===> evalidation set: EER: 23.1174
+
+2020-10-16 18:44:43,124 - ################## Success #########################
+2020-10-16 18:44:43,124 - Total elapsed time: 249.79546802397817
+
+2020-10-16 18:44:43,124 - ====================================================
+
+2020-10-16 18:44:43,928 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:44:43,929 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:44:45,586 - model loading time: 1.656430580012966
+2020-10-16 18:44:45,592 - # non-zero params before pruning: 185762
+2020-10-16 18:44:45,604 - apply PRUNING with percentage: 0.90
+2020-10-16 18:44:45,610 - # non-zero params after pruning: 19879
+2020-10-16 18:44:45,610 - Starting evaluation
+2020-10-16 18:45:41,795 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:45:41,796 - ===> evalidation set: Average loss: 2.0097	EER: 60.9821
+
+2020-10-16 18:45:41,797 - ===> elapsed time for prediction: 56.186784127989085
+2020-10-16 18:45:41,797 - ===> evalidation set: EER: 60.9821
+
+2020-10-16 18:45:41,797 - ################## Success #########################
+2020-10-16 18:45:41,797 - Total elapsed time: 57.86966843501432
+
+2020-10-16 18:45:41,797 - ====================================================
+
+2020-10-16 18:45:42,613 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:45:42,614 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:45:44,273 - model loading time: 1.658412496006349
+2020-10-16 18:45:44,279 - # non-zero params before pruning: 185762
+2020-10-16 18:45:44,299 - apply PRUNING with percentage: 0.90
+2020-10-16 18:45:44,305 - # non-zero params after pruning: 19879
+2020-10-16 18:45:44,305 - Starting evaluation
+2020-10-16 18:46:16,263 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:46:16,263 - ===> evalidation set: Average loss: 1.7884	EER: 52.5263
+
+2020-10-16 18:46:16,264 - ===> elapsed time for prediction: 31.95883297600085
+2020-10-16 18:46:16,264 - ===> evalidation set: EER: 52.5263
+
+2020-10-16 18:46:16,264 - ################## Success #########################
+2020-10-16 18:46:16,264 - Total elapsed time: 33.6509632539819
+
+2020-10-16 18:46:16,264 - ====================================================
+
+2020-10-16 18:46:17,077 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:46:17,083 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:46:18,751 - model loading time: 1.6682565299852286
+2020-10-16 18:46:18,758 - # non-zero params before pruning: 185762
+2020-10-16 18:46:18,770 - apply PRUNING with percentage: 0.90
+2020-10-16 18:46:18,776 - # non-zero params after pruning: 19879
+2020-10-16 18:46:18,776 - Starting evaluation
+2020-10-16 18:50:26,376 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:50:26,376 - ===> evalidation set: Average loss: 0.4070	EER: 52.0031
+
+2020-10-16 18:50:26,382 - ===> elapsed time for prediction: 247.6060480279848
+2020-10-16 18:50:26,382 - ===> evalidation set: EER: 52.0031
+
+2020-10-16 18:50:26,382 - ################## Success #########################
+2020-10-16 18:50:26,382 - Total elapsed time: 249.3057914399833
+
+2020-10-16 18:50:26,382 - ====================================================
+
+2020-10-16 18:50:27,188 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:50:27,189 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:50:28,898 - model loading time: 1.7082852650200948
+2020-10-16 18:50:28,904 - # non-zero params before pruning: 185762
+2020-10-16 18:50:28,916 - apply PRUNING with percentage: 1.0
+2020-10-16 18:50:28,920 - # non-zero params after pruning: 1448
+2020-10-16 18:50:28,920 - Starting evaluation
+2020-10-16 18:51:24,559 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:51:24,559 - ===> evalidation set: Average loss: 0.6931	EER: 50.0000
+
+2020-10-16 18:51:24,560 - ===> elapsed time for prediction: 55.639924750023056
+2020-10-16 18:51:24,560 - ===> evalidation set: EER: 50.0000
+
+2020-10-16 18:51:24,560 - ################## Success #########################
+2020-10-16 18:51:24,560 - Total elapsed time: 57.37341593299061
+
+2020-10-16 18:51:24,560 - ====================================================
+
+2020-10-16 18:51:25,357 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 18:51:25,358 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:51:27,025 - model loading time: 1.6672290870046709
+2020-10-16 18:51:27,032 - # non-zero params before pruning: 185762
+2020-10-16 18:51:27,044 - apply PRUNING with percentage: 1.0
+2020-10-16 18:51:27,048 - # non-zero params after pruning: 1448
+2020-10-16 18:51:27,048 - Starting evaluation
+2020-10-16 18:51:58,787 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:51:58,788 - ===> evalidation set: Average loss: 0.6932	EER: 50.0000
+
+2020-10-16 18:51:58,788 - ===> elapsed time for prediction: 31.74005759099964
+2020-10-16 18:51:58,788 - ===> evalidation set: EER: 50.0000
+
+2020-10-16 18:51:58,788 - ################## Success #########################
+2020-10-16 18:51:58,788 - Total elapsed time: 33.4317007070058
+
+2020-10-16 18:51:58,788 - ====================================================
+
+2020-10-16 18:51:59,603 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 18:51:59,610 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:52:01,285 - model loading time: 1.674977279995801
+2020-10-16 18:52:01,291 - # non-zero params before pruning: 185762
+2020-10-16 18:52:01,303 - apply PRUNING with percentage: 1.0
+2020-10-16 18:52:01,307 - # non-zero params after pruning: 1448
+2020-10-16 18:52:01,307 - Starting evaluation
+2020-10-16 18:56:06,848 - ===> Final predictions done. Here is a snippet
+2020-10-16 18:56:06,848 - ===> evalidation set: Average loss: 0.6933	EER: 50.0000
+
+2020-10-16 18:56:06,869 - ===> elapsed time for prediction: 245.56201275001513
+2020-10-16 18:56:06,869 - ===> evalidation set: EER: 50.0000
+
+2020-10-16 18:56:06,869 - ################## Success #########################
+2020-10-16 18:56:06,869 - Total elapsed time: 247.26661952902214
+
+2020-10-16 18:56:06,869 - ====================================================
+
+2020-10-16 18:56:07,713 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 18:56:07,714 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 18:56:09,419 - model loading time: 1.704495815007249
+2020-10-16 18:56:09,426 - # non-zero params before quant: 185762
+2020-10-16 18:56:09,447 - # non-zero params after quant: 156897
+2020-10-16 18:56:09,447 - Starting evaluation
+2020-10-16 19:36:31,728 - ===> Final predictions done. Here is a snippet
+2020-10-16 19:36:31,729 - ===> evalidation set: Average loss: 0.0043	EER: 0.1324
+
+2020-10-16 19:36:31,732 - ===> elapsed time for prediction: 2422.285441300017
+2020-10-16 19:36:31,732 - ===> evalidation set: EER: 0.1324
+
+2020-10-16 19:36:31,732 - ################## Success #########################
+2020-10-16 19:36:31,732 - Total elapsed time: 2424.0203773549874
+
+2020-10-16 19:36:31,733 - ====================================================
+
+2020-10-16 19:36:32,543 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 19:36:32,544 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 19:36:34,224 - model loading time: 1.6804669609991834
+2020-10-16 19:36:34,231 - # non-zero params before quant: 185762
+2020-10-16 19:36:34,252 - # non-zero params after quant: 156897
+2020-10-16 19:36:34,252 - Starting evaluation
+2020-10-16 19:58:39,062 - ===> Final predictions done. Here is a snippet
+2020-10-16 19:58:39,062 - ===> evalidation set: Average loss: 0.2734	EER: 7.6671
+
+2020-10-16 19:58:39,077 - ===> elapsed time for prediction: 1324.825418944005
+2020-10-16 19:58:39,077 - ===> evalidation set: EER: 7.6671
+
+2020-10-16 19:58:39,077 - ################## Success #########################
+2020-10-16 19:58:39,077 - Total elapsed time: 1326.5353318819834
+
+2020-10-16 19:58:39,077 - ====================================================
+
+2020-10-16 19:58:39,900 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-16 19:58:39,906 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 19:58:41,615 - model loading time: 1.7083516419806983
+2020-10-16 19:58:41,622 - # non-zero params before quant: 185762
+2020-10-16 19:58:41,643 - # non-zero params after quant: 156897
+2020-10-16 19:58:41,643 - Starting evaluation
+2020-10-16 23:00:05,845 - ===> Final predictions done. Here is a snippet
+2020-10-16 23:00:05,845 - ===> evalidation set: Average loss: 1.1823	EER: 12.3267
+
+2020-10-16 23:00:05,862 - ===> elapsed time for prediction: 10884.21857615502
+2020-10-16 23:00:05,862 - ===> evalidation set: EER: 12.3267
+
+2020-10-16 23:00:05,862 - ################## Success #########################
+2020-10-16 23:00:05,862 - Total elapsed time: 10885.962577464
+
+2020-10-16 23:00:05,862 - ====================================================
+
+2020-10-16 23:00:06,717 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-16 23:00:06,718 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 23:00:08,415 - model loading time: 1.696704381989548
+2020-10-16 23:00:08,454 - # non-zero params after pq: 156897
+2020-10-16 23:00:08,454 - Starting evaluation
+2020-10-16 23:39:22,758 - ===> Final predictions done. Here is a snippet
+2020-10-16 23:39:22,758 - ===> evalidation set: Average loss: 0.0043	EER: 0.1324
+
+2020-10-16 23:39:22,759 - ===> elapsed time for prediction: 2354.3055000700115
+2020-10-16 23:39:22,759 - ===> evalidation set: EER: 0.1324
+
+2020-10-16 23:39:22,759 - ################## Success #########################
+2020-10-16 23:39:22,759 - Total elapsed time: 2356.0433829880203
+
+2020-10-16 23:39:22,759 - ====================================================
+
+2020-10-16 23:39:23,616 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-16 23:39:23,617 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-16 23:39:25,302 - model loading time: 1.6852783289796207
+2020-10-16 23:39:25,337 - # non-zero params after pq: 156897
+2020-10-16 23:39:25,337 - Starting evaluation
+2020-10-17 00:01:36,897 - ===> Final predictions done. Here is a snippet
+2020-10-17 00:01:36,897 - ===> evalidation set: Average loss: 0.2734	EER: 7.6671
+
+2020-10-17 00:01:36,898 - ===> elapsed time for prediction: 1331.5605469020084
+2020-10-17 00:01:36,898 - ===> evalidation set: EER: 7.6671
+
+2020-10-17 00:01:36,898 - ################## Success #########################
+2020-10-17 00:01:36,898 - Total elapsed time: 1333.282810700999
+
+2020-10-17 00:01:36,898 - ====================================================
+
+2020-10-17 00:01:37,767 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-17 00:01:37,773 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 00:01:39,486 - model loading time: 1.712931081012357
+2020-10-17 00:01:39,496 - apply PRUNING with percentage: 0.0
+2020-10-17 00:01:39,521 - # non-zero params after pq: 156897
+2020-10-17 00:01:39,521 - Starting evaluation
+2020-10-17 03:05:25,772 - ===> Final predictions done. Here is a snippet
+2020-10-17 03:05:25,772 - ===> evalidation set: Average loss: 1.1823	EER: 12.3267
+
+2020-10-17 03:05:25,779 - ===> elapsed time for prediction: 11026.258076697995
+2020-10-17 03:05:25,780 - ===> evalidation set: EER: 12.3267
+
+2020-10-17 03:05:25,780 - ################## Success #########################
+2020-10-17 03:05:25,780 - Total elapsed time: 11028.01377825698
+
+2020-10-17 03:05:25,780 - ====================================================
+
+2020-10-17 03:05:26,683 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-17 03:05:26,685 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 03:05:28,399 - model loading time: 1.7139429849921726
+2020-10-17 03:05:28,412 - apply PRUNING with percentage: 0.10
+2020-10-17 03:05:28,439 - # non-zero params after pq: 142912
+2020-10-17 03:05:28,439 - Starting evaluation
+2020-10-17 03:45:48,356 - ===> Final predictions done. Here is a snippet
+2020-10-17 03:45:48,356 - ===> evalidation set: Average loss: 0.0052	EER: 0.1325
+
+2020-10-17 03:45:48,357 - ===> elapsed time for prediction: 2419.9184034980135
+2020-10-17 03:45:48,357 - ===> evalidation set: EER: 0.1325
+
+2020-10-17 03:45:48,357 - ################## Success #########################
+2020-10-17 03:45:48,357 - Total elapsed time: 2421.675067620992
+
+2020-10-17 03:45:48,357 - ====================================================
+
+2020-10-17 03:45:49,235 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-17 03:45:49,236 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 03:45:50,939 - model loading time: 1.70299730199622
+2020-10-17 03:45:50,952 - apply PRUNING with percentage: 0.10
+2020-10-17 03:45:50,978 - # non-zero params after pq: 142912
+2020-10-17 03:45:50,978 - Starting evaluation
+2020-10-17 04:09:14,951 - ===> Final predictions done. Here is a snippet
+2020-10-17 04:09:14,951 - ===> evalidation set: Average loss: 0.2595	EER: 7.7444
+
+2020-10-17 04:09:14,952 - ===> elapsed time for prediction: 1403.973717926012
+2020-10-17 04:09:14,952 - ===> evalidation set: EER: 7.7444
+
+2020-10-17 04:09:14,952 - ################## Success #########################
+2020-10-17 04:09:14,952 - Total elapsed time: 1405.7181594790018
+
+2020-10-17 04:09:14,952 - ====================================================
+
+2020-10-17 04:09:15,816 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-17 04:09:15,822 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 04:09:17,525 - model loading time: 1.702767261012923
+2020-10-17 04:09:17,539 - apply PRUNING with percentage: 0.10
+2020-10-17 04:09:17,565 - # non-zero params after pq: 142912
+2020-10-17 04:09:17,565 - Starting evaluation
+2020-10-17 07:10:01,898 - ===> Final predictions done. Here is a snippet
+2020-10-17 07:10:01,898 - ===> evalidation set: Average loss: 1.1189	EER: 12.1669
+
+2020-10-17 07:10:01,905 - ===> elapsed time for prediction: 10844.339492358995
+2020-10-17 07:10:01,905 - ===> evalidation set: EER: 12.1669
+
+2020-10-17 07:10:01,905 - ################## Success #########################
+2020-10-17 07:10:01,905 - Total elapsed time: 10846.090031781001
+
+2020-10-17 07:10:01,905 - ====================================================
+
+2020-10-17 07:10:02,790 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-17 07:10:02,791 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 07:10:04,506 - model loading time: 1.7142507140233647
+2020-10-17 07:10:04,521 - apply PRUNING with percentage: 0.20
+2020-10-17 07:10:04,547 - # non-zero params after pq: 128760
+2020-10-17 07:10:04,547 - Starting evaluation
+2020-10-17 07:49:02,598 - ===> Final predictions done. Here is a snippet
+2020-10-17 07:49:02,598 - ===> evalidation set: Average loss: 0.0056	EER: 0.3307
+
+2020-10-17 07:49:02,600 - ===> elapsed time for prediction: 2338.0525015179883
+2020-10-17 07:49:02,600 - ===> evalidation set: EER: 0.3307
+
+2020-10-17 07:49:02,600 - ################## Success #########################
+2020-10-17 07:49:02,600 - Total elapsed time: 2339.8108419830096
+
+2020-10-17 07:49:02,600 - ====================================================
+
+2020-10-17 07:49:03,469 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-17 07:49:03,471 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 07:49:05,174 - model loading time: 1.703251386003103
+2020-10-17 07:49:05,188 - apply PRUNING with percentage: 0.20
+2020-10-17 07:49:05,215 - # non-zero params after pq: 128760
+2020-10-17 07:49:05,215 - Starting evaluation
+2020-10-17 08:12:18,946 - ===> Final predictions done. Here is a snippet
+2020-10-17 08:12:18,946 - ===> evalidation set: Average loss: 0.2913	EER: 7.6316
+
+2020-10-17 08:12:18,947 - ===> elapsed time for prediction: 1393.731957030017
+2020-10-17 08:12:18,947 - ===> evalidation set: EER: 7.6316
+
+2020-10-17 08:12:18,947 - ################## Success #########################
+2020-10-17 08:12:18,947 - Total elapsed time: 1395.478041668015
+
+2020-10-17 08:12:18,947 - ====================================================
+
+2020-10-17 08:12:19,813 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-17 08:12:19,820 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 08:12:21,525 - model loading time: 1.705270667996956
+2020-10-17 08:12:21,540 - apply PRUNING with percentage: 0.20
+2020-10-17 08:12:21,567 - # non-zero params after pq: 128760
+2020-10-17 08:12:21,567 - Starting evaluation
+2020-10-17 11:12:28,356 - ===> Final predictions done. Here is a snippet
+2020-10-17 11:12:28,356 - ===> evalidation set: Average loss: 1.2122	EER: 11.4958
+
+2020-10-17 11:12:28,369 - ===> elapsed time for prediction: 10806.802083593007
+2020-10-17 11:12:28,369 - ===> evalidation set: EER: 11.4958
+
+2020-10-17 11:12:28,369 - ################## Success #########################
+2020-10-17 11:12:28,369 - Total elapsed time: 10808.556492189004
+
+2020-10-17 11:12:28,369 - ====================================================
+
+2020-10-17 11:12:29,243 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-17 11:12:29,244 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 11:12:30,956 - model loading time: 1.7116387280111667
+2020-10-17 11:12:30,973 - apply PRUNING with percentage: 0.30
+2020-10-17 11:12:31,000 - # non-zero params after pq: 114456
+2020-10-17 11:12:31,000 - Starting evaluation
+2020-10-17 11:53:19,826 - ===> Final predictions done. Here is a snippet
+2020-10-17 11:53:19,826 - ===> evalidation set: Average loss: 0.0083	EER: 0.0664
+
+2020-10-17 11:53:19,828 - ===> elapsed time for prediction: 2448.827621847013
+2020-10-17 11:53:19,828 - ===> evalidation set: EER: 0.0664
+
+2020-10-17 11:53:19,828 - ################## Success #########################
+2020-10-17 11:53:19,828 - Total elapsed time: 2450.5859199599945
+
+2020-10-17 11:53:19,828 - ====================================================
+
+2020-10-17 11:53:20,696 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-17 11:53:20,697 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 11:53:22,409 - model loading time: 1.7120802289864514
+2020-10-17 11:53:22,425 - apply PRUNING with percentage: 0.30
+2020-10-17 11:53:22,452 - # non-zero params after pq: 114456
+2020-10-17 11:53:22,452 - Starting evaluation
+2020-10-17 12:16:37,532 - ===> Final predictions done. Here is a snippet
+2020-10-17 12:16:37,532 - ===> evalidation set: Average loss: 0.2922	EER: 8.1579
+
+2020-10-17 12:16:37,532 - ===> elapsed time for prediction: 1395.080307013006
+2020-10-17 12:16:37,533 - ===> evalidation set: EER: 8.1579
+
+2020-10-17 12:16:37,533 - ################## Success #########################
+2020-10-17 12:16:37,533 - Total elapsed time: 1396.8373568860115
+
+2020-10-17 12:16:37,533 - ====================================================
+
+2020-10-17 12:16:38,418 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-17 12:16:38,424 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 12:16:40,120 - model loading time: 1.6953255330154207
+2020-10-17 12:16:40,136 - apply PRUNING with percentage: 0.30
+2020-10-17 12:16:40,163 - # non-zero params after pq: 114456
+2020-10-17 12:16:40,163 - Starting evaluation
+2020-10-17 15:18:34,191 - ===> Final predictions done. Here is a snippet
+2020-10-17 15:18:34,191 - ===> evalidation set: Average loss: 1.1684	EER: 12.4833
+
+2020-10-17 15:18:34,200 - ===> elapsed time for prediction: 10914.03715812799
+2020-10-17 15:18:34,200 - ===> evalidation set: EER: 12.4833
+
+2020-10-17 15:18:34,214 - ################## Success #########################
+2020-10-17 15:18:34,214 - Total elapsed time: 10915.797099851014
+
+2020-10-17 15:18:34,214 - ====================================================
+
+2020-10-17 15:18:35,089 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-17 15:18:35,091 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 15:18:36,796 - model loading time: 1.7049882309802342
+2020-10-17 15:18:36,814 - apply PRUNING with percentage: 0.40
+2020-10-17 15:18:36,841 - # non-zero params after pq: 99706
+2020-10-17 15:18:36,841 - Starting evaluation
+2020-10-17 15:57:52,823 - ===> Final predictions done. Here is a snippet
+2020-10-17 15:57:52,823 - ===> evalidation set: Average loss: 0.0294	EER: 0.5972
+
+2020-10-17 15:57:52,825 - ===> elapsed time for prediction: 2355.984070720995
+2020-10-17 15:57:52,825 - ===> evalidation set: EER: 0.5972
+
+2020-10-17 15:57:52,825 - ################## Success #########################
+2020-10-17 15:57:52,825 - Total elapsed time: 2357.7363302680023
+
+2020-10-17 15:57:52,825 - ====================================================
+
+2020-10-17 15:57:53,697 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-17 15:57:53,698 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 15:57:55,381 - model loading time: 1.6827454039885197
+2020-10-17 15:57:55,399 - apply PRUNING with percentage: 0.40
+2020-10-17 15:57:55,426 - # non-zero params after pq: 99706
+2020-10-17 15:57:55,426 - Starting evaluation
+2020-10-17 16:20:45,868 - ===> Final predictions done. Here is a snippet
+2020-10-17 16:20:45,868 - ===> evalidation set: Average loss: 0.3220	EER: 9.6053
+
+2020-10-17 16:20:45,878 - ===> elapsed time for prediction: 1370.452760921995
+2020-10-17 16:20:45,878 - ===> evalidation set: EER: 9.6053
+
+2020-10-17 16:20:45,878 - ################## Success #########################
+2020-10-17 16:20:45,879 - Total elapsed time: 1372.182367706002
+
+2020-10-17 16:20:45,879 - ====================================================
+
+2020-10-17 16:20:46,755 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-17 16:20:46,761 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 16:20:48,477 - model loading time: 1.7153723819938023
+2020-10-17 16:20:48,494 - apply PRUNING with percentage: 0.40
+2020-10-17 16:20:48,521 - # non-zero params after pq: 99706
+2020-10-17 16:20:48,521 - Starting evaluation
+2020-10-17 19:18:14,715 - ===> Final predictions done. Here is a snippet
+2020-10-17 19:18:14,715 - ===> evalidation set: Average loss: 1.0803	EER: 14.6193
+
+2020-10-17 19:18:14,726 - ===> elapsed time for prediction: 10646.205056166975
+2020-10-17 19:18:14,727 - ===> evalidation set: EER: 14.6193
+
+2020-10-17 19:18:14,727 - ################## Success #########################
+2020-10-17 19:18:14,727 - Total elapsed time: 10647.972781457036
+
+2020-10-17 19:18:14,727 - ====================================================
+
+2020-10-17 19:18:15,608 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-17 19:18:15,610 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 19:18:17,292 - model loading time: 1.6823241559905
+2020-10-17 19:18:17,311 - apply PRUNING with percentage: 0.50
+2020-10-17 19:18:17,338 - # non-zero params after pq: 84557
+2020-10-17 19:18:17,338 - Starting evaluation
+2020-10-17 19:58:26,052 - ===> Final predictions done. Here is a snippet
+2020-10-17 19:58:26,052 - ===> evalidation set: Average loss: 0.1625	EER: 5.1758
+
+2020-10-17 19:58:26,053 - ===> elapsed time for prediction: 2408.715178348997
+2020-10-17 19:58:26,053 - ===> evalidation set: EER: 5.1758
+
+2020-10-17 19:58:26,054 - ################## Success #########################
+2020-10-17 19:58:26,054 - Total elapsed time: 2410.446146383998
+
+2020-10-17 19:58:26,054 - ====================================================
+
+2020-10-17 19:58:26,941 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-17 19:58:26,942 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 19:58:28,631 - model loading time: 1.6887858049594797
+2020-10-17 19:58:28,650 - apply PRUNING with percentage: 0.50
+2020-10-17 19:58:28,677 - # non-zero params after pq: 84557
+2020-10-17 19:58:28,677 - Starting evaluation
+2020-10-17 20:21:07,022 - ===> Final predictions done. Here is a snippet
+2020-10-17 20:21:07,022 - ===> evalidation set: Average loss: 0.4050	EER: 17.8947
+
+2020-10-17 20:21:07,036 - ===> elapsed time for prediction: 1358.359150100965
+2020-10-17 20:21:07,036 - ===> evalidation set: EER: 17.8947
+
+2020-10-17 20:21:07,036 - ################## Success #########################
+2020-10-17 20:21:07,036 - Total elapsed time: 1360.095738273987
+
+2020-10-17 20:21:07,036 - ====================================================
+
+2020-10-17 20:21:07,908 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-17 20:21:07,914 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 20:21:09,601 - model loading time: 1.687002656981349
+2020-10-17 20:21:09,621 - apply PRUNING with percentage: 0.50
+2020-10-17 20:21:09,648 - # non-zero params after pq: 84557
+2020-10-17 20:21:09,648 - Starting evaluation
+2020-10-17 23:23:28,762 - ===> Final predictions done. Here is a snippet
+2020-10-17 23:23:28,762 - ===> evalidation set: Average loss: 0.6824	EER: 21.4816
+
+2020-10-17 23:23:28,769 - ===> elapsed time for prediction: 10939.121045479958
+2020-10-17 23:23:28,769 - ===> evalidation set: EER: 21.4816
+
+2020-10-17 23:23:28,769 - ################## Success #########################
+2020-10-17 23:23:28,769 - Total elapsed time: 10940.861876234994
+
+2020-10-17 23:23:28,769 - ====================================================
+
+2020-10-17 23:23:29,657 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-17 23:23:29,659 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-17 23:23:31,356 - model loading time: 1.69710693199886
+2020-10-17 23:23:31,377 - apply PRUNING with percentage: 0.60
+2020-10-17 23:23:31,403 - # non-zero params after pq: 68842
+2020-10-17 23:23:31,403 - Starting evaluation
+2020-10-18 00:02:45,619 - ===> Final predictions done. Here is a snippet
+2020-10-18 00:02:45,619 - ===> evalidation set: Average loss: 0.4409	EER: 12.1433
+
+2020-10-18 00:02:45,620 - ===> elapsed time for prediction: 2354.2170796009596
+2020-10-18 00:02:45,621 - ===> evalidation set: EER: 12.1433
+
+2020-10-18 00:02:45,621 - ################## Success #########################
+2020-10-18 00:02:45,621 - Total elapsed time: 2355.9638014920056
+
+2020-10-18 00:02:45,621 - ====================================================
+
+2020-10-18 00:02:46,502 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-18 00:02:46,503 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 00:02:48,216 - model loading time: 1.7131369119742885
+2020-10-18 00:02:48,236 - apply PRUNING with percentage: 0.60
+2020-10-18 00:02:48,263 - # non-zero params after pq: 68842
+2020-10-18 00:02:48,263 - Starting evaluation
+2020-10-18 00:25:52,063 - ===> Final predictions done. Here is a snippet
+2020-10-18 00:25:52,063 - ===> evalidation set: Average loss: 0.5412	EER: 24.7368
+
+2020-10-18 00:25:52,064 - ===> elapsed time for prediction: 1383.8011703729862
+2020-10-18 00:25:52,064 - ===> evalidation set: EER: 24.7368
+
+2020-10-18 00:25:52,064 - ################## Success #########################
+2020-10-18 00:25:52,064 - Total elapsed time: 1385.5634829910123
+
+2020-10-18 00:25:52,064 - ====================================================
+
+2020-10-18 00:25:52,940 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-18 00:25:52,946 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 00:25:54,676 - model loading time: 1.729292604024522
+2020-10-18 00:25:54,696 - apply PRUNING with percentage: 0.60
+2020-10-18 00:25:54,723 - # non-zero params after pq: 68842
+2020-10-18 00:25:54,723 - Starting evaluation
+2020-10-18 03:25:36,822 - ===> Final predictions done. Here is a snippet
+2020-10-18 03:25:36,822 - ===> evalidation set: Average loss: 0.4093	EER: 28.3513
+
+2020-10-18 03:25:36,829 - ===> elapsed time for prediction: 10782.106093554
+2020-10-18 03:25:36,829 - ===> evalidation set: EER: 28.3513
+
+2020-10-18 03:25:36,829 - ################## Success #########################
+2020-10-18 03:25:36,829 - Total elapsed time: 10783.88985443802
+
+2020-10-18 03:25:36,829 - ====================================================
+
+2020-10-18 03:25:37,727 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-18 03:25:37,729 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 03:25:39,439 - model loading time: 1.709332127997186
+2020-10-18 03:25:39,461 - apply PRUNING with percentage: 0.70
+2020-10-18 03:25:39,487 - # non-zero params after pq: 52428
+2020-10-18 03:25:39,487 - Starting evaluation
+2020-10-18 04:05:41,860 - ===> Final predictions done. Here is a snippet
+2020-10-18 04:05:41,860 - ===> evalidation set: Average loss: 1.4535	EER: 3.5833
+
+2020-10-18 04:05:41,862 - ===> elapsed time for prediction: 2402.3740068019833
+2020-10-18 04:05:41,862 - ===> evalidation set: EER: 3.5833
+
+2020-10-18 04:05:41,862 - ################## Success #########################
+2020-10-18 04:05:41,862 - Total elapsed time: 2404.1349231420318
+
+2020-10-18 04:05:41,862 - ====================================================
+
+2020-10-18 04:05:42,739 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-18 04:05:42,740 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 04:05:44,464 - model loading time: 1.7244004670064896
+2020-10-18 04:05:44,484 - apply PRUNING with percentage: 0.70
+2020-10-18 04:05:44,511 - # non-zero params after pq: 52428
+2020-10-18 04:05:44,511 - Starting evaluation
+2020-10-18 04:28:29,369 - ===> Final predictions done. Here is a snippet
+2020-10-18 04:28:29,369 - ===> evalidation set: Average loss: 1.3679	EER: 12.8947
+
+2020-10-18 04:28:29,370 - ===> elapsed time for prediction: 1364.858640844992
+2020-10-18 04:28:29,370 - ===> evalidation set: EER: 12.8947
+
+2020-10-18 04:28:29,370 - ################## Success #########################
+2020-10-18 04:28:29,370 - Total elapsed time: 1366.6315527160186
+
+2020-10-18 04:28:29,370 - ====================================================
+
+2020-10-18 04:28:30,255 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-18 04:28:30,262 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 04:28:31,948 - model loading time: 1.6866115829907358
+2020-10-18 04:28:31,970 - apply PRUNING with percentage: 0.70
+2020-10-18 04:28:31,997 - # non-zero params after pq: 52428
+2020-10-18 04:28:31,997 - Starting evaluation
+2020-10-18 07:28:00,990 - ===> Final predictions done. Here is a snippet
+2020-10-18 07:28:00,990 - ===> evalidation set: Average loss: 0.3121	EER: 20.9553
+
+2020-10-18 07:28:00,997 - ===> elapsed time for prediction: 10768.999939703033
+2020-10-18 07:28:00,998 - ===> evalidation set: EER: 20.9553
+
+2020-10-18 07:28:00,998 - ################## Success #########################
+2020-10-18 07:28:00,998 - Total elapsed time: 10770.742945810023
+
+2020-10-18 07:28:00,998 - ====================================================
+
+2020-10-18 07:28:01,895 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-18 07:28:01,897 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 07:28:03,611 - model loading time: 1.7144688089611009
+2020-10-18 07:28:03,634 - apply PRUNING with percentage: 0.80
+2020-10-18 07:28:03,660 - # non-zero params after pq: 35405
+2020-10-18 07:28:03,660 - Starting evaluation
+2020-10-18 08:07:58,876 - ===> Final predictions done. Here is a snippet
+2020-10-18 08:07:58,876 - ===> evalidation set: Average loss: 1.8100	EER: 7.6974
+
+2020-10-18 08:07:58,882 - ===> elapsed time for prediction: 2395.2213198239915
+2020-10-18 08:07:58,882 - ===> evalidation set: EER: 7.6974
+
+2020-10-18 08:07:58,882 - ################## Success #########################
+2020-10-18 08:07:58,882 - Total elapsed time: 2396.987238849979
+
+2020-10-18 08:07:58,882 - ====================================================
+
+2020-10-18 08:07:59,752 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-18 08:07:59,753 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 08:08:01,443 - model loading time: 1.6894426780054346
+2020-10-18 08:08:01,465 - apply PRUNING with percentage: 0.80
+2020-10-18 08:08:01,491 - # non-zero params after pq: 35405
+2020-10-18 08:08:01,491 - Starting evaluation
+2020-10-18 08:30:12,906 - ===> Final predictions done. Here is a snippet
+2020-10-18 08:30:12,907 - ===> evalidation set: Average loss: 1.6236	EER: 14.3158
+
+2020-10-18 08:30:12,907 - ===> elapsed time for prediction: 1331.4168254659744
+2020-10-18 08:30:12,908 - ===> evalidation set: EER: 14.3158
+
+2020-10-18 08:30:12,908 - ################## Success #########################
+2020-10-18 08:30:12,908 - Total elapsed time: 1333.155941388046
+
+2020-10-18 08:30:12,908 - ====================================================
+
+2020-10-18 08:30:13,792 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-18 08:30:13,799 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 08:30:15,505 - model loading time: 1.7060946179553866
+2020-10-18 08:30:15,528 - apply PRUNING with percentage: 0.80
+2020-10-18 08:30:15,555 - # non-zero params after pq: 35405
+2020-10-18 08:30:15,555 - Starting evaluation
+2020-10-18 11:32:09,061 - ===> Final predictions done. Here is a snippet
+2020-10-18 11:32:09,061 - ===> evalidation set: Average loss: 0.3743	EER: 23.4427
+
+2020-10-18 11:32:09,068 - ===> elapsed time for prediction: 10913.51321527001
+2020-10-18 11:32:09,068 - ===> evalidation set: EER: 23.4427
+
+2020-10-18 11:32:09,068 - ################## Success #########################
+2020-10-18 11:32:09,068 - Total elapsed time: 10915.276587978995
+
+2020-10-18 11:32:09,068 - ====================================================
+
+2020-10-18 11:32:09,959 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-18 11:32:09,960 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 11:32:11,657 - model loading time: 1.6970361890271306
+2020-10-18 11:32:11,681 - apply PRUNING with percentage: 0.90
+2020-10-18 11:32:11,707 - # non-zero params after pq: 18005
+2020-10-18 11:32:11,707 - Starting evaluation
+2020-10-18 12:11:24,586 - ===> Final predictions done. Here is a snippet
+2020-10-18 12:11:24,587 - ===> evalidation set: Average loss: 2.0068	EER: 59.2789
+
+2020-10-18 12:11:24,602 - ===> elapsed time for prediction: 2352.895219857048
+2020-10-18 12:11:24,602 - ===> evalidation set: EER: 59.2789
+
+2020-10-18 12:11:24,602 - ################## Success #########################
+2020-10-18 12:11:24,603 - Total elapsed time: 2354.644648763002
+
+2020-10-18 12:11:24,603 - ====================================================
+
+2020-10-18 12:11:25,493 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-18 12:11:25,494 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 12:11:27,215 - model loading time: 1.720643061969895
+2020-10-18 12:11:27,239 - apply PRUNING with percentage: 0.90
+2020-10-18 12:11:27,265 - # non-zero params after pq: 18005
+2020-10-18 12:11:27,265 - Starting evaluation
+2020-10-18 12:33:18,516 - ===> Final predictions done. Here is a snippet
+2020-10-18 12:33:18,516 - ===> evalidation set: Average loss: 1.7858	EER: 49.1813
+
+2020-10-18 12:33:18,517 - ===> elapsed time for prediction: 1311.2526309080422
+2020-10-18 12:33:18,517 - ===> evalidation set: EER: 49.1813
+
+2020-10-18 12:33:18,517 - ################## Success #########################
+2020-10-18 12:33:18,517 - Total elapsed time: 1313.0247871439788
+
+2020-10-18 12:33:18,517 - ====================================================
+
+2020-10-18 12:33:19,410 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-18 12:33:19,417 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 12:33:21,141 - model loading time: 1.7246514040161856
+2020-10-18 12:33:21,164 - apply PRUNING with percentage: 0.90
+2020-10-18 12:33:21,190 - # non-zero params after pq: 18005
+2020-10-18 12:33:21,190 - Starting evaluation
+2020-10-18 15:25:46,629 - ===> Final predictions done. Here is a snippet
+2020-10-18 15:25:46,629 - ===> evalidation set: Average loss: 0.4065	EER: 53.0403
+
+2020-10-18 15:25:46,636 - ===> elapsed time for prediction: 10345.445969220018
+2020-10-18 15:25:46,636 - ===> evalidation set: EER: 53.0403
+
+2020-10-18 15:25:46,636 - ################## Success #########################
+2020-10-18 15:25:46,636 - Total elapsed time: 10347.227047511959
+
+2020-10-18 15:25:46,636 - ====================================================
+
+2020-10-18 15:25:47,541 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/train
+2020-10-18 15:25:47,543 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 15:25:49,250 - model loading time: 1.7069814589922316
+2020-10-18 15:25:49,275 - apply PRUNING with percentage: 1.0
+2020-10-18 15:25:49,300 - # non-zero params after pq: 1448
+2020-10-18 15:25:49,300 - Starting evaluation
+2020-10-18 16:01:38,015 - ===> Final predictions done. Here is a snippet
+2020-10-18 16:01:38,016 - ===> evalidation set: Average loss: 0.6931	EER: 50.0000
+
+2020-10-18 16:01:38,025 - ===> elapsed time for prediction: 2148.724591795006
+2020-10-18 16:01:38,025 - ===> evalidation set: EER: 50.0000
+
+2020-10-18 16:01:38,025 - ################## Success #########################
+2020-10-18 16:01:38,025 - Total elapsed time: 2150.4848383589997
+
+2020-10-18 16:01:38,025 - ====================================================
+
+2020-10-18 16:01:38,905 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/dev
+2020-10-18 16:01:38,906 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 16:01:40,627 - model loading time: 1.7211489320034161
+2020-10-18 16:01:40,651 - apply PRUNING with percentage: 1.0
+2020-10-18 16:01:40,676 - # non-zero params after pq: 1448
+2020-10-18 16:01:40,676 - Starting evaluation
+2020-10-18 16:21:05,266 - ===> Final predictions done. Here is a snippet
+2020-10-18 16:21:05,267 - ===> evalidation set: Average loss: 0.6932	EER: 50.0000
+
+2020-10-18 16:21:05,267 - ===> elapsed time for prediction: 1164.591152451001
+2020-10-18 16:21:05,268 - ===> evalidation set: EER: 50.0000
+
+2020-10-18 16:21:05,268 - ################## Success #########################
+2020-10-18 16:21:05,268 - Total elapsed time: 1166.3637340339483
+
+2020-10-18 16:21:05,268 - ====================================================
+
+2020-10-18 16:21:06,161 - ===> loading eval dataset ../feat_aligned/ASVspoof2017/eval
+2020-10-18 16:21:06,167 - ===> loading snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth for prediction
+2020-10-18 16:21:07,891 - model loading time: 1.7237830230151303
+2020-10-18 16:21:07,916 - apply PRUNING with percentage: 1.0
+2020-10-18 16:21:07,941 - # non-zero params after pq: 1448
+2020-10-18 16:21:07,941 - Starting evaluation
+2020-10-18 18:55:15,032 - ===> Final predictions done. Here is a snippet
+2020-10-18 18:55:15,032 - ===> evalidation set: Average loss: 0.6933	EER: 50.0000
+
+2020-10-18 18:55:15,039 - ===> elapsed time for prediction: 9247.098066129023
+2020-10-18 18:55:15,040 - ===> evalidation set: EER: 50.0000
+
+2020-10-18 18:55:15,040 - ################## Success #########################
+2020-10-18 18:55:15,040 - Total elapsed time: 9248.87937660102
+
+2020-10-18 18:55:15,040 - ====================================================
+

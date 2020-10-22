@@ -37,7 +37,7 @@ def train(args, model, device, train_loader, optimizer, epoch, plot_wd, rnn=Fals
         optimizer.zero_grad()
         if rnn is True:
             model.hidden = model.init_hidden(data.size()[0])  # clear out the hidden state of the LSTM
-        output, weight = model(data)
+        output, weight = model(data)[0]
         loss = F.binary_cross_entropy(output, target)
         loss.backward()
         optimizer.step()

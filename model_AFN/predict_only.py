@@ -1,42 +1,48 @@
-## Utilities
+# Utilities
 from __future__ import print_function
 import argparse
 import time
-import os
-import logging
+import sys
+import random
 from timeit import default_timer as timer
 
-## Libraries
+# Libraries
 import numpy as np
 
-## Torch
+# Torch
 import torch
-import torch.nn as nn
 from torch.utils import data
-import torch.nn.functional as F
-import torch.optim as optim
 
-## Custom Imports
-from src.data_reader.v3_dataset import SpoofDataset
+# Custom Imports
+from src.data_reader.vND_dataset import SpoofDataset
 from src.v1_logger import setup_logs
 from src.v1_metrics import compute_eer
 from src.v4_prediction import prediction, scores
 from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet3, AttenResNet4, AttenResNet5
 
-run_name = "pred" + time.strftime("-%y-%m-%d_%h_%m")
+
+# network pruning imports
+import os,sys,inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+from acceleration_compression.pruning import NetworkPruning
+from acceleration_compression.quantization import NetworkQuantization
+
+run_name = "pred_only" + time.strftime("-%Y-%m-%d")
 
 feat_dim = 257
 m = 1091
 atten_channel = 16
-atten_activation = 'sigmoid' 
-temperature = 10 
-#model = AttenResNet5(atten_activation, atten_channel, temperature)
-model = AttenResNet2(atten_activation, atten_channel)
+atten_activation = 'sigmoid'
+temperature = 10
+# model = AttenResNet5(atten_activation, atten_channel, temperature)
+MODEL = AttenResNet4(atten_activation, atten_channel)
 
-### trained model weights 
-model_dir = '/export/b19/jlai/cstr/spoof/model/snapshots/attention/'
+### trained model weights
+model_dir = 'snapshots/attention/'
 """
-## ResNet: remove one residual block in classifier 
+## ResNet: remove one residual block in classifier
 ## snapshots/scoring/resnet
 model1 = model_dir + 'conv-net-2018-06-30_14_30-model_best.pth'
 model2 = model_dir + 'conv-net-2018-06-30_14_31-model_best.pth'
@@ -48,7 +54,7 @@ models = [model1, model2, model3, model4, model5, model6]
 # train: 0
 # dev: 6.82
 # eval: 10.92
-## ResNet: add the 5th residual block in features 
+## ResNet: add the 5th residual block in features
 ## snapshots/scoring/resnet2
 model1 = model_dir + 'conv-net-2018-06-29_15_28-model_best.pth'
 model2 = model_dir + 'conv-net-2018-06-29_15_30-model_best.pth'
@@ -75,7 +81,7 @@ models = [model1, model2, model3, model4, model5, model6]
 # train: 0.13
 # dev: 6.47
 # eval: 16.08 
-## ResNet: lower lr to 0.0005 and replace relu with elu 
+## ResNet: lower lr to 0.0005 and replace relu with elu
 ## snapshots/scoring/resnet3
 model1 = model_dir + 'conv-net-2018-07-04_09_20-model_best.pth'
 model2 = model_dir + 'conv-net-2018-07-04_09_22-model_best.pth'
@@ -218,11 +224,12 @@ model7 = model_dir + '-model_best.pth'
 model8 = model_dir + '-model_best.pth'
 models = [model1, model2, model3, model4, model5, model6, model7, model8]
 # train:
-# dev: 
-# eval: 
+# dev:
+# eval:
 """
 ## AttenResNet2 (channel=16, sigmoid, attention residual)
 ## snapshots/scoring/attention8
+"""
 model1 = model_dir + 'attention-2018-07-17_09_12_16-model_best.pth'
 model2 = model_dir + 'attention-2018-07-17_09_13_10-model_best.pth'
 model3 = model_dir + 'attention-2018-07-18_15_21_01-model_best.pth'
@@ -234,16 +241,57 @@ model8 = model_dir + 'attention-2018-07-17_09_13_56-model_best.pth'
 model9 = model_dir + 'attention-2018-07-25_16_12_12-model_best.pth'
 model10 = model_dir + 'attention-2018-07-25_16_12_21-model_best.pth'
 models = [model1, model2, model3, model4, model5, model6, model7, model8, model9, model10]
-# train: 
-# dev: 
-# eval: 
+# train:
+# dev:
+# eval:
+"""
+# for models fusion
+model1 = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
+models = [model1]
+# for single_model
+model_path = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
+
+
+def apply_net_prune(model, percentage, logger):
+    net_prune = NetworkPruning(model, percentage=percentage)
+    logger.info(
+        '# non-zero params before pruning: {}'
+        .format(net_prune.get_num_parameters(model, is_nonzero=True))
+    )
+    model = net_prune.pruning()
+    logger.info('apply PRUNING with percentage: {}'.format(percentage))
+    logger.info(
+        '# non-zero params after pruning: {}'
+        .format(net_prune.get_num_parameters(model, is_nonzero=True))
+    )
+    return model
+
+
+def apply_net_quant(model, logger, use_cuda):
+    # quantization has to be on CPU
+    model.to(torch.device('cpu'))
+    net_quant = NetworkQuantization(model)
+    logger.info(
+        '# non-zero params before quant: {}'
+        .format(net_quant.get_num_parameters(model, is_nonzero=True))
+    )
+    model = net_quant.quantization()
+    logger.info(
+        '# non-zero params after quant: {}'
+        .format(net_quant.get_num_parameters(model, is_nonzero=True))
+    )
+    # if use_cuda:
+    #     model.to(torch.device('cuda'))
+    #     print('model moved to GPU')
+    return model
+
 
 def main():
     ##############################################################
-    ## Settings
+    # Settings
     parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-    parser.add_argument('--eval-scp',
-                        help='kaldi eval scp file')
+    parser.add_argument('--eval-dir',
+                        help='directory to eval set')
     parser.add_argument('--eval-utt2label',
                         help='train utt2label')
     parser.add_argument('--model-path',
@@ -256,13 +304,22 @@ def main():
                         help='disables CUDA training')
     parser.add_argument('--seed', type=int, default=1, metavar='S',
                         help='random seed (default: 1)')
-    parser.add_argument('--scoring-txt', 
+    parser.add_argument('--scoring-txt',
                         help='output scoring text file')
-    parser.add_argument('--label-txt', 
+    parser.add_argument('--label-txt',
                         help='output labels text file')
+    parser.add_argument('--compress',  # prune, quant, pq
+                        help='network compress method')
+    parser.add_argument('--prune-pct',
+                        help='percentage for pruning')
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
+    if args.compress in ("quant", 'pq'):
+        use_cuda = False
+        print("Quantization can only run on CPU")
     print('use_cuda is', use_cuda)
+    if use_cuda:
+        torch.cuda.empty_cache()
 
     # Global timer
     global_timer = timer()
@@ -271,41 +328,79 @@ def main():
     logger = setup_logs(args.logging_dir, run_name)
 
     # Setting random seeds for reproducibility.
+    np.random.seed(args.seed)
+    random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed(args.seed)
-    np.random.seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True  # CUDA determinism
 
     device = torch.device("cuda" if use_cuda else "cpu")
-    model.to(device)
+
     ##############################################################
-    ## Loading the dataset
+    # Loading the dataset
     params = {'num_workers': 0,
-              'pin_memory': False} if use_cuda else {}
+              'pin_memory': False,
+              'worker_init_fn': np.random.seed(args.seed)} if use_cuda else {}
 
-    logger.info('===> loading eval dataset')
-    eval_set = SpoofDataset(args.eval_scp, args.eval_utt2label)
-    eval_loader = data.DataLoader(eval_set, batch_size=args.test_batch_size, shuffle=False, **params) # set shuffle to False
-    """ 
+    logger.info('===> loading eval dataset {}'.format(args.eval_dir))
+    eval_set = SpoofDataset(args.eval_dir, args.eval_utt2label)
+    eval_loader = data.DataLoader(
+        eval_set,
+        batch_size=args.test_batch_size,
+        shuffle=False,
+        **params
+    )  # set shuffle to False
+
     ###################### for single model #####################
-    logger.info('===> loading {} for prediction'.format(args.model_path))
-    checkpoint = torch.load(args.model_path)
+    logger.info('===> loading {} for prediction'.format(model_path))
+    t_start_load = timer()
+    model = MODEL
+    model.to(device)
+    checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['state_dict'])
+    t_end_load = timer()
+    logger.info('model loading time: {}'.format(t_end_load - t_start_load))
     model_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print('model params is', model_params)
+    print('original model params is', model_params)
 
-    eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_scp, args.eval_utt2label)
+    #### for network pruning usage ####
+    if args.compress == 'prune':
+        model = apply_net_prune(model, float(args.prune_pct), logger)
+    elif args.compress == 'quant':
+        model = apply_net_quant(model, logger, use_cuda)
+    elif args.compress == 'pq':
+        model = apply_net_prune(model, float(args.prune_pct), logger)
+        model = apply_net_quant(model, logger, use_cuda)
+
+    ###################################
+
+    t_start = timer()
+    eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_utt2label)
+    t_end = timer()
+    logger.info('===> elapsed time for prediction: {}'.format(t_end - t_start))
+    logger.info('===> evalidation set: EER: {:.4f}\n'.format(eval_eer))
     """
     ################### for multiple models #####################
-    np.set_printoptions(threshold=np.nan)
+    np.set_printoptions(threshold=sys.maxsize)
     sum_preds = 0
-    for model_i in models: 
+    for model_i in models:
         logger.info('===> loading {} for prediction'.format(model_i))
-        checkpoint = torch.load(model_i, map_location=lambda storage, loc: storage) # load everything onto CPU
+        checkpoint = torch.load(model_i, map_location=lambda storage, loc: storage)  # load everything onto CPU
         model.load_state_dict(checkpoint['state_dict'])
+        # network pruning
+        # net_prune = NetworkPruning(model, percentage=0.5)
+        # model = net_prune.pruning()
+        # network quantinization
+        # net_quant = NetworkQuantization(model)
+        # model = net_quant.quantization()
+
         model_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
         print('model params is', model_params)
 
-        eval_preds, eval_labels = scores(args, model, device, eval_loader, args.eval_scp, args.eval_utt2label)
+        t_start = timer()
+        eval_preds, eval_labels = scores(args, model, device, eval_loader, args.eval_utt2label)  # noqa
         sum_preds += eval_preds
     sum_preds /= len(models)  # get the average
     eval_eer = compute_eer(eval_labels, sum_preds)
@@ -314,9 +409,12 @@ def main():
     logger.info("===> Final predictions done. Here is a snippet")
     logger.info('===> evalidation set: EER: {:.4f}\n'.format(eval_eer))
     ###########################################################
+    """
     end_global_timer = timer()
     logger.info("################## Success #########################")
-    logger.info("Total elapsed time: %s" % (end_global_timer - global_timer))
+    logger.info("Total elapsed time: %s\n" % (end_global_timer - global_timer))
+    logger.info("====================================================\n")
+
 
 if __name__ == '__main__':
     main()
