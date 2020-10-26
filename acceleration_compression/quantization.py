@@ -8,9 +8,14 @@ import torch.quantization as quant
 
 class NetworkQuantization(object):
     def __init__(self, model, quant_method='dynamic', config='x86'):
+        '''
+        :param config: platform switch
+        :type config: x86, pi, jetson
+        '''
         self.model = model
         self.print_model_size(model, 'Original Model')
         self.quant_method = quant_method
+        self.config = config
         self.qconfig = quant.get_default_qconfig('fbgemm') if config == 'x86' else quant.get_default_qconfig('qnnpack')
 
     @staticmethod
@@ -31,6 +36,7 @@ class NetworkQuantization(object):
 
     def quantization(self):
         if self.quant_method == 'dynamic':
+            torch.backends.quantized.engine = 'fbgemm' if self.config == 'x86' else 'qnnpack'
             quant_model = quant.quantize_dynamic(self.model, {nn.Linear, nn.Conv2d, nn.Conv1d}, dtype=torch.qint8)
         else:
             # Post-Training Static Quantization
