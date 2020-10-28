@@ -22,7 +22,9 @@ class NetworkQuantization(object):
     def print_model_size(model, message=''):
         torch.save(model.state_dict(), "temp.p")
         print(message, 'Size (MB):', os.path.getsize("temp.p") / 1e6)
+        size = os.path.getsize("temp.p") / 1e6
         os.remove('temp.p')
+        return size
 
     @staticmethod
     def get_num_parameters(model, is_nonzero=False):
