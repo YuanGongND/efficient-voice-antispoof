@@ -1,0 +1,466 @@
+2020-10-28 21:09:50,202 - orignal model size (MB): 0.828236
+2020-10-28 21:09:50,204 - # non-zero params before decomp: 185762
+2020-10-28 21:09:55,548 - apply [cp] DECOMP with rank: 4
+2020-10-28 21:09:55,555 - decomp-ed model size (MB): 0.166182
+2020-10-28 21:09:55,556 - # non-zero params after decomp: 13526
+2020-10-28 21:09:55,561 - ===> loading train and dev dataset
+2020-10-28 21:09:55,565 - ### Model summary below###
+ AttenResNet4(
+  (pre): Sequential(
+    (0): Sequential(
+      (0): Conv2d(1, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+  )
+  (down1): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att1): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(4, 8), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip1): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down2): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att2): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(8, 16), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip2): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down3): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att3): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(16, 32), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip3): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down4): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att4): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(32, 64), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip4): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down5): MaxPool2d(kernel_size=3, stride=(1, 2), padding=0, dilation=1, ceil_mode=False)
+  (att5): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(64, 128), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+  )
+  (up5): UpsamplingBilinear2d(size=(137, 851), mode=bilinear)
+  (att6): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (up4): UpsamplingBilinear2d(size=(201, 979), mode=bilinear)
+  (att7): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (up3): UpsamplingBilinear2d(size=(233, 1043), mode=bilinear)
+  (att8): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (up2): UpsamplingBilinear2d(size=(249, 1075), mode=bilinear)
+  (att9): Sequential(
+    (0): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (up1): UpsamplingBilinear2d(size=(257, 1091), mode=bilinear)
+  (conv1): Sequential(
+    (0): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): ReLU(inplace=True)
+    (2): Sequential(
+      (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(1, 1), stride=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 4, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (3): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): ReLU(inplace=True)
+    (5): Sequential(
+      (0): Conv2d(4, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): Conv2d(4, 4, kernel_size=(1, 1), stride=(1, 1), groups=4, bias=False)
+      (2): Conv2d(4, 1, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (soft): Sigmoid()
+  (cnn1): Sequential(
+    (0): Conv2d(1, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re1): ReLU(inplace=True)
+  (cnn2): Sequential(
+    (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re2): ReLU(inplace=True)
+  (cnn3): Sequential(
+    (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 16, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (mp1): MaxPool2d(kernel_size=(1, 2), stride=(1, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn4): Sequential(
+    (0): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn3): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re3): ReLU(inplace=True)
+  (cnn5): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re4): ReLU(inplace=True)
+  (cnn6): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (mp2): MaxPool2d(kernel_size=(1, 2), stride=(1, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn7): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), dilation=(4, 4), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn5): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re5): ReLU(inplace=True)
+  (cnn8): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn6): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re6): ReLU(inplace=True)
+  (cnn9): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (mp3): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn10): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), dilation=(4, 4), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn12): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re12): ReLU(inplace=True)
+  (cnn11): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn13): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re13): ReLU(inplace=True)
+  (cnn12): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (mp4): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn13): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), dilation=(8, 8), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn14): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re14): ReLU(inplace=True)
+  (cnn14): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (bn15): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re15): ReLU(inplace=True)
+  (cnn15): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (mp5): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn16): Sequential(
+    (0): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), dilation=(8, 8), groups=4, bias=False)
+    (2): Conv2d(4, 32, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (ln1): Sequential(
+    (0): Linear(in_features=768, out_features=4, bias=False)
+    (1): Linear(in_features=4, out_features=32, bias=True)
+  )
+  (bn7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re7): ReLU(inplace=True)
+  (ln2): Sequential(
+    (0): Linear(in_features=32, out_features=4, bias=False)
+    (1): Linear(in_features=4, out_features=32, bias=True)
+  )
+  (bn8): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re8): ReLU(inplace=True)
+  (ln3): Sequential(
+    (0): Linear(in_features=32, out_features=4, bias=False)
+    (1): Linear(in_features=4, out_features=32, bias=True)
+  )
+  (bn9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re9): ReLU(inplace=True)
+  (ln4): Sequential(
+    (0): Linear(in_features=32, out_features=4, bias=False)
+    (1): Linear(in_features=4, out_features=32, bias=True)
+  )
+  (bn10): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re10): ReLU(inplace=True)
+  (ln5): Sequential(
+    (0): Linear(in_features=32, out_features=4, bias=False)
+    (1): Linear(in_features=4, out_features=32, bias=True)
+  )
+  (bn11): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re11): ReLU(inplace=True)
+  (ln6): Sequential(
+    (0): Linear(in_features=32, out_features=4, bias=False)
+    (1): Linear(in_features=4, out_features=1, bias=True)
+  )
+  (sigmoid): Sigmoid()
+)
+
+2020-10-28 21:09:55,566 - ===> Model total parameter: 13526
+
+2020-10-28 21:09:56,081 - Train Epoch: 1 [0/3014 (0%)]	Loss: 0.110268
+2020-10-28 21:10:09,381 - Train Epoch: 1 [200/3014 (7%)]	Loss: 0.430873
+2020-10-28 21:10:22,687 - Train Epoch: 1 [400/3014 (13%)]	Loss: 0.172104
+2020-10-28 21:10:35,994 - Train Epoch: 1 [600/3014 (20%)]	Loss: 0.110158
+2020-10-28 21:10:49,300 - Train Epoch: 1 [800/3014 (27%)]	Loss: 0.187849
+2020-10-28 21:11:02,607 - Train Epoch: 1 [1000/3014 (33%)]	Loss: 0.407340
+2020-10-28 21:11:15,918 - Train Epoch: 1 [1200/3014 (40%)]	Loss: 0.115056
+2020-10-28 21:11:29,220 - Train Epoch: 1 [1400/3014 (46%)]	Loss: 0.069161
+2020-10-28 21:11:42,516 - Train Epoch: 1 [1600/3014 (53%)]	Loss: 0.157768
+2020-10-28 21:11:55,819 - Train Epoch: 1 [1800/3014 (60%)]	Loss: 0.325887
+2020-10-28 21:12:09,121 - Train Epoch: 1 [2000/3014 (66%)]	Loss: 0.356349
+2020-10-28 21:12:22,420 - Train Epoch: 1 [2200/3014 (73%)]	Loss: 0.096630
+2020-10-28 21:12:35,726 - Train Epoch: 1 [2400/3014 (80%)]	Loss: 1.063365
+2020-10-28 21:12:49,026 - Train Epoch: 1 [2600/3014 (86%)]	Loss: 0.236190
+2020-10-28 21:13:02,333 - Train Epoch: 1 [2800/3014 (93%)]	Loss: 0.115997
+2020-10-28 21:13:15,634 - Train Epoch: 1 [3000/3014 (99%)]	Loss: 0.093205
+2020-10-28 21:13:16,362 - Starting Validation
+2020-10-28 21:13:32,050 - ===> Validation set: Average loss: 0.3115	EER: 10.9211
+
+2020-10-28 21:13:32,078 - Snapshot saved to snapshots/attention/decomp-2020-10-14_21_53_09-rank4-cp-model_best.pth
+
+2020-10-28 21:13:32,078 - #### End epoch 1/30, elapsed time: 216.5125513758976
+2020-10-28 21:13:32,346 - Train Epoch: 2 [0/3014 (0%)]	Loss: 0.124757
+2020-10-28 21:13:45,651 - Train Epoch: 2 [200/3014 (7%)]	Loss: 0.089506
+2020-10-28 21:13:58,962 - Train Epoch: 2 [400/3014 (13%)]	Loss: 0.175748
+2020-10-28 21:14:12,274 - Train Epoch: 2 [600/3014 (20%)]	Loss: 0.097478
+2020-10-28 21:14:25,585 - Train Epoch: 2 [800/3014 (27%)]	Loss: 0.168132
+2020-10-28 21:14:38,896 - Train Epoch: 2 [1000/3014 (33%)]	Loss: 0.044799
+2020-10-28 21:14:52,207 - Train Epoch: 2 [1200/3014 (40%)]	Loss: 0.034007
+2020-10-28 21:15:05,515 - Train Epoch: 2 [1400/3014 (46%)]	Loss: 0.547982
+2020-10-28 21:15:18,813 - Train Epoch: 2 [1600/3014 (53%)]	Loss: 0.458127
+2020-10-28 21:15:32,124 - Train Epoch: 2 [1800/3014 (60%)]	Loss: 1.046197
+2020-10-28 21:15:45,431 - Train Epoch: 2 [2000/3014 (66%)]	Loss: 0.258697
+2020-10-28 21:15:58,735 - Train Epoch: 2 [2200/3014 (73%)]	Loss: 0.116429
+2020-10-28 21:16:12,046 - Train Epoch: 2 [2400/3014 (80%)]	Loss: 0.102221
+2020-10-28 21:16:25,352 - Train Epoch: 2 [2600/3014 (86%)]	Loss: 0.077412
+2020-10-28 21:16:38,660 - Train Epoch: 2 [2800/3014 (93%)]	Loss: 0.905845
+2020-10-28 21:16:51,973 - Train Epoch: 2 [3000/3014 (99%)]	Loss: 0.130660
+2020-10-28 21:16:52,702 - Starting Validation
+2020-10-28 21:17:08,365 - ===> Validation set: Average loss: 0.2447	EER: 8.5526
+
+2020-10-28 21:17:08,394 - Snapshot saved to snapshots/attention/decomp-2020-10-14_21_53_09-rank4-cp-model_best.pth
+
+2020-10-28 21:17:08,394 - #### End epoch 2/30, elapsed time: 216.31524492707103
+2020-10-28 21:17:08,661 - Train Epoch: 3 [0/3014 (0%)]	Loss: 0.160301
+2020-10-28 21:17:21,970 - Train Epoch: 3 [200/3014 (7%)]	Loss: 0.471549
+2020-10-28 21:17:35,275 - Train Epoch: 3 [400/3014 (13%)]	Loss: 0.175026
+2020-10-28 21:17:48,579 - Train Epoch: 3 [600/3014 (20%)]	Loss: 0.472315
+2020-10-28 21:18:01,890 - Train Epoch: 3 [800/3014 (27%)]	Loss: 0.066583
+2020-10-28 21:18:15,189 - Train Epoch: 3 [1000/3014 (33%)]	Loss: 0.103187
+2020-10-28 21:18:28,496 - Train Epoch: 3 [1200/3014 (40%)]	Loss: 0.075734
+2020-10-28 21:18:41,800 - Train Epoch: 3 [1400/3014 (46%)]	Loss: 0.073548
+2020-10-28 21:18:55,102 - Train Epoch: 3 [1600/3014 (53%)]	Loss: 0.120900
+2020-10-28 21:19:08,404 - Train Epoch: 3 [1800/3014 (60%)]	Loss: 0.047426
+2020-10-28 21:19:21,711 - Train Epoch: 3 [2000/3014 (66%)]	Loss: 0.107366
+2020-10-28 21:19:35,007 - Train Epoch: 3 [2200/3014 (73%)]	Loss: 0.038775
+2020-10-28 21:19:48,302 - Train Epoch: 3 [2400/3014 (80%)]	Loss: 0.110198
+2020-10-28 21:20:01,607 - Train Epoch: 3 [2600/3014 (86%)]	Loss: 0.796261
+2020-10-28 21:20:14,914 - Train Epoch: 3 [2800/3014 (93%)]	Loss: 0.032643
+2020-10-28 21:20:28,215 - Train Epoch: 3 [3000/3014 (99%)]	Loss: 0.074398
+2020-10-28 21:20:28,943 - Starting Validation
+2020-10-28 21:20:44,609 - ===> Validation set: Average loss: 0.3175	EER: 11.6842
+
+2020-10-28 21:20:44,611 - #### End epoch 3/30, elapsed time: 216.21758347703144
+2020-10-28 21:20:44,879 - Train Epoch: 4 [0/3014 (0%)]	Loss: 0.133979
+2020-10-28 21:20:58,187 - Train Epoch: 4 [200/3014 (7%)]	Loss: 0.027912
+2020-10-28 21:21:11,493 - Train Epoch: 4 [400/3014 (13%)]	Loss: 0.060910
+2020-10-28 21:21:24,803 - Train Epoch: 4 [600/3014 (20%)]	Loss: 0.088875
+2020-10-28 21:21:38,116 - Train Epoch: 4 [800/3014 (27%)]	Loss: 0.035071
+2020-10-28 21:21:51,423 - Train Epoch: 4 [1000/3014 (33%)]	Loss: 0.581418
+2020-10-28 21:22:04,728 - Train Epoch: 4 [1200/3014 (40%)]	Loss: 0.920225
+2020-10-28 21:22:18,033 - Train Epoch: 4 [1400/3014 (46%)]	Loss: 0.106838
+2020-10-28 21:22:31,340 - Train Epoch: 4 [1600/3014 (53%)]	Loss: 0.116742
+2020-10-28 21:22:44,651 - Train Epoch: 4 [1800/3014 (60%)]	Loss: 0.155715
+2020-10-28 21:22:57,963 - Train Epoch: 4 [2000/3014 (66%)]	Loss: 0.072110
+2020-10-28 21:23:11,268 - Train Epoch: 4 [2200/3014 (73%)]	Loss: 0.045700
+2020-10-28 21:23:24,569 - Train Epoch: 4 [2400/3014 (80%)]	Loss: 1.189803
+2020-10-28 21:23:37,872 - Train Epoch: 4 [2600/3014 (86%)]	Loss: 0.079823
+2020-10-28 21:23:51,179 - Train Epoch: 4 [2800/3014 (93%)]	Loss: 0.149658
+2020-10-28 21:24:04,488 - Train Epoch: 4 [3000/3014 (99%)]	Loss: 0.052629
+2020-10-28 21:24:05,216 - Starting Validation
+2020-10-28 21:24:20,883 - ===> Validation set: Average loss: 0.3211	EER: 9.6842
+
+2020-10-28 21:24:20,885 - #### End epoch 4/30, elapsed time: 216.2734710359946
+2020-10-28 21:24:21,153 - Train Epoch: 5 [0/3014 (0%)]	Loss: 0.064612
+2020-10-28 21:24:34,461 - Train Epoch: 5 [200/3014 (7%)]	Loss: 0.093515
+2020-10-28 21:24:47,763 - Train Epoch: 5 [400/3014 (13%)]	Loss: 0.138867
+2020-10-28 21:25:01,062 - Train Epoch: 5 [600/3014 (20%)]	Loss: 0.090209
+2020-10-28 21:25:14,354 - Train Epoch: 5 [800/3014 (27%)]	Loss: 1.556290
+2020-10-28 21:25:27,651 - Train Epoch: 5 [1000/3014 (33%)]	Loss: 0.115726
+2020-10-28 21:25:40,948 - Train Epoch: 5 [1200/3014 (40%)]	Loss: 1.126032
+2020-10-28 21:25:54,249 - Train Epoch: 5 [1400/3014 (46%)]	Loss: 0.287616
+2020-10-28 21:26:07,555 - Train Epoch: 5 [1600/3014 (53%)]	Loss: 0.218097
+2020-10-28 21:26:20,853 - Train Epoch: 5 [1800/3014 (60%)]	Loss: 0.388122
+2020-10-28 21:26:34,151 - Train Epoch: 5 [2000/3014 (66%)]	Loss: 0.116210
+2020-10-28 21:26:47,449 - Train Epoch: 5 [2200/3014 (73%)]	Loss: 0.105845
+2020-10-28 21:27:00,753 - Train Epoch: 5 [2400/3014 (80%)]	Loss: 0.929558
+2020-10-28 21:27:14,053 - Train Epoch: 5 [2600/3014 (86%)]	Loss: 0.173435
+2020-10-28 21:27:27,357 - Train Epoch: 5 [2800/3014 (93%)]	Loss: 0.092567
+2020-10-28 21:27:40,672 - Train Epoch: 5 [3000/3014 (99%)]	Loss: 0.051061
+2020-10-28 21:27:41,399 - Starting Validation
+2020-10-28 21:27:57,068 - ===> Validation set: Average loss: 0.2823	EER: 10.6743
+
+2020-10-28 21:27:57,071 - #### End epoch 5/30, elapsed time: 216.18555367994122
+2020-10-28 21:27:57,338 - Train Epoch: 6 [0/3014 (0%)]	Loss: 0.058630
+2020-10-28 21:28:10,645 - Train Epoch: 6 [200/3014 (7%)]	Loss: 0.694756
+2020-10-28 21:28:23,949 - Train Epoch: 6 [400/3014 (13%)]	Loss: 0.242515
+2020-10-28 21:28:37,252 - Train Epoch: 6 [600/3014 (20%)]	Loss: 0.622478
+2020-10-28 21:28:50,551 - Train Epoch: 6 [800/3014 (27%)]	Loss: 0.040676
+2020-10-28 21:29:03,854 - Train Epoch: 6 [1000/3014 (33%)]	Loss: 0.037069
+2020-10-28 21:29:17,157 - Train Epoch: 6 [1200/3014 (40%)]	Loss: 0.064229
+2020-10-28 21:29:30,458 - Train Epoch: 6 [1400/3014 (46%)]	Loss: 0.122441
+2020-10-28 21:29:43,757 - Train Epoch: 6 [1600/3014 (53%)]	Loss: 0.063140
+2020-10-28 21:29:57,055 - Train Epoch: 6 [1800/3014 (60%)]	Loss: 0.064102
+2020-10-28 21:30:10,357 - Train Epoch: 6 [2000/3014 (66%)]	Loss: 0.050447
+2020-10-28 21:30:23,651 - Train Epoch: 6 [2200/3014 (73%)]	Loss: 0.095809
+2020-10-28 21:30:36,957 - Train Epoch: 6 [2400/3014 (80%)]	Loss: 0.569507
+2020-10-28 21:30:50,260 - Train Epoch: 6 [2600/3014 (86%)]	Loss: 0.146271
+2020-10-28 21:31:03,562 - Train Epoch: 6 [2800/3014 (93%)]	Loss: 0.081993
+2020-10-28 21:31:16,861 - Train Epoch: 6 [3000/3014 (99%)]	Loss: 0.595976
+2020-10-28 21:31:17,589 - Starting Validation
+2020-10-28 21:31:33,257 - ===> Validation set: Average loss: 0.2878	EER: 10.9211
+
+2020-10-28 21:31:33,259 - #### End epoch 6/30, elapsed time: 216.1881850529462
+2020-10-28 21:31:33,527 - Train Epoch: 7 [0/3014 (0%)]	Loss: 0.291002
+2020-10-28 21:31:46,817 - Train Epoch: 7 [200/3014 (7%)]	Loss: 0.064290
+2020-10-28 21:32:00,107 - Train Epoch: 7 [400/3014 (13%)]	Loss: 0.133950
+2020-10-28 21:32:13,400 - Train Epoch: 7 [600/3014 (20%)]	Loss: 0.091437
+2020-10-28 21:32:26,689 - Train Epoch: 7 [800/3014 (27%)]	Loss: 0.115075
+2020-10-28 21:32:39,976 - Train Epoch: 7 [1000/3014 (33%)]	Loss: 0.072141
+2020-10-28 21:32:53,267 - Train Epoch: 7 [1200/3014 (40%)]	Loss: 0.219305
+2020-10-28 21:33:06,558 - Train Epoch: 7 [1400/3014 (46%)]	Loss: 1.708876
+2020-10-28 21:33:19,851 - Train Epoch: 7 [1600/3014 (53%)]	Loss: 0.079358
+2020-10-28 21:33:33,149 - Train Epoch: 7 [1800/3014 (60%)]	Loss: 0.215294
+2020-10-28 21:33:46,442 - Train Epoch: 7 [2000/3014 (66%)]	Loss: 0.056360
+2020-10-28 21:33:59,736 - Train Epoch: 7 [2200/3014 (73%)]	Loss: 0.305404
+2020-10-28 21:34:13,029 - Train Epoch: 7 [2400/3014 (80%)]	Loss: 0.120364
+2020-10-28 21:34:26,323 - Train Epoch: 7 [2600/3014 (86%)]	Loss: 1.600603
+2020-10-28 21:34:39,615 - Train Epoch: 7 [2800/3014 (93%)]	Loss: 0.040782
+2020-10-28 21:34:52,904 - Train Epoch: 7 [3000/3014 (99%)]	Loss: 0.950441
+2020-10-28 21:34:53,631 - Starting Validation
+2020-10-28 21:35:09,306 - ===> Validation set: Average loss: 0.4553	EER: 10.1316
+
+2020-10-28 21:35:09,308 - #### End epoch 7/30, elapsed time: 216.04898015107028
+2020-10-28 21:35:09,308 - #### Avg. training+validation time per epoch: 216.24879567142176
+2020-10-28 21:35:09,308 - ################## Done fine-tuning decomp model ######################
+2020-10-28 21:35:09,308 - Total elapsed time: 1520.814461747883
