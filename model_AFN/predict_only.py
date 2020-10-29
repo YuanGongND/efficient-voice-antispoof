@@ -28,8 +28,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 from acceleration_compression.pruning import NetworkPruning
 from acceleration_compression.quantization import NetworkQuantization
-
-run_name = "pred_only" + time.strftime("-%Y-%m-%d")
+from acceleration_compression.decomposition import NetworkDecomposition
 
 feat_dim = 257
 m = 1091
@@ -42,135 +41,6 @@ MODEL = AttenResNet4(atten_activation, atten_channel)
 ### trained model weights
 model_dir = 'snapshots/attention/'
 """
-## ResNet: remove one residual block in classifier
-## snapshots/scoring/resnet
-model1 = model_dir + 'conv-net-2018-06-30_14_30-model_best.pth'
-model2 = model_dir + 'conv-net-2018-06-30_14_31-model_best.pth'
-model3 = model_dir + 'conv-net-2018-06-30_14_35-model_best.pth'
-model4 = model_dir + 'conv-net-2018-06-30_14_36-model_best.pth'
-model5 = model_dir + 'conv-net-2018-06-30_14_38-model_best.pth'
-model6 = model_dir + 'conv-net-2018-06-30_14_40-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6]
-# train: 0
-# dev: 6.82
-# eval: 10.92
-## ResNet: add the 5th residual block in features
-## snapshots/scoring/resnet2
-model1 = model_dir + 'conv-net-2018-06-29_15_28-model_best.pth'
-model2 = model_dir + 'conv-net-2018-06-29_15_30-model_best.pth'
-model3 = model_dir + 'conv-net-2018-06-29_15_40-model_best.pth'
-model4 = model_dir + 'conv-net-2018-06-29_17_33-model_best.pth'
-model5 = model_dir + 'conv-net-2018-06-29_19_37-model_best.pth'
-model6 = model_dir + 'conv-net-2018-06-29_19_38-model_best.pth'
-model7 = model_dir + 'conv-net-2018-06-30_07_09-model_best.pth'
-model8 = model_dir + 'conv-net-2018-06-30_07_10-model_best.pth'
-model9 = model_dir + 'conv-net-2018-06-29_18_08-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8, model9]
-# train: 0.00
-# dev: 6.69
-# eval: 10.30
-## LCNN: modify channel to 16-24-32-16-16 and no dropout
-## snapshots/scoring/lcnn
-model1 = model_dir + 'mfm-2018-07-03_06_24-model_best.pth'
-model2 = model_dir + 'mfm-2018-07-03_06_18-model_best.pth'
-model3 = model_dir + 'mfm-2018-07-03_06_21-model_best.pth'
-model4 = model_dir + 'mfm-2018-07-03_06_25-model_best.pth'
-model5 = model_dir + 'mfm-2018-07-03_06_27-model_best.pth'
-model6 = model_dir + 'mfm-2018-07-03_06_29-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6]
-# train: 0.13
-# dev: 6.47
-# eval: 16.08 
-## ResNet: lower lr to 0.0005 and replace relu with elu
-## snapshots/scoring/resnet3
-model1 = model_dir + 'conv-net-2018-07-04_09_20-model_best.pth'
-model2 = model_dir + 'conv-net-2018-07-04_09_22-model_best.pth'
-model3 = model_dir + 'conv-net-2018-07-04_09_24-model_best.pth'
-model4 = model_dir + 'conv-net-2018-07-04_11_48-model_best.pth'
-model5 = model_dir + 'conv-net-2018-07-04_11_49-model_best.pth'
-model6 = model_dir + 'conv-net-2018-07-04_11_50-model_best.pth'
-model7 = model_dir + 'conv-net-2018-07-04_11_51-model_best.pth'
-model8 = model_dir + 'conv-net-2018-07-04_11_52-model_best.pth'
-model9 = model_dir + 'conv-net-2018-07-04_09_46-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8, model9]
-# train: 0.0
-# dev: 7.49
-# eval: 10.16
-## ResNet4: longer skip connections
-## snapshots/scoring/resnet4
-model1 = model_dir + 'conv-net-2018-07-04_05_44-model_best.pth'
-model2 = model_dir + 'conv-net-2018-07-04_05_46-model_best.pth'
-model3 = model_dir + 'conv-net-2018-07-04_05_47-model_best.pth'
-model4 = model_dir + 'conv-net-2018-07-04_05_48-model_best.pth'
-model5 = model_dir + 'conv-net-2018-07-04_12_09-model_best.pth'
-model6 = model_dir + 'conv-net-2018-07-04_12_11-model_best.pth'
-model7 = model_dir + 'conv-net-2018-07-04_12_12-model_best.pth'
-model8 = model_dir + 'conv-net-2018-07-04_20_35-model_best.pth'
-model9 = model_dir + 'conv-net-2018-07-04_20_37-model_best.pth'
-model10= model_dir + 'conv-net-2018-07-04_20_38-model_best.pth'
-model11= model_dir + 'conv-net-2018-07-04_20_39-model_best.pth'
-model12= model_dir + 'conv-net-2018-07-04_20_43-model_best.pth'
-model13= model_dir + 'conv-net-2018-07-04_06_07-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13]
-# train: 0.0
-# dev: 6.36
-# eval: 10.51
-## AttenResNet (channel=16, sigmoid)
-## snapshots/scoring/attention1
-model1 = model_dir + 'attention-2018-07-11_15_24_48-model_best.pth'
-model2 = model_dir + 'attention-2018-07-11_15_25_33-model_best.pth'
-model3 = model_dir + 'attention-2018-07-11_15_25_44-model_best.pth'
-model4 = model_dir + 'attention-2018-07-11_15_29_00-model_best.pth'
-model5 = model_dir + 'attention-2018-07-17_08_48_24-model_best.pth'
-model6 = model_dir + 'attention-2018-07-17_08_49_00-model_best.pth'
-model7 = model_dir + 'attention-2018-07-17_08_50_24-model_best.pth'
-model8 = model_dir + 'attention-2018-07-11_15_29_38-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train: 0.19
-# dev: 6.6
-# eval: 9.93
-## AttenResNet2 (channel=16, sigmoid, attention residual)
-## snapshots/scoring/attention2
-model1 = model_dir + 'attention-2018-07-17_09_12_16-model_best.pth'
-model2 = model_dir + 'attention-2018-07-17_09_13_10-model_best.pth'
-model3 = model_dir + 'attention-2018-07-18_15_21_01-model_best.pth'
-model4 = model_dir + 'attention-2018-07-18_15_19_31-model_best.pth'
-model5 = model_dir + 'attention-2018-07-18_05_08_34-model_best.pth'
-model6 = model_dir + 'attention-2018-07-18_15_19_34-model_best.pth'
-model7 = model_dir + 'attention-2018-07-18_15_19_38-model_best.pth'
-model8 = model_dir + 'attention-2018-07-17_09_13_56-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train: 0.13
-# dev: 6.55
-# eval: 8.99
-## AttenResNet4 (channel=16, tanh, attention residual)
-## snapshots/scoring/attention3
-model1 = model_dir + 'attention-2018-07-19_07_07_22-model_best.pth'
-model2 = model_dir + 'attention-2018-07-19_07_08_57-model_best.pth'
-model3 = model_dir + 'attention-2018-07-19_07_24_01-model_best.pth'
-model4 = model_dir + 'attention-2018-07-19_07_24_19-model_best.pth'
-model5 = model_dir + 'attention-2018-07-19_16_02_01-model_best.pth'
-model6 = model_dir + 'attention-2018-07-19_21_59_11-model_best.pth'
-model7 = model_dir + 'attention-2018-07-19_16_02_21-model_best.pth'
-model8 = model_dir + 'attention-2018-07-19_07_40_03-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train: 0.11
-# dev: 6.87
-# eval: 10.17
-## AttenResNet4 (channel=16, softmax(dim=2), attention residual)
-## snapshots/scoring/attention4
-model1 = model_dir + 'attention-2018-07-19_16_10_54-model_best.pth'
-model2 = model_dir + 'attention-2018-07-19_22_50_10-model_best.pth'
-model3 = model_dir + 'attention-2018-07-19_16_11_46-model_best.pth'
-model4 = model_dir + 'attention-2018-07-19_16_11_50-model_best.pth'
-model5 = model_dir + 'attention-2018-07-20_11_57_44-model_best.pth'
-model6 = model_dir + 'attention-2018-07-20_11_58_46-model_best.pth'
-model7 = model_dir + 'attention-2018-07-19_16_12_32-model_best.pth'
-model8 = model_dir + 'attention-2018-07-19_23_40_21-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train: 0.1
-# dev: 6.52
-# eval: 9.34
 ## AttenResNet4 (channel=16, softmax(dim=3), attention residual)
 ## snapshots/scoring/attention5
 model1 = model_dir + 'attention-2018-07-19_17_31_12-model_best.pth'
@@ -184,66 +54,6 @@ models = [model1, model2, model3, model4, model5, model6, model7]
 # train: 0.13
 # dev: 6.62
 # eval: 9.28
-## AttenResNet5 (channel=16, softmax(dim=3,T=10), attention residual)
-## snapshots/scoring/attention6
-model1 = model_dir + 'attention-2018-07-20_17_55_06-model_best.pth'
-model2 = model_dir + 'attention-2018-07-20_17_54_41-model_best.pth'
-model3 = model_dir + 'attention-2018-07-20_17_54_54-model_best.pth'
-model4 = model_dir + 'attention-2018-07-20_17_55_11-model_best.pth'
-model5 = model_dir + 'attention-2018-07-21_14_56_24-model_best.pth'
-model6 = model_dir + 'attention-2018-07-21_14_52_40-model_best.pth'
-model7 = model_dir + 'attention-2018-07-21_14_56_41-model_best.pth'
-model8 = model_dir + 'attention-2018-07-20_18_00_27-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train: 0.15
-# dev: 6.36
-# eval: 9.7
-## AttenResNet5 (channel=16, softmax(dim=2,T=10), attention residual)
-## snapshots/scoring/attention7
-model1 = model_dir + 'attention-2018-07-21_18_47_35-model_best.pth'
-model2 = model_dir + 'attention-2018-07-21_19_39_14-model_best.pth'
-model3 = model_dir + 'attention-2018-07-22_11_27_26-model_best.pth'
-model4 = model_dir + 'attention-2018-07-22_11_27_34-model_best.pth'
-model5 = model_dir + 'attention-2018-07-22_11_25_38-model_best.pth'
-model6 = model_dir + 'attention-2018-07-21_18_47_39-model_best.pth'
-model7 = model_dir + 'attention-2018-07-21_18_50_09-model_best.pth'
-model8 = model_dir + 'attention-2018-07-21_18_51_34-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train: 0.2
-# dev: 6.48
-# eval: 9.96
-## AttenResNet5 (channel=16, softmax(dim=2,T=10), attention residual)
-## snapshots/scoring/
-model1 = model_dir + '-model_best.pth'
-model2 = model_dir + '-model_best.pth'
-model3 = model_dir + '-model_best.pth'
-model4 = model_dir + '-model_best.pth'
-model5 = model_dir + '-model_best.pth'
-model6 = model_dir + '-model_best.pth'
-model7 = model_dir + '-model_best.pth'
-model8 = model_dir + '-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8]
-# train:
-# dev:
-# eval:
-"""
-## AttenResNet2 (channel=16, sigmoid, attention residual)
-## snapshots/scoring/attention8
-"""
-model1 = model_dir + 'attention-2018-07-17_09_12_16-model_best.pth'
-model2 = model_dir + 'attention-2018-07-17_09_13_10-model_best.pth'
-model3 = model_dir + 'attention-2018-07-18_15_21_01-model_best.pth'
-model4 = model_dir + 'attention-2018-07-18_15_19_31-model_best.pth'
-model5 = model_dir + 'attention-2018-07-18_05_08_34-model_best.pth'
-model6 = model_dir + 'attention-2018-07-18_15_19_34-model_best.pth'
-model7 = model_dir + 'attention-2018-07-18_15_19_38-model_best.pth'
-model8 = model_dir + 'attention-2018-07-17_09_13_56-model_best.pth'
-model9 = model_dir + 'attention-2018-07-25_16_12_12-model_best.pth'
-model10 = model_dir + 'attention-2018-07-25_16_12_21-model_best.pth'
-models = [model1, model2, model3, model4, model5, model6, model7, model8, model9, model10]
-# train:
-# dev:
-# eval:
 """
 # for models fusion
 model1 = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
@@ -252,14 +62,32 @@ models = [model1]
 model_path = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
 
 
-def apply_net_prune(model, percentage, logger):
-    net_prune = NetworkPruning(model, percentage=percentage)
+def load_model(model, model_path, device, freeze=False):
+    """load pre-trained model"""
+    checkpoint = torch.load(model_path, map_location=device)
+    model.load_state_dict(checkpoint['state_dict'])
+    model_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print('model params is', model_params)
+
+    return model
+
+
+def apply_net_prune(model, logger, percentage, prune_method='L1Unstructured'):
+    net_prune = NetworkPruning(model, percentage=percentage, prune_method=prune_method)
+    logger.info(
+        "orignal model size (MB): {}"
+        .format(net_prune.print_size_of_model(model))
+    )
     logger.info(
         '# non-zero params before pruning: {}'
         .format(net_prune.get_num_parameters(model, is_nonzero=True))
     )
     model = net_prune.pruning()
-    logger.info('apply PRUNING with percentage: {}'.format(percentage))
+    logger.info('apply [{}] PRUNING with percentage: {}'.format(prune_method, percentage))
+    logger.info(
+        "pruned model size (MB): {}"
+        .format(net_prune.print_size_of_model(model))
+    )
     logger.info(
         '# non-zero params after pruning: {}'
         .format(net_prune.get_num_parameters(model, is_nonzero=True))
@@ -267,15 +95,24 @@ def apply_net_prune(model, percentage, logger):
     return model
 
 
-def apply_net_quant(model, logger, use_cuda):
+def apply_net_quant(model, logger, use_cuda, quant_method='dynamic'):
     # quantization has to be on CPU
     model.to(torch.device('cpu'))
-    net_quant = NetworkQuantization(model)
+    net_quant = NetworkQuantization(model, quant_method=quant_method)
+    logger.info(
+        "orignal model size (MB): {}"
+        .format(net_quant.print_model_size(model))
+    )
     logger.info(
         '# non-zero params before quant: {}'
         .format(net_quant.get_num_parameters(model, is_nonzero=True))
     )
     model = net_quant.quantization()
+    logger.info('apply [{}] QUANTIZATION'.format(quant_method))
+    logger.info(
+        "quanted model size (MB): {}"
+        .format(net_quant.print_model_size(model))
+    )
     logger.info(
         '# non-zero params after quant: {}'
         .format(net_quant.get_num_parameters(model, is_nonzero=True))
@@ -283,6 +120,29 @@ def apply_net_quant(model, logger, use_cuda):
     # if use_cuda:
     #     model.to(torch.device('cuda'))
     #     print('model moved to GPU')
+    return model
+
+
+def apply_net_decomp(model, logger, rank, decomp_type='tucker'):
+    net_decomp = NetworkDecomposition(model, rank=rank, decomp_type=decomp_type)
+    logger.info(
+        "orignal model size (MB): {}"
+        .format(net_decomp.print_size_of_model(model))
+    )
+    logger.info(
+        '# non-zero params before decomp: {}'
+        .format(net_decomp.get_num_parameters(model, is_nonzero=True))
+    )
+    model = net_decomp.decomposition()
+    logger.info('apply [{}] DECOMP with rank: {}'.format(decomp_type, rank))
+    logger.info(
+        "decomp-ed model size (MB): {}"
+        .format(net_decomp.print_size_of_model(model))
+    )
+    logger.info(
+        '# non-zero params after decomp: {}'
+        .format(net_decomp.get_num_parameters(model, is_nonzero=True))
+    )
     return model
 
 
@@ -304,14 +164,23 @@ def main():
                         help='disables CUDA training')
     parser.add_argument('--seed', type=int, default=1, metavar='S',
                         help='random seed (default: 1)')
-    parser.add_argument('--scoring-txt',
+    parser.add_argument('--scoring-txt',  # for multi-models
                         help='output scoring text file')
-    parser.add_argument('--label-txt',
+    parser.add_argument('--label-txt',  # for multi-models
                         help='output labels text file')
-    parser.add_argument('--compress',  # prune, quant, pq
+    # for network compression usage
+    parser.add_argument('--compress',  # prune, quant, pq, decomp
                         help='network compress method')
     parser.add_argument('--prune-pct',
                         help='percentage for pruning')
+    parser.add_argument('--prune-method', default='L1Unstructured',
+                        help='pruning method')
+    parser.add_argument('--quant-method', default='dynamic',
+                        help='quantization method')
+    parser.add_argument('--decomp-rank', type=int,
+                        help='rank value for decomposition')
+    parser.add_argument('--decomp-type', default='tucker',
+                        help='decomposition type')
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
     if args.compress in ("quant", 'pq'):
@@ -325,7 +194,11 @@ def main():
     global_timer = timer()
 
     # Setup logs
+    if not args.compress:
+        args.compress = "no_compress"
+    run_name = "pred_only" + time.strftime("-%Y-%m-%d-") + args.compress
     logger = setup_logs(args.logging_dir, run_name)
+    logger.info("use_cuda is {}".format(use_cuda))
 
     # Setting random seeds for reproducibility.
     np.random.seed(args.seed)
@@ -367,17 +240,45 @@ def main():
 
     #### for network pruning usage ####
     if args.compress == 'prune':
-        model = apply_net_prune(model, float(args.prune_pct), logger)
+        model = apply_net_prune(
+            model=model,
+            logger=logger,
+            percentage=float(args.prune_pct),
+            prune_method=args.prune_method
+        )
     elif args.compress == 'quant':
-        model = apply_net_quant(model, logger, use_cuda)
+        model = apply_net_quant(
+            model=model,
+            logger=logger,
+            use_cuda=use_cuda,
+            quant_method=args.quant_method
+        )
+    elif args.compress == 'decomp':
+        model.to('cpu')  # TODO: fix it! may encounter some errors of tensor on two devices
+        model = apply_net_decomp(
+            model=model,
+            logger=logger,
+            rank=args.decomp_rank,
+            decomp_type=args.decomp_type
+        )
+        fine_tuned_path = (
+            "./snapshots/attention/decomp-2020-10-14_21_53_09-rank{}-{}-model_best.pth"
+            .format(args.decomp_rank, args.decomp_type)
+        )
+        model = load_model(
+            model=model,
+            model_path=fine_tuned_path,
+            device=device
+        )
+        model.to(device)  # TODO: along with the previous TODO
     elif args.compress == 'pq':
-        model = apply_net_prune(model, float(args.prune_pct), logger)
-        model = apply_net_quant(model, logger, use_cuda)
+        model = apply_net_prune(model, logger, float(args.prune_pct), args.prune_method)
+        model = apply_net_quant(model, logger, use_cuda, args.prune_method)
 
     ###################################
 
     t_start = timer()
-    eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_utt2label)
+    eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_utt2label)  # noqa
     t_end = timer()
     logger.info('===> elapsed time for prediction: {}'.format(t_end - t_start))
     logger.info('===> evalidation set: EER: {:.4f}\n'.format(eval_eer))
@@ -413,7 +314,7 @@ def main():
     end_global_timer = timer()
     logger.info("################## Success #########################")
     logger.info("Total elapsed time: %s\n" % (end_global_timer - global_timer))
-    logger.info("====================================================\n")
+    logger.info("==========================DONE==========================\n")
 
 
 if __name__ == '__main__':
