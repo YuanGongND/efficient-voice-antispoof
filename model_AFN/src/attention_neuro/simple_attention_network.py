@@ -780,7 +780,8 @@ class AttenResNet4Deform(nn.Module):
         self.cnn3 = nn.Conv2d(16, 16, kernel_size=(3, 3), padding=(1, 1))
 
         self.mp1 = nn.MaxPool2d(kernel_size=(1, 2))
-        self.cnn4 = nn.Conv2d(16, 32, kernel_size=(3, 3), dilation=self._update_dilation((2, 2)))  # no padding
+        # self.cnn4 = nn.Conv2d(16, 32, kernel_size=(3, 3), dilation=self._update_dilation((2, 2)))  # no padding
+        self.cnn4 = nn.Conv2d(16, 32, kernel_size=(3, 3), dilation=(2, 2))  # no padding
         ## block 2
         self.bn3 = nn.BatchNorm2d(32)
         self.re3 = nn.ReLU(inplace=True)
@@ -789,8 +790,8 @@ class AttenResNet4Deform(nn.Module):
         self.re4 = nn.ReLU(inplace=True)
         self.cnn6 = nn.Conv2d(32, 32, kernel_size=(3, 3), padding=(1, 1))
 
-        self.mp2 = nn.MaxPool2d(kernel_size=(1, 2))
-        self.cnn7 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=self._update_dilation((4, 4)))  # no padding
+        self.mp2 = nn.MaxPool2d(kernel_size=(2, 2))
+        self.cnn7 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=(4, 4))  # no padding
         ## block 3
         self.bn5 = nn.BatchNorm2d(32)
         self.re5 = nn.ReLU(inplace=True)
@@ -800,7 +801,7 @@ class AttenResNet4Deform(nn.Module):
         self.cnn9 = nn.Conv2d(32, 32, kernel_size=(3, 3), padding=(1, 1))
 
         self.mp3 = nn.MaxPool2d(kernel_size=(2, 2))
-        self.cnn10 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=self._update_dilation((4, 4)))  # no padding
+        self.cnn10 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=(4, 4))  # no padding
         ## block 4
         self.bn12 = nn.BatchNorm2d(32)
         self.re12 = nn.ReLU(inplace=True)
@@ -810,7 +811,7 @@ class AttenResNet4Deform(nn.Module):
         self.cnn12 = nn.Conv2d(32, 32, kernel_size=(3, 3), padding=(1, 1))
 
         self.mp4 = nn.MaxPool2d(kernel_size=(2, 2))
-        self.cnn13 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=self._update_dilation((8, 8)))  # no padding
+        self.cnn13 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=(4, 4))  # no padding
         ## block 5
         self.bn14 = nn.BatchNorm2d(32)
         self.re14 = nn.ReLU(inplace=True)
@@ -820,10 +821,11 @@ class AttenResNet4Deform(nn.Module):
         self.cnn15 = nn.Conv2d(32, 32, kernel_size=(3, 3), padding=(1, 1))
 
         self.mp5 = nn.MaxPool2d(kernel_size=(2, 2))
-        self.cnn16 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=self._update_dilation((8, 8)))  # no padding
+        self.cnn16 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=(2, 2))  # no padding
 
         # (N x 32 x 8 x 11) to (N x 32*8*11)
-        self.flat_feats = 32 * 4 * (6 // (self.ratio + 1))
+        factor = 2 if self.ratio <= 4 else 1
+        self.flat_feats = 32 * 3 * 3 * factor ** 2
 
         # fc
         self.ln1 = nn.Linear(self.flat_feats, 32)
@@ -927,7 +929,8 @@ class AttenResNet4Deform(nn.Module):
         residual = x
         x = self.cnn3(self.re2(self.bn2(self.cnn2(self.re1(self.bn1(x))))))
         x += residual
-        x = self.cnn4(self.mp1(x))
+        # x = self.cnn4(self.mp1(x))
+        x = self.cnn4(F.adaptive_avg_pool2d(x, output_size=tuple([min(x.shape[2:])] * 2)))
         if self.is_print: print('block1', x.size())
 
         ## block 2
@@ -948,14 +951,22 @@ class AttenResNet4Deform(nn.Module):
         residual = x
         x = self.cnn12(self.re13(self.bn13(self.cnn11(self.re12(self.bn12(x))))))
         x += residual
-        x = self.cnn13(self.mp4(x))
+        if self.ratio <= 4:
+            x = self.mp4(x)
+        # x = self.mp4(x)
+        x = self.cnn13(x)
         if self.is_print: print('block4', x.size())
 
         ## block 5
         residual = x
         x = self.cnn15(self.re15(self.bn15(self.cnn14(self.re14(self.bn14(x))))))
         x += residual
-        x = self.cnn16(self.mp5(x))
+        if self.ratio <= 4:
+            x = self.cnn16(x)
+            x = self.mp5(x)
+        else:
+            x = self.cnn16(x)
+            x = self.mp5(x)
         if self.is_print: print('block5', x.size())
 
         ### classifier
