@@ -824,8 +824,8 @@ class AttenResNet4Deform(nn.Module):
         self.cnn16 = nn.Conv2d(32, 32, kernel_size=(3, 3), dilation=(2, 2))  # no padding
 
         # (N x 32 x 8 x 11) to (N x 32*8*11)
-        factor = 2 if self.ratio <= 4 else 1
-        self.flat_feats = 32 * 3 * 3 * factor ** 2
+        factor = 4 if self.ratio <= 4 else 3
+        self.flat_feats = 32 * factor ** 2
 
         # fc
         self.ln1 = nn.Linear(self.flat_feats, 32)
@@ -962,8 +962,8 @@ class AttenResNet4Deform(nn.Module):
         x = self.cnn15(self.re15(self.bn15(self.cnn14(self.re14(self.bn14(x))))))
         x += residual
         if self.ratio <= 4:
-            x = self.cnn16(x)
             x = self.mp5(x)
+            x = self.cnn16(x)
         else:
             x = self.cnn16(x)
             x = self.mp5(x)
