@@ -9,6 +9,9 @@
 data/
 feat/
 feat_aligned/
+feat_257_512/
+feat_257_256/
+feat_257_128/
 plot/
 tmp/
 predict_only/
