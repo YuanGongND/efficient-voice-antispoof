@@ -24,6 +24,54 @@ if [ $stage -eq 0 ]; then
         --seed 1
 fi
 
+# run train+validation+eval with half size feature 257*512
+if [ $stage -eq 512 ]; then
+    CUDA_VISIBLE_DEVICES='0,1' python main.py \
+	    --train-dir ../feat_257_512/ASVspoof2017/train \
+        --train-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
+        --validation-dir ../feat_257_512/ASVspoof2017/dev \
+        --validation-utt2label ../data/ASVspoof2017/protocol_V2/dev.txt.utt2label \
+        --eval-dir ../feat_257_512/ASVspoof2017/eval \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --logging-dir snapshots/attention/ \
+        --epochs 30 \
+        --log-interval 50 \
+        --seed 1
+fi
+
+# run train+validation+eval with half size feature 257*256
+if [ $stage -eq 256 ]; then
+    CUDA_VISIBLE_DEVICES='0,1' python main.py \
+	    --train-dir ../feat_257_256/ASVspoof2017/train \
+        --train-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
+        --validation-dir ../feat_257_256/ASVspoof2017/dev \
+        --validation-utt2label ../data/ASVspoof2017/protocol_V2/dev.txt.utt2label \
+        --eval-dir ../feat_257_256/ASVspoof2017/eval \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --logging-dir snapshots/attention/ \
+        --epochs 30 \
+        --log-interval 50 \
+        --seed 1
+fi
+
+# run train+validation+eval with half size feature 257*128
+if [ $stage -eq 128 ]; then
+for i in 1 2 3 4 5; do
+    echo "round "$i
+    CUDA_VISIBLE_DEVICES='0,1' python main.py \
+	    --train-dir ../feat_257_128/ASVspoof2017/train \
+        --train-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
+        --validation-dir ../feat_257_128/ASVspoof2017/dev \
+        --validation-utt2label ../data/ASVspoof2017/protocol_V2/dev.txt.utt2label \
+        --eval-dir ../feat_257_128/ASVspoof2017/eval \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --logging-dir snapshots/attention/ \
+        --epochs 30 \
+        --log-interval 50 \
+        --seed 1
+done
+fi
+
 # run prediction using pretrained model and plot features
 if [ $stage -eq 1 ]; then
     CUDA_VISIBLE_DEVICES='0,1' python feature_plot.py \
