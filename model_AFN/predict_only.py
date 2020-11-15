@@ -18,7 +18,7 @@ from src.data_reader.vND_dataset import SpoofDataset
 from src.v1_logger import setup_logs
 from src.v1_metrics import compute_eer
 from src.v4_prediction import prediction, scores
-from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet3, AttenResNet4, AttenResNet5
+from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet3, AttenResNet4, AttenResNet5, AttenResNet4Deform
 
 
 # network pruning imports
@@ -181,6 +181,8 @@ def main():
                         help='rank value for decomposition')
     parser.add_argument('--decomp-type', default='tucker',
                         help='decomposition type')
+    parser.add_argument('--input-dim', type=int, default=1091,
+                        help='input dimension')
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
     if args.compress in ("quant", 'pq'):
@@ -196,7 +198,7 @@ def main():
     # Setup logs
     if not args.compress:
         args.compress = "no_compress"
-    run_name = "pred_only" + time.strftime("-%Y-%m-%d-") + args.compress
+    run_name = "pred_only" + time.strftime("-%Y-%m-%d-") + args.compress + '-' + str(args.input_dim)
     logger = setup_logs(args.logging_dir, run_name)
     logger.info("use_cuda is {}".format(use_cuda))
 
@@ -227,10 +229,13 @@ def main():
     )  # set shuffle to False
 
     ###################### for single model #####################
-    logger.info('===> loading {} for prediction'.format(model_path))
     t_start_load = timer()
     model = MODEL
+    if args.input_dim != 1091:
+        model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, args.input_dim))
+        model_path = model_dir + 'attention-2020-11-11-feat_{}-model_best.pth'.format(args.input_dim)
     model.to(device)
+    logger.info('===> loading {} for prediction'.format(model_path))
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['state_dict'])
     t_end_load = timer()
