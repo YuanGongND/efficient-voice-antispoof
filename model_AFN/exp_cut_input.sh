@@ -18,3 +18,9 @@ for size in 512 256 128; do
         --test-batch-size 1 \
         --input-dim $size
 done
+
+eval $cmd predict_only.py \
+    --eval-dir ../feat_257_aligned/ASVspoof2017/eval_1k_sample \
+    --eval-utt2label ../feat_257_aligned/ASVspoof2017/labels/eval_1k_sample.utt2label \
+    --logging-dir snapshots/predict_only/ \
+    --test-batch-size 1 \
