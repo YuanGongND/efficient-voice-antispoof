@@ -18,7 +18,7 @@ from src.data_reader.vND_dataset import SpoofDataset
 from src.v1_logger import setup_logs
 from src.v1_metrics import compute_eer
 from src.v4_prediction import prediction, scores
-from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet3, AttenResNet4, AttenResNet5, AttenResNet4Deform
+from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet3, AttenResNet4, AttenResNet5, AttenResNet4Deform, AttenResNet4Deform_512
 
 
 # network pruning imports
@@ -232,7 +232,10 @@ def main():
     t_start_load = timer()
     model = MODEL
     if args.input_dim != 1091:
-        model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, args.input_dim))
+        if args.input_dim == 512:
+            model = AttenResNet4Deform_512(atten_activation, atten_channel, size1=(257, args.input_dim))
+        else:
+            model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, args.input_dim))
         model_path = model_dir + 'attention-2020-11-11-feat_{}-model_best.pth'.format(args.input_dim)
     model.to(device)
     logger.info('===> loading {} for prediction'.format(model_path))

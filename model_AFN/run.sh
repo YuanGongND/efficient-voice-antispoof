@@ -26,6 +26,8 @@ fi
 
 # run train+validation+eval with half size feature 257*512
 if [ $stage -eq 512 ]; then
+for i in 1 2 3 4 5; do
+    echo "round "$i
     CUDA_VISIBLE_DEVICES='0,1' python main.py \
 	    --train-dir ../feat_257_512/ASVspoof2017/train \
         --train-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
@@ -37,6 +39,7 @@ if [ $stage -eq 512 ]; then
         --epochs 30 \
         --log-interval 50 \
         --seed 1
+done
 fi
 
 # run train+validation+eval with half size feature 257*256

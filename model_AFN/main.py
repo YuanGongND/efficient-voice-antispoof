@@ -25,7 +25,7 @@ from src.v1_training import train, snapshot
 from src.v3_neuro import LightCNN_9Layers
 from src.v5_neuro import ResNet
 from src.attention_neuro.residual_attention_network import ResidualAttentionModel
-from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet4, AttenResNet5, AttenResNet4Deform
+from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet4, AttenResNet5, AttenResNet4Deform, AttenResNet4Deform_512
 from src.attention_neuro.complex_attention_network import CAttenResNet1
 from src.attention_neuro.recurrent_attention import BGRU, BLSTM
 
@@ -65,8 +65,9 @@ run_name = "attention" + time.strftime("-%Y-%m-%d_%H_%M_%S")
 # pretrain_path = '/export/b19/jlai/cstr/spoof/model/snapshots/attention/attention-2018-07-10_07_21_16-model_best.pth'
 # pretrain = load_model(ResNet(), pretrain_path, freeze=False)
 # model = PreAttenResNet(pretrain, atten_activation, atten_channel)
-model = AttenResNet4(atten_activation, atten_channel, size1=(257, 1091))
-# model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, 1091))
+# model = AttenResNet4(atten_activation, atten_channel, size1=(257, 1091))
+# model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, 512))
+model = AttenResNet4Deform_512(atten_activation, atten_channel, size1=(257, 512))
 # model = CAttenResNet1()
 ##############################################################
 
