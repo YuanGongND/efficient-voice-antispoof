@@ -59,7 +59,6 @@ models = [model1, model2, model3, model4, model5, model6, model7]
 model1 = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
 models = [model1]
 # for single_model
-model_path = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
 
 
 def load_model(model, model_path, device, freeze=False):
@@ -237,6 +236,8 @@ def main():
         else:
             model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, args.input_dim))
         model_path = model_dir + 'attention-2020-11-11-feat_{}-model_best.pth'.format(args.input_dim)
+    else:
+        model_path = model_dir + 'attention-2020-10-14_21_53_09-model_best.pth'
     model.to(device)
     logger.info('===> loading {} for prediction'.format(model_path))
     checkpoint = torch.load(model_path, map_location=device)
