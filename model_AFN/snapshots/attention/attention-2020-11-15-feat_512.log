@@ -1,0 +1,681 @@
+2020-11-15 17:13:02,545 - ===> loading train and dev dataset
+2020-11-15 17:13:02,547 - ===> loading eval dataset
+2020-11-15 17:13:02,554 - ### Model summary below###
+ AttenResNet4Deform(
+  (pre): Sequential(
+    (0): Conv2d(1, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+  )
+  (down1): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att1): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(4, 4))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip1): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down2): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att2): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(8, 8))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip2): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down3): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att3): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(16, 16))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip3): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down4): MaxPool2d(kernel_size=3, stride=(1, 1), padding=0, dilation=1, ceil_mode=False)
+  (att4): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(32, 32))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (skip4): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (down5): MaxPool2d(kernel_size=3, stride=(1, 2), padding=0, dilation=1, ceil_mode=False)
+  (att5): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(64, 64))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+  )
+  (att6): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (att7): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (att8): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (att9): Sequential(
+    (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+  )
+  (conv1): Sequential(
+    (0): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): ReLU(inplace=True)
+    (2): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1))
+    (3): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): ReLU(inplace=True)
+    (5): Conv2d(4, 1, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (soft): Sigmoid()
+  (cnn1): Conv2d(1, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re1): ReLU(inplace=True)
+  (cnn2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re2): ReLU(inplace=True)
+  (cnn3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (mp1): MaxPool2d(kernel_size=(1, 2), stride=(1, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn4): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+  (bn3): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re3): ReLU(inplace=True)
+  (cnn5): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (bn4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re4): ReLU(inplace=True)
+  (cnn6): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (mp2): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn7): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), dilation=(4, 4))
+  (bn5): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re5): ReLU(inplace=True)
+  (cnn8): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (bn6): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re6): ReLU(inplace=True)
+  (cnn9): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (mp3): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn10): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), dilation=(4, 4))
+  (bn12): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re12): ReLU(inplace=True)
+  (cnn11): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (bn13): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re13): ReLU(inplace=True)
+  (cnn12): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (mp4): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn13): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), dilation=(4, 4))
+  (bn14): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re14): ReLU(inplace=True)
+  (cnn14): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (bn15): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re15): ReLU(inplace=True)
+  (cnn15): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (mp5): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+  (cnn16): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), dilation=(2, 2))
+  (ln1): Linear(in_features=512, out_features=32, bias=True)
+  (bn7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re7): ReLU(inplace=True)
+  (ln2): Linear(in_features=32, out_features=32, bias=True)
+  (bn8): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re8): ReLU(inplace=True)
+  (ln3): Linear(in_features=32, out_features=32, bias=True)
+  (bn9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re9): ReLU(inplace=True)
+  (ln4): Linear(in_features=32, out_features=32, bias=True)
+  (bn10): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re10): ReLU(inplace=True)
+  (ln5): Linear(in_features=32, out_features=32, bias=True)
+  (bn11): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (re11): ReLU(inplace=True)
+  (ln6): Linear(in_features=32, out_features=1, bias=True)
+  (sigmoid): Sigmoid()
+)
+
+2020-11-15 17:13:02,554 - ===> Model total parameter: 177570
+
+2020-11-15 17:13:02,960 - Train Epoch: 1 [0/3014 (0%)]	Loss: 0.848776
+2020-11-15 17:13:11,989 - Train Epoch: 1 [200/3014 (7%)]	Loss: 0.876260
+2020-11-15 17:13:21,032 - Train Epoch: 1 [400/3014 (13%)]	Loss: 0.668048
+2020-11-15 17:13:30,069 - Train Epoch: 1 [600/3014 (20%)]	Loss: 0.577959
+2020-11-15 17:13:39,115 - Train Epoch: 1 [800/3014 (27%)]	Loss: 0.520300
+2020-11-15 17:13:48,154 - Train Epoch: 1 [1000/3014 (33%)]	Loss: 0.740176
+2020-11-15 17:13:57,204 - Train Epoch: 1 [1200/3014 (40%)]	Loss: 0.313738
+2020-11-15 17:14:06,272 - Train Epoch: 1 [1400/3014 (46%)]	Loss: 0.567324
+2020-11-15 17:14:15,324 - Train Epoch: 1 [1600/3014 (53%)]	Loss: 0.691338
+2020-11-15 17:14:24,377 - Train Epoch: 1 [1800/3014 (60%)]	Loss: 0.458076
+2020-11-15 17:14:33,428 - Train Epoch: 1 [2000/3014 (66%)]	Loss: 0.816938
+2020-11-15 17:14:42,492 - Train Epoch: 1 [2200/3014 (73%)]	Loss: 0.638962
+2020-11-15 17:14:51,557 - Train Epoch: 1 [2400/3014 (80%)]	Loss: 0.638502
+2020-11-15 17:15:00,612 - Train Epoch: 1 [2600/3014 (86%)]	Loss: 0.336457
+2020-11-15 17:15:09,685 - Train Epoch: 1 [2800/3014 (93%)]	Loss: 0.316732
+2020-11-15 17:15:18,739 - Train Epoch: 1 [3000/3014 (99%)]	Loss: 0.262604
+2020-11-15 17:15:19,209 - Starting Validation
+2020-11-15 17:15:33,958 - ===> Validation set: Average loss: 0.5392	EER: 25.5263
+
+2020-11-15 17:15:33,981 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:15:33,981 - #### End epoch 1/30, elapsed time: 151.4267601761967
+2020-11-15 17:15:34,162 - Train Epoch: 2 [0/3014 (0%)]	Loss: 0.398048
+2020-11-15 17:15:43,230 - Train Epoch: 2 [200/3014 (7%)]	Loss: 0.456567
+2020-11-15 17:15:52,295 - Train Epoch: 2 [400/3014 (13%)]	Loss: 0.403737
+2020-11-15 17:16:01,362 - Train Epoch: 2 [600/3014 (20%)]	Loss: 0.212628
+2020-11-15 17:16:10,434 - Train Epoch: 2 [800/3014 (27%)]	Loss: 0.224642
+2020-11-15 17:16:19,503 - Train Epoch: 2 [1000/3014 (33%)]	Loss: 0.139916
+2020-11-15 17:16:28,562 - Train Epoch: 2 [1200/3014 (40%)]	Loss: 1.115593
+2020-11-15 17:16:37,618 - Train Epoch: 2 [1400/3014 (46%)]	Loss: 0.251687
+2020-11-15 17:16:46,681 - Train Epoch: 2 [1600/3014 (53%)]	Loss: 0.675493
+2020-11-15 17:16:55,744 - Train Epoch: 2 [1800/3014 (60%)]	Loss: 0.210867
+2020-11-15 17:17:04,807 - Train Epoch: 2 [2000/3014 (66%)]	Loss: 0.347066
+2020-11-15 17:17:13,873 - Train Epoch: 2 [2200/3014 (73%)]	Loss: 0.981539
+2020-11-15 17:17:22,932 - Train Epoch: 2 [2400/3014 (80%)]	Loss: 0.202115
+2020-11-15 17:17:31,994 - Train Epoch: 2 [2600/3014 (86%)]	Loss: 1.033456
+2020-11-15 17:17:41,053 - Train Epoch: 2 [2800/3014 (93%)]	Loss: 1.171537
+2020-11-15 17:17:50,114 - Train Epoch: 2 [3000/3014 (99%)]	Loss: 0.152912
+2020-11-15 17:17:50,585 - Starting Validation
+2020-11-15 17:18:05,337 - ===> Validation set: Average loss: 0.3337	EER: 12.5000
+
+2020-11-15 17:18:05,360 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:18:05,360 - #### End epoch 2/30, elapsed time: 151.37880930211395
+2020-11-15 17:18:05,541 - Train Epoch: 3 [0/3014 (0%)]	Loss: 0.175293
+2020-11-15 17:18:14,616 - Train Epoch: 3 [200/3014 (7%)]	Loss: 0.148943
+2020-11-15 17:18:23,684 - Train Epoch: 3 [400/3014 (13%)]	Loss: 0.770421
+2020-11-15 17:18:32,748 - Train Epoch: 3 [600/3014 (20%)]	Loss: 0.134658
+2020-11-15 17:18:41,803 - Train Epoch: 3 [800/3014 (27%)]	Loss: 0.126412
+2020-11-15 17:18:50,861 - Train Epoch: 3 [1000/3014 (33%)]	Loss: 0.273994
+2020-11-15 17:18:59,935 - Train Epoch: 3 [1200/3014 (40%)]	Loss: 0.217019
+2020-11-15 17:19:09,003 - Train Epoch: 3 [1400/3014 (46%)]	Loss: 0.162518
+2020-11-15 17:19:18,071 - Train Epoch: 3 [1600/3014 (53%)]	Loss: 0.250191
+2020-11-15 17:19:27,137 - Train Epoch: 3 [1800/3014 (60%)]	Loss: 0.067924
+2020-11-15 17:19:36,198 - Train Epoch: 3 [2000/3014 (66%)]	Loss: 0.131623
+2020-11-15 17:19:45,258 - Train Epoch: 3 [2200/3014 (73%)]	Loss: 1.151829
+2020-11-15 17:19:54,326 - Train Epoch: 3 [2400/3014 (80%)]	Loss: 0.122751
+2020-11-15 17:20:03,402 - Train Epoch: 3 [2600/3014 (86%)]	Loss: 0.489584
+2020-11-15 17:20:12,470 - Train Epoch: 3 [2800/3014 (93%)]	Loss: 1.135629
+2020-11-15 17:20:21,533 - Train Epoch: 3 [3000/3014 (99%)]	Loss: 0.907720
+2020-11-15 17:20:22,006 - Starting Validation
+2020-11-15 17:20:36,753 - ===> Validation set: Average loss: 0.3741	EER: 14.7368
+
+2020-11-15 17:20:36,755 - #### End epoch 3/30, elapsed time: 151.39453996811062
+2020-11-15 17:20:36,936 - Train Epoch: 4 [0/3014 (0%)]	Loss: 0.055593
+2020-11-15 17:20:45,993 - Train Epoch: 4 [200/3014 (7%)]	Loss: 0.038086
+2020-11-15 17:20:55,046 - Train Epoch: 4 [400/3014 (13%)]	Loss: 0.199819
+2020-11-15 17:21:04,104 - Train Epoch: 4 [600/3014 (20%)]	Loss: 0.404128
+2020-11-15 17:21:13,158 - Train Epoch: 4 [800/3014 (27%)]	Loss: 0.065726
+2020-11-15 17:21:22,221 - Train Epoch: 4 [1000/3014 (33%)]	Loss: 1.146595
+2020-11-15 17:21:31,280 - Train Epoch: 4 [1200/3014 (40%)]	Loss: 0.117156
+2020-11-15 17:21:40,338 - Train Epoch: 4 [1400/3014 (46%)]	Loss: 0.308499
+2020-11-15 17:21:49,403 - Train Epoch: 4 [1600/3014 (53%)]	Loss: 0.156697
+2020-11-15 17:21:58,461 - Train Epoch: 4 [1800/3014 (60%)]	Loss: 0.129100
+2020-11-15 17:22:07,524 - Train Epoch: 4 [2000/3014 (66%)]	Loss: 0.092484
+2020-11-15 17:22:16,586 - Train Epoch: 4 [2200/3014 (73%)]	Loss: 0.236395
+2020-11-15 17:22:25,650 - Train Epoch: 4 [2400/3014 (80%)]	Loss: 0.101515
+2020-11-15 17:22:34,703 - Train Epoch: 4 [2600/3014 (86%)]	Loss: 0.059580
+2020-11-15 17:22:43,765 - Train Epoch: 4 [2800/3014 (93%)]	Loss: 0.115915
+2020-11-15 17:22:52,828 - Train Epoch: 4 [3000/3014 (99%)]	Loss: 0.098346
+2020-11-15 17:22:53,300 - Starting Validation
+2020-11-15 17:23:08,039 - ===> Validation set: Average loss: 0.4086	EER: 13.0263
+
+2020-11-15 17:23:08,041 - #### End epoch 4/30, elapsed time: 151.28600176423788
+2020-11-15 17:23:08,221 - Train Epoch: 5 [0/3014 (0%)]	Loss: 0.076187
+2020-11-15 17:23:17,273 - Train Epoch: 5 [200/3014 (7%)]	Loss: 0.054209
+2020-11-15 17:23:26,332 - Train Epoch: 5 [400/3014 (13%)]	Loss: 0.206137
+2020-11-15 17:23:35,397 - Train Epoch: 5 [600/3014 (20%)]	Loss: 0.027041
+2020-11-15 17:23:44,453 - Train Epoch: 5 [800/3014 (27%)]	Loss: 0.091790
+2020-11-15 17:23:53,508 - Train Epoch: 5 [1000/3014 (33%)]	Loss: 0.064498
+2020-11-15 17:24:02,571 - Train Epoch: 5 [1200/3014 (40%)]	Loss: 0.838705
+2020-11-15 17:24:11,622 - Train Epoch: 5 [1400/3014 (46%)]	Loss: 0.067020
+2020-11-15 17:24:20,682 - Train Epoch: 5 [1600/3014 (53%)]	Loss: 0.045250
+2020-11-15 17:24:29,748 - Train Epoch: 5 [1800/3014 (60%)]	Loss: 0.034595
+2020-11-15 17:24:38,805 - Train Epoch: 5 [2000/3014 (66%)]	Loss: 0.253807
+2020-11-15 17:24:47,861 - Train Epoch: 5 [2200/3014 (73%)]	Loss: 0.164707
+2020-11-15 17:24:56,913 - Train Epoch: 5 [2400/3014 (80%)]	Loss: 0.879439
+2020-11-15 17:25:05,979 - Train Epoch: 5 [2600/3014 (86%)]	Loss: 0.869468
+2020-11-15 17:25:15,036 - Train Epoch: 5 [2800/3014 (93%)]	Loss: 1.196875
+2020-11-15 17:25:24,096 - Train Epoch: 5 [3000/3014 (99%)]	Loss: 0.038747
+2020-11-15 17:25:24,568 - Starting Validation
+2020-11-15 17:25:39,311 - ===> Validation set: Average loss: 0.4287	EER: 11.1579
+
+2020-11-15 17:25:39,334 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:25:39,335 - #### End epoch 5/30, elapsed time: 151.2937666559592
+2020-11-15 17:25:39,515 - Train Epoch: 6 [0/3014 (0%)]	Loss: 0.504159
+2020-11-15 17:25:48,574 - Train Epoch: 6 [200/3014 (7%)]	Loss: 0.018029
+2020-11-15 17:25:57,626 - Train Epoch: 6 [400/3014 (13%)]	Loss: 0.046467
+2020-11-15 17:26:06,687 - Train Epoch: 6 [600/3014 (20%)]	Loss: 0.107564
+2020-11-15 17:26:15,747 - Train Epoch: 6 [800/3014 (27%)]	Loss: 0.065782
+2020-11-15 17:26:24,802 - Train Epoch: 6 [1000/3014 (33%)]	Loss: 0.069506
+2020-11-15 17:26:33,856 - Train Epoch: 6 [1200/3014 (40%)]	Loss: 0.077524
+2020-11-15 17:26:42,908 - Train Epoch: 6 [1400/3014 (46%)]	Loss: 0.156380
+2020-11-15 17:26:51,970 - Train Epoch: 6 [1600/3014 (53%)]	Loss: 0.029762
+2020-11-15 17:27:01,032 - Train Epoch: 6 [1800/3014 (60%)]	Loss: 0.219552
+2020-11-15 17:27:10,089 - Train Epoch: 6 [2000/3014 (66%)]	Loss: 0.093556
+2020-11-15 17:27:19,154 - Train Epoch: 6 [2200/3014 (73%)]	Loss: 0.021122
+2020-11-15 17:27:28,219 - Train Epoch: 6 [2400/3014 (80%)]	Loss: 0.079358
+2020-11-15 17:27:37,274 - Train Epoch: 6 [2600/3014 (86%)]	Loss: 0.044886
+2020-11-15 17:27:46,329 - Train Epoch: 6 [2800/3014 (93%)]	Loss: 0.152438
+2020-11-15 17:27:55,395 - Train Epoch: 6 [3000/3014 (99%)]	Loss: 0.239799
+2020-11-15 17:27:55,867 - Starting Validation
+2020-11-15 17:28:10,621 - ===> Validation set: Average loss: 0.5075	EER: 10.7368
+
+2020-11-15 17:28:10,644 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:28:10,644 - #### End epoch 6/30, elapsed time: 151.30945163965225
+2020-11-15 17:28:10,825 - Train Epoch: 7 [0/3014 (0%)]	Loss: 0.013778
+2020-11-15 17:28:19,880 - Train Epoch: 7 [200/3014 (7%)]	Loss: 0.015190
+2020-11-15 17:28:28,943 - Train Epoch: 7 [400/3014 (13%)]	Loss: 0.028041
+2020-11-15 17:28:37,996 - Train Epoch: 7 [600/3014 (20%)]	Loss: 0.031408
+2020-11-15 17:28:47,047 - Train Epoch: 7 [800/3014 (27%)]	Loss: 0.044549
+2020-11-15 17:28:56,103 - Train Epoch: 7 [1000/3014 (33%)]	Loss: 0.143131
+2020-11-15 17:29:05,165 - Train Epoch: 7 [1200/3014 (40%)]	Loss: 0.063946
+2020-11-15 17:29:14,228 - Train Epoch: 7 [1400/3014 (46%)]	Loss: 0.057890
+2020-11-15 17:29:23,281 - Train Epoch: 7 [1600/3014 (53%)]	Loss: 0.037347
+2020-11-15 17:29:32,347 - Train Epoch: 7 [1800/3014 (60%)]	Loss: 0.113622
+2020-11-15 17:29:41,420 - Train Epoch: 7 [2000/3014 (66%)]	Loss: 0.033007
+2020-11-15 17:29:50,481 - Train Epoch: 7 [2200/3014 (73%)]	Loss: 0.051781
+2020-11-15 17:29:59,539 - Train Epoch: 7 [2400/3014 (80%)]	Loss: 1.481080
+2020-11-15 17:30:08,594 - Train Epoch: 7 [2600/3014 (86%)]	Loss: 0.041073
+2020-11-15 17:30:17,647 - Train Epoch: 7 [2800/3014 (93%)]	Loss: 0.070809
+2020-11-15 17:30:26,711 - Train Epoch: 7 [3000/3014 (99%)]	Loss: 0.032269
+2020-11-15 17:30:27,184 - Starting Validation
+2020-11-15 17:30:41,939 - ===> Validation set: Average loss: 0.4582	EER: 11.1842
+
+2020-11-15 17:30:41,940 - #### End epoch 7/30, elapsed time: 151.29625989682972
+2020-11-15 17:30:42,121 - Train Epoch: 8 [0/3014 (0%)]	Loss: 0.011899
+2020-11-15 17:30:51,174 - Train Epoch: 8 [200/3014 (7%)]	Loss: 0.038106
+2020-11-15 17:31:00,236 - Train Epoch: 8 [400/3014 (13%)]	Loss: 0.032979
+2020-11-15 17:31:09,299 - Train Epoch: 8 [600/3014 (20%)]	Loss: 0.098493
+2020-11-15 17:31:18,356 - Train Epoch: 8 [800/3014 (27%)]	Loss: 0.030509
+2020-11-15 17:31:27,416 - Train Epoch: 8 [1000/3014 (33%)]	Loss: 0.049213
+2020-11-15 17:31:36,471 - Train Epoch: 8 [1200/3014 (40%)]	Loss: 0.050378
+2020-11-15 17:31:45,535 - Train Epoch: 8 [1400/3014 (46%)]	Loss: 0.038515
+2020-11-15 17:31:54,600 - Train Epoch: 8 [1600/3014 (53%)]	Loss: 0.679663
+2020-11-15 17:32:03,664 - Train Epoch: 8 [1800/3014 (60%)]	Loss: 0.037179
+2020-11-15 17:32:12,714 - Train Epoch: 8 [2000/3014 (66%)]	Loss: 0.109755
+2020-11-15 17:32:21,762 - Train Epoch: 8 [2200/3014 (73%)]	Loss: 0.073301
+2020-11-15 17:32:30,829 - Train Epoch: 8 [2400/3014 (80%)]	Loss: 0.027961
+2020-11-15 17:32:39,894 - Train Epoch: 8 [2600/3014 (86%)]	Loss: 0.041621
+2020-11-15 17:32:48,956 - Train Epoch: 8 [2800/3014 (93%)]	Loss: 0.036347
+2020-11-15 17:32:58,022 - Train Epoch: 8 [3000/3014 (99%)]	Loss: 0.655512
+2020-11-15 17:32:58,495 - Starting Validation
+2020-11-15 17:33:13,252 - ===> Validation set: Average loss: 0.6882	EER: 11.7105
+
+2020-11-15 17:33:13,253 - #### End epoch 8/30, elapsed time: 151.31278911978006
+2020-11-15 17:33:13,434 - Train Epoch: 9 [0/3014 (0%)]	Loss: 0.013443
+2020-11-15 17:33:22,486 - Train Epoch: 9 [200/3014 (7%)]	Loss: 0.024059
+2020-11-15 17:33:31,546 - Train Epoch: 9 [400/3014 (13%)]	Loss: 0.029801
+2020-11-15 17:33:40,609 - Train Epoch: 9 [600/3014 (20%)]	Loss: 0.224630
+2020-11-15 17:33:49,671 - Train Epoch: 9 [800/3014 (27%)]	Loss: 0.013279
+2020-11-15 17:33:58,725 - Train Epoch: 9 [1000/3014 (33%)]	Loss: 0.036226
+2020-11-15 17:34:07,789 - Train Epoch: 9 [1200/3014 (40%)]	Loss: 0.040726
+2020-11-15 17:34:16,842 - Train Epoch: 9 [1400/3014 (46%)]	Loss: 0.033531
+2020-11-15 17:34:25,896 - Train Epoch: 9 [1600/3014 (53%)]	Loss: 0.031147
+2020-11-15 17:34:34,965 - Train Epoch: 9 [1800/3014 (60%)]	Loss: 0.029249
+2020-11-15 17:34:44,028 - Train Epoch: 9 [2000/3014 (66%)]	Loss: 0.212243
+2020-11-15 17:34:53,096 - Train Epoch: 9 [2200/3014 (73%)]	Loss: 0.007019
+2020-11-15 17:35:02,161 - Train Epoch: 9 [2400/3014 (80%)]	Loss: 0.006430
+2020-11-15 17:35:11,232 - Train Epoch: 9 [2600/3014 (86%)]	Loss: 0.025881
+2020-11-15 17:35:20,296 - Train Epoch: 9 [2800/3014 (93%)]	Loss: 0.007927
+2020-11-15 17:35:29,348 - Train Epoch: 9 [3000/3014 (99%)]	Loss: 0.027811
+2020-11-15 17:35:29,819 - Starting Validation
+2020-11-15 17:35:44,571 - ===> Validation set: Average loss: 0.4928	EER: 10.9211
+
+2020-11-15 17:35:44,573 - #### End epoch 9/30, elapsed time: 151.31931233406067
+2020-11-15 17:35:44,753 - Train Epoch: 10 [0/3014 (0%)]	Loss: 0.008435
+2020-11-15 17:35:53,821 - Train Epoch: 10 [200/3014 (7%)]	Loss: 0.011159
+2020-11-15 17:36:02,874 - Train Epoch: 10 [400/3014 (13%)]	Loss: 0.030802
+2020-11-15 17:36:11,922 - Train Epoch: 10 [600/3014 (20%)]	Loss: 0.009694
+2020-11-15 17:36:20,973 - Train Epoch: 10 [800/3014 (27%)]	Loss: 0.750972
+2020-11-15 17:36:30,026 - Train Epoch: 10 [1000/3014 (33%)]	Loss: 0.005704
+2020-11-15 17:36:39,083 - Train Epoch: 10 [1200/3014 (40%)]	Loss: 0.009953
+2020-11-15 17:36:48,136 - Train Epoch: 10 [1400/3014 (46%)]	Loss: 0.024482
+2020-11-15 17:36:57,196 - Train Epoch: 10 [1600/3014 (53%)]	Loss: 0.024048
+2020-11-15 17:37:06,253 - Train Epoch: 10 [1800/3014 (60%)]	Loss: 0.022753
+2020-11-15 17:37:15,314 - Train Epoch: 10 [2000/3014 (66%)]	Loss: 0.005863
+2020-11-15 17:37:24,377 - Train Epoch: 10 [2200/3014 (73%)]	Loss: 0.646684
+2020-11-15 17:37:33,442 - Train Epoch: 10 [2400/3014 (80%)]	Loss: 0.022847
+2020-11-15 17:37:42,497 - Train Epoch: 10 [2600/3014 (86%)]	Loss: 0.022789
+2020-11-15 17:37:51,552 - Train Epoch: 10 [2800/3014 (93%)]	Loss: 0.022908
+2020-11-15 17:38:00,621 - Train Epoch: 10 [3000/3014 (99%)]	Loss: 0.021941
+2020-11-15 17:38:01,094 - Starting Validation
+2020-11-15 17:38:15,849 - ===> Validation set: Average loss: 0.7672	EER: 12.1053
+
+2020-11-15 17:38:15,850 - #### End epoch 10/30, elapsed time: 151.27779716067016
+2020-11-15 17:38:16,031 - Train Epoch: 11 [0/3014 (0%)]	Loss: 0.024108
+2020-11-15 17:38:25,083 - Train Epoch: 11 [200/3014 (7%)]	Loss: 0.713291
+2020-11-15 17:38:34,140 - Train Epoch: 11 [400/3014 (13%)]	Loss: 0.148528
+2020-11-15 17:38:43,204 - Train Epoch: 11 [600/3014 (20%)]	Loss: 0.672809
+2020-11-15 17:38:52,256 - Train Epoch: 11 [800/3014 (27%)]	Loss: 0.022268
+2020-11-15 17:39:01,310 - Train Epoch: 11 [1000/3014 (33%)]	Loss: 0.774529
+2020-11-15 17:39:10,378 - Train Epoch: 11 [1200/3014 (40%)]	Loss: 0.006418
+2020-11-15 17:39:19,433 - Train Epoch: 11 [1400/3014 (46%)]	Loss: 0.031086
+2020-11-15 17:39:28,510 - Train Epoch: 11 [1600/3014 (53%)]	Loss: 0.024082
+2020-11-15 17:39:37,576 - Train Epoch: 11 [1800/3014 (60%)]	Loss: 0.320103
+2020-11-15 17:39:46,637 - Train Epoch: 11 [2000/3014 (66%)]	Loss: 0.019628
+2020-11-15 17:39:55,693 - Train Epoch: 11 [2200/3014 (73%)]	Loss: 0.736192
+2020-11-15 17:40:04,762 - Train Epoch: 11 [2400/3014 (80%)]	Loss: 0.042632
+2020-11-15 17:40:13,837 - Train Epoch: 11 [2600/3014 (86%)]	Loss: 0.106850
+2020-11-15 17:40:22,916 - Train Epoch: 11 [2800/3014 (93%)]	Loss: 0.023002
+2020-11-15 17:40:31,984 - Train Epoch: 11 [3000/3014 (99%)]	Loss: 0.021875
+2020-11-15 17:40:32,455 - Starting Validation
+2020-11-15 17:40:47,210 - ===> Validation set: Average loss: 0.3298	EER: 10.7143
+
+2020-11-15 17:40:47,245 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:40:47,246 - #### End epoch 11/30, elapsed time: 151.39510681014508
+2020-11-15 17:40:47,427 - Train Epoch: 12 [0/3014 (0%)]	Loss: 0.130213
+2020-11-15 17:40:56,491 - Train Epoch: 12 [200/3014 (7%)]	Loss: 0.004746
+2020-11-15 17:41:05,548 - Train Epoch: 12 [400/3014 (13%)]	Loss: 0.022170
+2020-11-15 17:41:14,601 - Train Epoch: 12 [600/3014 (20%)]	Loss: 0.030110
+2020-11-15 17:41:23,667 - Train Epoch: 12 [800/3014 (27%)]	Loss: 0.267288
+2020-11-15 17:41:32,744 - Train Epoch: 12 [1000/3014 (33%)]	Loss: 0.004803
+2020-11-15 17:41:41,798 - Train Epoch: 12 [1200/3014 (40%)]	Loss: 0.036834
+2020-11-15 17:41:50,866 - Train Epoch: 12 [1400/3014 (46%)]	Loss: 0.205836
+2020-11-15 17:41:59,927 - Train Epoch: 12 [1600/3014 (53%)]	Loss: 0.008343
+2020-11-15 17:42:08,994 - Train Epoch: 12 [1800/3014 (60%)]	Loss: 0.681741
+2020-11-15 17:42:18,059 - Train Epoch: 12 [2000/3014 (66%)]	Loss: 0.009171
+2020-11-15 17:42:27,112 - Train Epoch: 12 [2200/3014 (73%)]	Loss: 0.025530
+2020-11-15 17:42:36,167 - Train Epoch: 12 [2400/3014 (80%)]	Loss: 0.020628
+2020-11-15 17:42:45,231 - Train Epoch: 12 [2600/3014 (86%)]	Loss: 0.023258
+2020-11-15 17:42:54,297 - Train Epoch: 12 [2800/3014 (93%)]	Loss: 0.040319
+2020-11-15 17:43:03,367 - Train Epoch: 12 [3000/3014 (99%)]	Loss: 0.005917
+2020-11-15 17:43:03,839 - Starting Validation
+2020-11-15 17:43:18,593 - ===> Validation set: Average loss: 0.5233	EER: 11.3684
+
+2020-11-15 17:43:18,595 - #### End epoch 12/30, elapsed time: 151.3493867549114
+2020-11-15 17:43:18,776 - Train Epoch: 13 [0/3014 (0%)]	Loss: 0.020822
+2020-11-15 17:43:27,826 - Train Epoch: 13 [200/3014 (7%)]	Loss: 0.017636
+2020-11-15 17:43:36,892 - Train Epoch: 13 [400/3014 (13%)]	Loss: 0.709925
+2020-11-15 17:43:45,956 - Train Epoch: 13 [600/3014 (20%)]	Loss: 0.007759
+2020-11-15 17:43:55,020 - Train Epoch: 13 [800/3014 (27%)]	Loss: 0.007170
+2020-11-15 17:44:04,073 - Train Epoch: 13 [1000/3014 (33%)]	Loss: 0.025803
+2020-11-15 17:44:13,122 - Train Epoch: 13 [1200/3014 (40%)]	Loss: 0.009665
+2020-11-15 17:44:22,186 - Train Epoch: 13 [1400/3014 (46%)]	Loss: 0.063256
+2020-11-15 17:44:31,241 - Train Epoch: 13 [1600/3014 (53%)]	Loss: 0.004804
+2020-11-15 17:44:40,295 - Train Epoch: 13 [1800/3014 (60%)]	Loss: 0.740890
+2020-11-15 17:44:49,358 - Train Epoch: 13 [2000/3014 (66%)]	Loss: 0.005261
+2020-11-15 17:44:58,417 - Train Epoch: 13 [2200/3014 (73%)]	Loss: 0.028637
+2020-11-15 17:45:07,476 - Train Epoch: 13 [2400/3014 (80%)]	Loss: 0.017993
+2020-11-15 17:45:16,541 - Train Epoch: 13 [2600/3014 (86%)]	Loss: 0.017471
+2020-11-15 17:45:25,606 - Train Epoch: 13 [2800/3014 (93%)]	Loss: 0.004292
+2020-11-15 17:45:34,664 - Train Epoch: 13 [3000/3014 (99%)]	Loss: 0.005677
+2020-11-15 17:45:35,135 - Starting Validation
+2020-11-15 17:45:49,878 - ===> Validation set: Average loss: 0.5302	EER: 10.7368
+
+2020-11-15 17:45:49,880 - #### End epoch 13/30, elapsed time: 151.28441927675158
+2020-11-15 17:45:50,060 - Train Epoch: 14 [0/3014 (0%)]	Loss: 0.023007
+2020-11-15 17:45:59,113 - Train Epoch: 14 [200/3014 (7%)]	Loss: 0.010478
+2020-11-15 17:46:08,176 - Train Epoch: 14 [400/3014 (13%)]	Loss: 0.004283
+2020-11-15 17:46:17,238 - Train Epoch: 14 [600/3014 (20%)]	Loss: 0.692718
+2020-11-15 17:46:26,291 - Train Epoch: 14 [800/3014 (27%)]	Loss: 0.024973
+2020-11-15 17:46:35,343 - Train Epoch: 14 [1000/3014 (33%)]	Loss: 0.026117
+2020-11-15 17:46:44,397 - Train Epoch: 14 [1200/3014 (40%)]	Loss: 0.083982
+2020-11-15 17:46:53,463 - Train Epoch: 14 [1400/3014 (46%)]	Loss: 0.019750
+2020-11-15 17:47:02,528 - Train Epoch: 14 [1600/3014 (53%)]	Loss: 0.019456
+2020-11-15 17:47:11,594 - Train Epoch: 14 [1800/3014 (60%)]	Loss: 0.019474
+2020-11-15 17:47:20,650 - Train Epoch: 14 [2000/3014 (66%)]	Loss: 0.004624
+2020-11-15 17:47:29,702 - Train Epoch: 14 [2200/3014 (73%)]	Loss: 0.025855
+2020-11-15 17:47:38,769 - Train Epoch: 14 [2400/3014 (80%)]	Loss: 0.019427
+2020-11-15 17:47:47,822 - Train Epoch: 14 [2600/3014 (86%)]	Loss: 0.687359
+2020-11-15 17:47:56,880 - Train Epoch: 14 [2800/3014 (93%)]	Loss: 0.004260
+2020-11-15 17:48:05,961 - Train Epoch: 14 [3000/3014 (99%)]	Loss: 0.004856
+2020-11-15 17:48:06,433 - Starting Validation
+2020-11-15 17:48:21,184 - ===> Validation set: Average loss: 0.4634	EER: 10.5263
+
+2020-11-15 17:48:21,207 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:48:21,207 - #### End epoch 14/30, elapsed time: 151.32702202396467
+2020-11-15 17:48:21,388 - Train Epoch: 15 [0/3014 (0%)]	Loss: 0.740182
+2020-11-15 17:48:30,450 - Train Epoch: 15 [200/3014 (7%)]	Loss: 0.724421
+2020-11-15 17:48:39,515 - Train Epoch: 15 [400/3014 (13%)]	Loss: 0.052336
+2020-11-15 17:48:48,570 - Train Epoch: 15 [600/3014 (20%)]	Loss: 0.008148
+2020-11-15 17:48:57,624 - Train Epoch: 15 [800/3014 (27%)]	Loss: 0.007689
+2020-11-15 17:49:06,679 - Train Epoch: 15 [1000/3014 (33%)]	Loss: 0.019595
+2020-11-15 17:49:15,739 - Train Epoch: 15 [1200/3014 (40%)]	Loss: 0.018854
+2020-11-15 17:49:24,806 - Train Epoch: 15 [1400/3014 (46%)]	Loss: 0.696791
+2020-11-15 17:49:33,863 - Train Epoch: 15 [1600/3014 (53%)]	Loss: 0.018140
+2020-11-15 17:49:42,924 - Train Epoch: 15 [1800/3014 (60%)]	Loss: 0.011351
+2020-11-15 17:49:51,983 - Train Epoch: 15 [2000/3014 (66%)]	Loss: 0.024038
+2020-11-15 17:50:01,040 - Train Epoch: 15 [2200/3014 (73%)]	Loss: 0.004311
+2020-11-15 17:50:10,097 - Train Epoch: 15 [2400/3014 (80%)]	Loss: 0.019170
+2020-11-15 17:50:19,150 - Train Epoch: 15 [2600/3014 (86%)]	Loss: 0.675070
+2020-11-15 17:50:28,223 - Train Epoch: 15 [2800/3014 (93%)]	Loss: 0.048586
+2020-11-15 17:50:37,285 - Train Epoch: 15 [3000/3014 (99%)]	Loss: 0.016918
+2020-11-15 17:50:37,756 - Starting Validation
+2020-11-15 17:50:52,506 - ===> Validation set: Average loss: 0.5712	EER: 10.8421
+
+2020-11-15 17:50:52,508 - #### End epoch 15/30, elapsed time: 151.30091314204037
+2020-11-15 17:50:52,688 - Train Epoch: 16 [0/3014 (0%)]	Loss: 0.005076
+2020-11-15 17:51:01,739 - Train Epoch: 16 [200/3014 (7%)]	Loss: 0.004149
+2020-11-15 17:51:10,798 - Train Epoch: 16 [400/3014 (13%)]	Loss: 0.011347
+2020-11-15 17:51:19,851 - Train Epoch: 16 [600/3014 (20%)]	Loss: 0.004354
+2020-11-15 17:51:28,907 - Train Epoch: 16 [800/3014 (27%)]	Loss: 0.038915
+2020-11-15 17:51:37,968 - Train Epoch: 16 [1000/3014 (33%)]	Loss: 0.032798
+2020-11-15 17:51:47,020 - Train Epoch: 16 [1200/3014 (40%)]	Loss: 0.018755
+2020-11-15 17:51:56,073 - Train Epoch: 16 [1400/3014 (46%)]	Loss: 0.024951
+2020-11-15 17:52:05,137 - Train Epoch: 16 [1600/3014 (53%)]	Loss: 0.006320
+2020-11-15 17:52:14,213 - Train Epoch: 16 [1800/3014 (60%)]	Loss: 0.025911
+2020-11-15 17:52:23,263 - Train Epoch: 16 [2000/3014 (66%)]	Loss: 0.019283
+2020-11-15 17:52:32,324 - Train Epoch: 16 [2200/3014 (73%)]	Loss: 0.004531
+2020-11-15 17:52:41,388 - Train Epoch: 16 [2400/3014 (80%)]	Loss: 0.006914
+2020-11-15 17:52:50,454 - Train Epoch: 16 [2600/3014 (86%)]	Loss: 0.020559
+2020-11-15 17:52:59,520 - Train Epoch: 16 [2800/3014 (93%)]	Loss: 0.016576
+2020-11-15 17:53:08,588 - Train Epoch: 16 [3000/3014 (99%)]	Loss: 0.004253
+2020-11-15 17:53:09,060 - Starting Validation
+2020-11-15 17:53:23,855 - ===> Validation set: Average loss: 0.4934	EER: 10.3947
+
+2020-11-15 17:53:23,878 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 17:53:23,878 - #### End epoch 16/30, elapsed time: 151.37053147191182
+2020-11-15 17:53:24,058 - Train Epoch: 17 [0/3014 (0%)]	Loss: 0.031399
+2020-11-15 17:53:33,107 - Train Epoch: 17 [200/3014 (7%)]	Loss: 0.088373
+2020-11-15 17:53:42,158 - Train Epoch: 17 [400/3014 (13%)]	Loss: 0.030428
+2020-11-15 17:53:51,223 - Train Epoch: 17 [600/3014 (20%)]	Loss: 0.007257
+2020-11-15 17:54:00,289 - Train Epoch: 17 [800/3014 (27%)]	Loss: 0.021994
+2020-11-15 17:54:09,357 - Train Epoch: 17 [1000/3014 (33%)]	Loss: 0.005604
+2020-11-15 17:54:18,419 - Train Epoch: 17 [1200/3014 (40%)]	Loss: 0.041406
+2020-11-15 17:54:27,487 - Train Epoch: 17 [1400/3014 (46%)]	Loss: 0.006410
+2020-11-15 17:54:36,555 - Train Epoch: 17 [1600/3014 (53%)]	Loss: 0.018950
+2020-11-15 17:54:45,612 - Train Epoch: 17 [1800/3014 (60%)]	Loss: 0.020572
+2020-11-15 17:54:54,676 - Train Epoch: 17 [2000/3014 (66%)]	Loss: 0.054339
+2020-11-15 17:55:03,745 - Train Epoch: 17 [2200/3014 (73%)]	Loss: 0.018762
+2020-11-15 17:55:12,811 - Train Epoch: 17 [2400/3014 (80%)]	Loss: 0.016889
+2020-11-15 17:55:21,895 - Train Epoch: 17 [2600/3014 (86%)]	Loss: 0.047175
+2020-11-15 17:55:30,956 - Train Epoch: 17 [2800/3014 (93%)]	Loss: 0.005354
+2020-11-15 17:55:40,018 - Train Epoch: 17 [3000/3014 (99%)]	Loss: 0.003999
+2020-11-15 17:55:40,491 - Starting Validation
+2020-11-15 17:55:55,251 - ===> Validation set: Average loss: 0.4771	EER: 10.6316
+
+2020-11-15 17:55:55,253 - #### End epoch 17/30, elapsed time: 151.3747373940423
+2020-11-15 17:55:55,434 - Train Epoch: 18 [0/3014 (0%)]	Loss: 0.027672
+2020-11-15 17:56:04,494 - Train Epoch: 18 [200/3014 (7%)]	Loss: 0.004737
+2020-11-15 17:56:13,564 - Train Epoch: 18 [400/3014 (13%)]	Loss: 0.019611
+2020-11-15 17:56:22,628 - Train Epoch: 18 [600/3014 (20%)]	Loss: 0.004621
+2020-11-15 17:56:31,691 - Train Epoch: 18 [800/3014 (27%)]	Loss: 0.005900
+2020-11-15 17:56:40,758 - Train Epoch: 18 [1000/3014 (33%)]	Loss: 0.007330
+2020-11-15 17:56:49,827 - Train Epoch: 18 [1200/3014 (40%)]	Loss: 0.679785
+2020-11-15 17:56:58,885 - Train Epoch: 18 [1400/3014 (46%)]	Loss: 0.018745
+2020-11-15 17:57:07,965 - Train Epoch: 18 [1600/3014 (53%)]	Loss: 0.003903
+2020-11-15 17:57:17,033 - Train Epoch: 18 [1800/3014 (60%)]	Loss: 0.003984
+2020-11-15 17:57:26,096 - Train Epoch: 18 [2000/3014 (66%)]	Loss: 0.027027
+2020-11-15 17:57:35,161 - Train Epoch: 18 [2200/3014 (73%)]	Loss: 0.734708
+2020-11-15 17:57:44,217 - Train Epoch: 18 [2400/3014 (80%)]	Loss: 0.004336
+2020-11-15 17:57:53,282 - Train Epoch: 18 [2600/3014 (86%)]	Loss: 0.117585
+2020-11-15 17:58:02,336 - Train Epoch: 18 [2800/3014 (93%)]	Loss: 0.022318
+2020-11-15 17:58:11,388 - Train Epoch: 18 [3000/3014 (99%)]	Loss: 0.681742
+2020-11-15 17:58:11,859 - Starting Validation
+2020-11-15 17:58:26,616 - ===> Validation set: Average loss: 0.3801	EER: 10.5263
+
+2020-11-15 17:58:26,617 - #### End epoch 18/30, elapsed time: 151.36423565121368
+2020-11-15 17:58:26,798 - Train Epoch: 19 [0/3014 (0%)]	Loss: 0.018464
+2020-11-15 17:58:35,857 - Train Epoch: 19 [200/3014 (7%)]	Loss: 0.016764
+2020-11-15 17:58:44,909 - Train Epoch: 19 [400/3014 (13%)]	Loss: 0.004727
+2020-11-15 17:58:53,972 - Train Epoch: 19 [600/3014 (20%)]	Loss: 0.005438
+2020-11-15 17:59:03,031 - Train Epoch: 19 [800/3014 (27%)]	Loss: 0.007049
+2020-11-15 17:59:12,099 - Train Epoch: 19 [1000/3014 (33%)]	Loss: 0.754392
+2020-11-15 17:59:21,156 - Train Epoch: 19 [1200/3014 (40%)]	Loss: 0.006094
+2020-11-15 17:59:30,217 - Train Epoch: 19 [1400/3014 (46%)]	Loss: 0.017407
+2020-11-15 17:59:39,279 - Train Epoch: 19 [1600/3014 (53%)]	Loss: 0.016542
+2020-11-15 17:59:48,337 - Train Epoch: 19 [1800/3014 (60%)]	Loss: 0.019716
+2020-11-15 17:59:57,398 - Train Epoch: 19 [2000/3014 (66%)]	Loss: 0.016686
+2020-11-15 18:00:06,451 - Train Epoch: 19 [2200/3014 (73%)]	Loss: 0.004110
+2020-11-15 18:00:15,505 - Train Epoch: 19 [2400/3014 (80%)]	Loss: 0.025599
+2020-11-15 18:00:24,559 - Train Epoch: 19 [2600/3014 (86%)]	Loss: 0.018469
+2020-11-15 18:00:33,619 - Train Epoch: 19 [2800/3014 (93%)]	Loss: 0.012067
+2020-11-15 18:00:42,674 - Train Epoch: 19 [3000/3014 (99%)]	Loss: 0.027912
+2020-11-15 18:00:43,145 - Starting Validation
+2020-11-15 18:00:57,890 - ===> Validation set: Average loss: 0.4890	EER: 10.5263
+
+2020-11-15 18:00:57,891 - #### End epoch 19/30, elapsed time: 151.27394121699035
+2020-11-15 18:00:58,072 - Train Epoch: 20 [0/3014 (0%)]	Loss: 0.024519
+2020-11-15 18:01:07,136 - Train Epoch: 20 [200/3014 (7%)]	Loss: 0.018424
+2020-11-15 18:01:16,202 - Train Epoch: 20 [400/3014 (13%)]	Loss: 0.017172
+2020-11-15 18:01:25,262 - Train Epoch: 20 [600/3014 (20%)]	Loss: 0.018651
+2020-11-15 18:01:34,311 - Train Epoch: 20 [800/3014 (27%)]	Loss: 0.004659
+2020-11-15 18:01:43,373 - Train Epoch: 20 [1000/3014 (33%)]	Loss: 0.031776
+2020-11-15 18:01:52,426 - Train Epoch: 20 [1200/3014 (40%)]	Loss: 0.016709
+2020-11-15 18:02:01,491 - Train Epoch: 20 [1400/3014 (46%)]	Loss: 0.017076
+2020-11-15 18:02:10,558 - Train Epoch: 20 [1600/3014 (53%)]	Loss: 0.032619
+2020-11-15 18:02:19,612 - Train Epoch: 20 [1800/3014 (60%)]	Loss: 0.738908
+2020-11-15 18:02:28,673 - Train Epoch: 20 [2000/3014 (66%)]	Loss: 0.006354
+2020-11-15 18:02:37,728 - Train Epoch: 20 [2200/3014 (73%)]	Loss: 0.643779
+2020-11-15 18:02:46,784 - Train Epoch: 20 [2400/3014 (80%)]	Loss: 0.028974
+2020-11-15 18:02:55,845 - Train Epoch: 20 [2600/3014 (86%)]	Loss: 0.777595
+2020-11-15 18:03:04,901 - Train Epoch: 20 [2800/3014 (93%)]	Loss: 0.004192
+2020-11-15 18:03:13,961 - Train Epoch: 20 [3000/3014 (99%)]	Loss: 0.016385
+2020-11-15 18:03:14,433 - Starting Validation
+2020-11-15 18:03:29,183 - ===> Validation set: Average loss: 0.4356	EER: 10.0000
+
+2020-11-15 18:03:29,235 - Snapshot saved to snapshots/attention/attention-2020-11-15_17_13_00-model_best.pth
+
+2020-11-15 18:03:29,235 - #### End epoch 20/30, elapsed time: 151.34330213908106
+2020-11-15 18:03:29,416 - Train Epoch: 21 [0/3014 (0%)]	Loss: 0.020192
+2020-11-15 18:03:38,469 - Train Epoch: 21 [200/3014 (7%)]	Loss: 0.005302
+2020-11-15 18:03:47,525 - Train Epoch: 21 [400/3014 (13%)]	Loss: 0.023028
+2020-11-15 18:03:56,589 - Train Epoch: 21 [600/3014 (20%)]	Loss: 0.012541
+2020-11-15 18:04:05,660 - Train Epoch: 21 [800/3014 (27%)]	Loss: 0.004573
+2020-11-15 18:04:14,726 - Train Epoch: 21 [1000/3014 (33%)]	Loss: 0.020405
+2020-11-15 18:04:23,782 - Train Epoch: 21 [1200/3014 (40%)]	Loss: 0.006493
+2020-11-15 18:04:32,835 - Train Epoch: 21 [1400/3014 (46%)]	Loss: 0.009483
+2020-11-15 18:04:41,902 - Train Epoch: 21 [1600/3014 (53%)]	Loss: 0.017078
+2020-11-15 18:04:50,956 - Train Epoch: 21 [1800/3014 (60%)]	Loss: 0.007697
+2020-11-15 18:05:00,022 - Train Epoch: 21 [2000/3014 (66%)]	Loss: 0.019134
+2020-11-15 18:05:09,088 - Train Epoch: 21 [2200/3014 (73%)]	Loss: 0.004143
+2020-11-15 18:05:18,154 - Train Epoch: 21 [2400/3014 (80%)]	Loss: 0.022526
+2020-11-15 18:05:27,221 - Train Epoch: 21 [2600/3014 (86%)]	Loss: 0.006717
+2020-11-15 18:05:36,284 - Train Epoch: 21 [2800/3014 (93%)]	Loss: 0.025170
+2020-11-15 18:05:45,348 - Train Epoch: 21 [3000/3014 (99%)]	Loss: 0.017142
+2020-11-15 18:05:45,818 - Starting Validation
+2020-11-15 18:06:00,570 - ===> Validation set: Average loss: 0.5687	EER: 10.5263
+
+2020-11-15 18:06:00,571 - #### End epoch 21/30, elapsed time: 151.33667177287862
+2020-11-15 18:06:00,753 - Train Epoch: 22 [0/3014 (0%)]	Loss: 0.019252
+2020-11-15 18:06:09,813 - Train Epoch: 22 [200/3014 (7%)]	Loss: 0.018401
+2020-11-15 18:06:18,867 - Train Epoch: 22 [400/3014 (13%)]	Loss: 0.069664
+2020-11-15 18:06:27,939 - Train Epoch: 22 [600/3014 (20%)]	Loss: 0.004201
+2020-11-15 18:06:37,004 - Train Epoch: 22 [800/3014 (27%)]	Loss: 0.003884
+2020-11-15 18:06:46,060 - Train Epoch: 22 [1000/3014 (33%)]	Loss: 0.041239
+2020-11-15 18:06:55,126 - Train Epoch: 22 [1200/3014 (40%)]	Loss: 0.037681
+2020-11-15 18:07:04,181 - Train Epoch: 22 [1400/3014 (46%)]	Loss: 0.018702
+2020-11-15 18:07:13,246 - Train Epoch: 22 [1600/3014 (53%)]	Loss: 0.029904
+2020-11-15 18:07:22,310 - Train Epoch: 22 [1800/3014 (60%)]	Loss: 0.025432
+2020-11-15 18:07:31,367 - Train Epoch: 22 [2000/3014 (66%)]	Loss: 0.734621
+2020-11-15 18:07:40,427 - Train Epoch: 22 [2200/3014 (73%)]	Loss: 0.020054
+2020-11-15 18:07:49,490 - Train Epoch: 22 [2400/3014 (80%)]	Loss: 0.016375
+2020-11-15 18:07:58,545 - Train Epoch: 22 [2600/3014 (86%)]	Loss: 0.003905
+2020-11-15 18:08:07,592 - Train Epoch: 22 [2800/3014 (93%)]	Loss: 0.018460
+2020-11-15 18:08:16,648 - Train Epoch: 22 [3000/3014 (99%)]	Loss: 0.018738
+2020-11-15 18:08:17,120 - Starting Validation
+2020-11-15 18:08:31,877 - ===> Validation set: Average loss: 0.4207	EER: 10.6579
+
+2020-11-15 18:08:31,879 - #### End epoch 22/30, elapsed time: 151.30704945139587
+2020-11-15 18:08:32,059 - Train Epoch: 23 [0/3014 (0%)]	Loss: 0.022076
+2020-11-15 18:08:41,113 - Train Epoch: 23 [200/3014 (7%)]	Loss: 0.004990
+2020-11-15 18:08:50,197 - Train Epoch: 23 [400/3014 (13%)]	Loss: 0.004213
+2020-11-15 18:08:59,254 - Train Epoch: 23 [600/3014 (20%)]	Loss: 0.005444
+2020-11-15 18:09:08,317 - Train Epoch: 23 [800/3014 (27%)]	Loss: 0.016441
+2020-11-15 18:09:17,384 - Train Epoch: 23 [1000/3014 (33%)]	Loss: 0.004890
+2020-11-15 18:09:26,453 - Train Epoch: 23 [1200/3014 (40%)]	Loss: 0.004585
+2020-11-15 18:09:35,514 - Train Epoch: 23 [1400/3014 (46%)]	Loss: 0.716836
+2020-11-15 18:09:44,572 - Train Epoch: 23 [1600/3014 (53%)]	Loss: 0.018245
+2020-11-15 18:09:53,632 - Train Epoch: 23 [1800/3014 (60%)]	Loss: 0.004080
+2020-11-15 18:10:02,688 - Train Epoch: 23 [2000/3014 (66%)]	Loss: 0.021967
+2020-11-15 18:10:11,755 - Train Epoch: 23 [2200/3014 (73%)]	Loss: 0.007031
+2020-11-15 18:10:20,811 - Train Epoch: 23 [2400/3014 (80%)]	Loss: 0.019076
+2020-11-15 18:10:29,873 - Train Epoch: 23 [2600/3014 (86%)]	Loss: 0.017641
+2020-11-15 18:10:38,934 - Train Epoch: 23 [2800/3014 (93%)]	Loss: 0.004647
+2020-11-15 18:10:48,003 - Train Epoch: 23 [3000/3014 (99%)]	Loss: 0.019498
+2020-11-15 18:10:48,473 - Starting Validation
+2020-11-15 18:11:03,228 - ===> Validation set: Average loss: 0.4269	EER: 10.3589
+
+2020-11-15 18:11:03,230 - #### End epoch 23/30, elapsed time: 151.3508763751015
+2020-11-15 18:11:03,411 - Train Epoch: 24 [0/3014 (0%)]	Loss: 0.018385
+2020-11-15 18:11:12,481 - Train Epoch: 24 [200/3014 (7%)]	Loss: 0.011500
+2020-11-15 18:11:21,536 - Train Epoch: 24 [400/3014 (13%)]	Loss: 0.018416
+2020-11-15 18:11:30,605 - Train Epoch: 24 [600/3014 (20%)]	Loss: 0.009107
+2020-11-15 18:11:39,668 - Train Epoch: 24 [800/3014 (27%)]	Loss: 0.020323
+2020-11-15 18:11:48,724 - Train Epoch: 24 [1000/3014 (33%)]	Loss: 0.018619
+2020-11-15 18:11:57,786 - Train Epoch: 24 [1200/3014 (40%)]	Loss: 0.018388
+2020-11-15 18:12:06,852 - Train Epoch: 24 [1400/3014 (46%)]	Loss: 0.019172
+2020-11-15 18:12:15,916 - Train Epoch: 24 [1600/3014 (53%)]	Loss: 0.707579
+2020-11-15 18:12:24,980 - Train Epoch: 24 [1800/3014 (60%)]	Loss: 0.009510
+2020-11-15 18:12:34,036 - Train Epoch: 24 [2000/3014 (66%)]	Loss: 0.009061
+2020-11-15 18:12:43,094 - Train Epoch: 24 [2200/3014 (73%)]	Loss: 0.012466
+2020-11-15 18:12:52,156 - Train Epoch: 24 [2400/3014 (80%)]	Loss: 0.018499
+2020-11-15 18:13:01,215 - Train Epoch: 24 [2600/3014 (86%)]	Loss: 0.735245
+2020-11-15 18:13:10,285 - Train Epoch: 24 [2800/3014 (93%)]	Loss: 0.679852
+2020-11-15 18:13:19,338 - Train Epoch: 24 [3000/3014 (99%)]	Loss: 0.008654
+2020-11-15 18:13:19,810 - Starting Validation
+2020-11-15 18:13:34,563 - ===> Validation set: Average loss: 0.3727	EER: 10.5263
+
+2020-11-15 18:13:34,565 - #### End epoch 24/30, elapsed time: 151.33528482494876
+2020-11-15 18:13:34,746 - Train Epoch: 25 [0/3014 (0%)]	Loss: 0.014214
+2020-11-15 18:13:43,804 - Train Epoch: 25 [200/3014 (7%)]	Loss: 0.063521
+2020-11-15 18:13:52,863 - Train Epoch: 25 [400/3014 (13%)]	Loss: 0.687188
+2020-11-15 18:14:01,929 - Train Epoch: 25 [600/3014 (20%)]	Loss: 0.003932
+2020-11-15 18:14:10,995 - Train Epoch: 25 [800/3014 (27%)]	Loss: 0.008391
+2020-11-15 18:14:20,047 - Train Epoch: 25 [1000/3014 (33%)]	Loss: 0.653918
+2020-11-15 18:14:29,111 - Train Epoch: 25 [1200/3014 (40%)]	Loss: 0.017967
+2020-11-15 18:14:38,176 - Train Epoch: 25 [1400/3014 (46%)]	Loss: 0.029514
+2020-11-15 18:14:47,235 - Train Epoch: 25 [1600/3014 (53%)]	Loss: 0.018559
+2020-11-15 18:14:56,301 - Train Epoch: 25 [1800/3014 (60%)]	Loss: 0.004103
+2020-11-15 18:15:05,367 - Train Epoch: 25 [2000/3014 (66%)]	Loss: 0.004510
+2020-11-15 18:15:14,431 - Train Epoch: 25 [2200/3014 (73%)]	Loss: 0.007232
+2020-11-15 18:15:23,494 - Train Epoch: 25 [2400/3014 (80%)]	Loss: 0.034049
+2020-11-15 18:15:32,546 - Train Epoch: 25 [2600/3014 (86%)]	Loss: 0.762002
+2020-11-15 18:15:41,602 - Train Epoch: 25 [2800/3014 (93%)]	Loss: 0.016558
+2020-11-15 18:15:50,664 - Train Epoch: 25 [3000/3014 (99%)]	Loss: 0.006218
+2020-11-15 18:15:51,136 - Starting Validation
+2020-11-15 18:16:05,894 - ===> Validation set: Average loss: 0.4559	EER: 10.6579
+
+2020-11-15 18:16:05,895 - #### End epoch 25/30, elapsed time: 151.3302272008732
+2020-11-15 18:16:05,895 - #### Avg. training+validation time per epoch: 151.33356774095446
+2020-11-15 18:16:05,895 - ===> loading best model for prediction
+2020-11-15 18:16:05,940 - Starting evaluation
+2020-11-15 18:18:00,803 - ===> Final predictions done. Here is a snippet
+2020-11-15 18:18:00,803 - ===> evalidation set: Average loss: 1.4931	EER: 16.5639
+
+2020-11-15 18:18:00,809 - #### Total prediction time: 114.86882293410599
+2020-11-15 18:18:00,809 - ################## Success #########################
+2020-11-15 18:18:00,809 - Total elapsed time: 3899.9071769099683
