@@ -7,7 +7,8 @@ set -e
 data_dir=`pwd`/../data/ASVspoof2017
 label_dir=`pwd`/../data/ASVspoof2017/protocol_V2
 feat_dir=`pwd`/../feat/ASVspoof2017
-stage=0
+seg_feat_dir=`pwd`/..
+stage=$1 # parse first arg, use 0 or 1
 
 function check_sorted {
     file=$1
@@ -31,6 +32,28 @@ if [ $stage -eq 0 ]; then
             --feat-dir $feat_dir/${name} \
             --no-cuda \
             --logging-dir snapshots/feat_extraction/
+    done
+
+fi
+
+if [ $stage -eq 1 ]; then
+    # extract segmented logspec with several options of win_size and method 
+    for name in train dev eval; do
+        check_sorted $label_dir/${name}.txt
+        for win_size in 64 128 256 512; do
+            for method in h l hl lh; do
+                echo "start feature extraction for "${name}"_"${win_size}"_"${method}
+                python extract_logspec.py \
+                    --data-dir $data_dir/${name} \
+                    --label-file $label_dir/${name}.txt \
+                    --feat-dir $seg_feat_dir/feat_257_${win_size}/seg_${method}/${name} \
+                    --logging-dir snapshots/feat_extraction/ \
+                    --segment \
+                    --seg-win ${win_size} \
+                    --seg-method ${method}
+            done
+        done
+        
     done
 
 fi
