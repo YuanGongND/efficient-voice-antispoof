@@ -1,0 +1,7 @@
+2021-01-04 23:21:46,157 - ===> start training GMM for genuine utt:
+2021-01-04 23:32:00,491 - ===> start training GMM for spoof utt:
+2021-01-04 23:40:15,460 - GMM training done!
+2021-01-04 23:40:15,460 - #### Total elapsed time for training: 1109.3031851621345
+2021-01-04 23:41:37,985 - #### Total elapsed time for prediction: 82.52178616495803
+2021-01-04 23:41:37,992 - ====>> Prediction EER: 30.338107928003943
+2021-01-04 23:41:37,992 - #### Total elapsed time: 1300.7067437176593

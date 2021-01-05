@@ -1,0 +1,4 @@
+2021-01-04 23:52:21,978 - ====> Loading pretrained models
+2021-01-04 23:53:47,151 - #### Total elapsed time for prediction: 85.17117535416037
+2021-01-04 23:53:47,158 - ====>> Prediction EER: 30.338107928003943
+2021-01-04 23:53:47,158 - #### Total elapsed time: 85.1799585740082
