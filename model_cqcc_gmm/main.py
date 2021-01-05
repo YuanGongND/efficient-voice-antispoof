@@ -1,3 +1,16 @@
+"""
+Filename: main.py
+Objective: this program is a python implementation of the baseline model used in
+ASVspoof2017 challenge, where the CQCC features are read from .mat files (extracted
+via Matlab) and the GMM model is implemented via scikit-learn. All model parameters
+are set according to the original Matlab code.
+The original Matlab code and dataset can be found at:
+https://www.asvspoof.org/index2017.html
+Author: Jian Yang
+Created: Dec. 11, 2020
+Last updated: Jan. 05, 2021
+"""
+
 import os
 import time
 import argparse
