@@ -5,7 +5,7 @@ import argparse
 import pickle
 import numpy as np
 from scipy.io import loadmat
-from sklearn.mixture import GaussianMixture
+# from sklearn.mixture import GaussianMixture
 from timeit import default_timer as timer
 
 from metrics import compute_eer
@@ -70,7 +70,7 @@ def main():
     args = parser.parse_args()
 
     # set up loggers
-    run_name = "gmm-cqcc" + time.strftime("-%Y-%m-%d_%H_%M_%S") + "-pred_only" + args.suffix
+    run_name = "gmm-cqcc" + time.strftime("-%Y-%m-%d_%H_%M_%S") + "-pred_only" + args.suffix  # noqa
     logger = setup_logs(args.logging_dir, run_name)
 
     np.random.seed(0)

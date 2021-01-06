@@ -7,6 +7,7 @@
 **/debug_main.py
 **debug_main.ipynb
 data/
+model_draft/
 feat/
 feat_aligned/
 feat_257_512/
