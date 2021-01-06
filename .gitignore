@@ -6,6 +6,7 @@
 *.pyc
 **/debug_main.py
 **debug_main.ipynb
+pyCQCC/
 data/
 model_draft/
 feat/
