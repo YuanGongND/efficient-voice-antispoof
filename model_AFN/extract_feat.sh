@@ -1,7 +1,7 @@
 #!/bin/bash
 # torchaudio extract logspec,  features for:
 # ASVspoof2017 train, dev, eval, train_dev
-# Jian Yang
+# Author: Jian Yang
 
 set -e
 data_dir=`pwd`/../data/ASVspoof2017
@@ -23,7 +23,7 @@ function check_sorted {
 
 if [ $stage -eq 0 ]; then
     # extract logspec with cmvn 
-    for name in train dev eval train_dev; do
+    for name in train dev eval; do
         check_sorted $label_dir/${name}.txt
         echo "start feature extraction for "${name}
         python extract_logspec.py \
@@ -48,6 +48,7 @@ if [ $stage -eq 1 ]; then
                     --label-file $label_dir/${name}.txt \
                     --feat-dir $seg_feat_dir/feat_257_${win_size}/seg_${method}/${name} \
                     --logging-dir snapshots/feat_extraction/ \
+                    --no-cuda \
                     --segment \
                     --seg-win ${win_size} \
                     --seg-method ${method}
