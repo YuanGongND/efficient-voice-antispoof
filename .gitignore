@@ -19,3 +19,5 @@ feat_cqcc/
 plot/
 tmp/
 predict_only/
+feat_extraction/
+attention_tmp/
