@@ -1,6 +1,7 @@
 #!/bin/bash
 # torchaudio extract logspec,  features for:
 # ASVspoof2017 train, dev, eval, train_dev
+# Dependency: extract_logspec.py
 # Author: Jian Yang
 
 set -e
