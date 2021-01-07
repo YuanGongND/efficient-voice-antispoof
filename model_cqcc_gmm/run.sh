@@ -2,6 +2,7 @@
 # bash scripts for calling the following python scripts:
 # main.py : gmm model training & prediction 
 # pred_only.py : load pretrained gmm model and predict 
+# Author: Jian Yang
 
 
 set -e
