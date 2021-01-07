@@ -10,7 +10,7 @@ stage="$1" # parse first argument
 
 # train + prediction
 if [ $stage -eq 0 ]; then
-    python main.py \
+    python3 main.py \
         --train-dir ../feat_cqcc/train \
         --train-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
         --eval-dir ../feat_cqcc/eval \
@@ -21,7 +21,7 @@ fi
 
 # load pretrained and do prediction only
 if [ $stage -eq 1 ]; then
-    python pred_only.py \
+    python3 pred_only.py \
         --eval-dir ../feat_cqcc/eval \
         --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
         --logging-dir logs/ \
