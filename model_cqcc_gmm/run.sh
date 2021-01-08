@@ -12,9 +12,9 @@ stage="$1" # parse first argument
 if [ $stage -eq 0 ]; then
     python3 main.py \
         --train-dir ../feat_cqcc/train \
-        --train-utt2label ../data/ASVspoof2017/protocol_V2/train.txt.utt2label \
+        --train-utt2label ../data/ASVspoof2017/protocol_V2/train.utt2label \
         --eval-dir ../feat_cqcc/eval \
-        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.utt2label \
         --logging-dir logs/ \
         --model-dir pretrained/
 fi
@@ -23,7 +23,7 @@ fi
 if [ $stage -eq 1 ]; then
     python3 pred_only.py \
         --eval-dir ../feat_cqcc/eval \
-        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.txt.utt2label \
+        --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval.utt2label \
         --logging-dir logs/ \
         --model-genuine pretrained/gmm-cqcc-2021-01-04_23_19_57-genuine.pkl \
         --model-spoof pretrained/gmm-cqcc-2021-01-04_23_19_57-spoof.pkl
