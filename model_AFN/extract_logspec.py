@@ -12,6 +12,7 @@ ENERGY_FLOOR = 0
 M = 1091
 DATA_NAME = "asv2017-"
 DEFAULT_SEG = 's'  # taking the first args.seg_win elements
+TAIL_SEG = 'e'  # taking the ending args.seg_win elements
 
 
 def get_logspec(audio_path, device):
@@ -171,10 +172,14 @@ def main():
         t_start = timer()
         logspec = get_logspec(audio_path, device)
         if args.segment:
-            if args.seg_method != DEFAULT_SEG:
-                feat = segment_logspec(logspec, args.seg_win, args.seg_method)
-            else:
+            if args.seg_method == DEFAULT_SEG:
                 feat = expand_logspec(logspec, M=args.seg_win)
+            elif args.seg_method == TAIL_SEG:
+                feat = torch.flipud(
+                    expand_logspec(torch.flipud(logspec), M=args.seg_win)
+                )
+            else:
+                feat = segment_logspec(logspec, args.seg_win, args.seg_method)
         else:
             feat = expand_logspec(logspec)
         t_end = timer()

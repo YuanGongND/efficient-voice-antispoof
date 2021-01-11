@@ -42,13 +42,13 @@ if [ $stage -eq 1 ]; then
     for name in train dev eval; do
         check_sorted $label_dir/${name}.txt
         for win_size in 64 128 256 512; do
-            for method in s h l hl lh; do
+            for method in s e h l hl lh; do
                 echo "start feature extraction for "${name}"_"${win_size}"_"${method}
                 python extract_logspec.py \
                     --data-dir $data_dir/${name} \
                     --label-file $label_dir/${name}.txt \
                     --feat-dir $seg_feat_dir/feat_257_${win_size}/seg_${method}/${name} \
-                    --logging-dir snapshots/feat_extraction/ \
+                    --logging-dir ./logs/feat_extraction/ \
                     --no-cuda \
                     --segment \
                     --seg-win ${win_size} \
