@@ -15,7 +15,7 @@ import torch.optim as optim
 
 # Custrom Imports
 from src.v1_logger import setup_logs
-from src.data_reader.vND_dataset import SpoofDataset
+from src.data_reader.v0_dataset import SpoofDataset
 from src.v4_validation import validation
 from src.v1_training import train, snapshot
 from src.attention_neuro.simple_attention_network import AttenResNet4

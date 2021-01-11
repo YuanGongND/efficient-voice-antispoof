@@ -5,7 +5,7 @@ from scipy.optimize import fmin_l_bfgs_b, basinhopping
 import torch
 import torch.nn.functional as F
 from .v1_metrics import compute_eer
-from .data_reader.vND_dataset import parse_label
+from .data_reader.v0_dataset import parse_label
 
 
 """

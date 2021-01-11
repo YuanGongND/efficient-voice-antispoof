@@ -18,7 +18,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 # Custrom Imports
-from src.data_reader.vND_dataset import SpoofDataset
+from src.data_reader.v0_dataset import SpoofDataset
 from src.v1_logger import setup_logs
 from src.v4_plot import retrieve_weight
 from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet4, AttenResNet5
