@@ -10,34 +10,29 @@ import numpy as np
 
 # Torch
 import torch
-import torch.nn as nn
 from torch.utils import data
-import torch.nn.functional as F
 import torch.optim as optim
 
-# Custrom Imports
+# Customized Imports
 from src.v1_logger import setup_logs
-# from src.data_reader.v3_dataset import SpoofDataset
-from src.data_reader.vND_dataset import SpoofDataset
+from src.data_reader.v0_dataset import SpoofDataset
 from src.v4_validation import validation
 from src.v4_prediction import prediction
 from src.v1_training import train, snapshot
-from src.v3_neuro import LightCNN_9Layers
-from src.v5_neuro import ResNet
-from src.attention_neuro.residual_attention_network import ResidualAttentionModel
-from src.attention_neuro.simple_attention_network import AttenResNet, PreAttenResNet, AttenResNet2, AttenResNet4, AttenResNet5, AttenResNet4Deform, AttenResNet4Deform_512
-from src.attention_neuro.complex_attention_network import CAttenResNet1
-from src.attention_neuro.recurrent_attention import BGRU, BLSTM
+from src.attention_neuro.simple_attention_network import (  # noqa
+    AttenResNet4,
+    AttenResNet4Deform,  # debug use only
+    AttenResNet4Deform_512,  # debug use only
+    AttenResNet4DeformAll
+)
 
 ##############################################################
-############ Control Center and Hyperparameter ###############
-feat_dim = 257
+# Control Center and Hyperparameter
 M = 1091
-select_best = 'eer'  # eer or val
+SELECT_BEST = 'eer'  # eer or val
 rnn = False  # rnn
-batch_size = test_batch_size = 4
+BATCH_SIZE = TEST_BATCH_SIZE = 8
 atten_channel = 16
-temperature = 2
 atten_activation = 'sigmoid'
 
 
@@ -51,31 +46,18 @@ def load_model(model, model_path, freeze=False):
     return model
 
 
-## v1_neuro
-# run_name = "feed-forward" + time.strftime("-%Y-%m-%d_%H_%M")
-# model = FeedForward(feat_dim*(2*M+1))
-## v3_neuro
-# run_name = "mfm" + time.strftime("-%Y-%m-%d_%H_%M")
-# model = LightCNN_9Layers(input_size=(1,feat_dim,M))
-## v5_neuro
-# run_name = "conv-net" + time.strftime("-%Y-%m-%d_%H_%M")
-# model = ResNet(input_size=(1,feat_dim,M))
 # attention_neuro
-run_name = "attention" + time.strftime("-%Y-%m-%d_%H_%M_%S")
-# pretrain_path = '/export/b19/jlai/cstr/spoof/model/snapshots/attention/attention-2018-07-10_07_21_16-model_best.pth'
-# pretrain = load_model(ResNet(), pretrain_path, freeze=False)
-# model = PreAttenResNet(pretrain, atten_activation, atten_channel)
 # model = AttenResNet4(atten_activation, atten_channel, size1=(257, 1091))
 # model = AttenResNet4Deform(atten_activation, atten_channel, size1=(257, 512))
-model = AttenResNet4Deform_512(atten_activation, atten_channel, size1=(257, 512))
-# model = CAttenResNet1()
+# model = AttenResNet4Deform_512(atten_activation, atten_channel, size1=(257, 512))
+# model = AttenResNet4DeformAll(atten_activation, atten_channel, size1=(257, M))
 ##############################################################
 
 
 def main():
     ##############################################################
     # Settings
-    parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
+    parser = argparse.ArgumentParser(description='Model AFN')
     parser.add_argument('--train-dir', required=True,
                         help='train feature dir')
     parser.add_argument('--train-utt2label', required=True,
@@ -100,16 +82,24 @@ def main():
                         help='random seed (default: 1)')
     parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                         help='how many batches to wait before logging training status')
-    parser.add_argument('--hidden-dim', type=int, default=100,
-                        help='number of neurones in the hidden dimension')
-    parser.add_argument('--plot-wd', help='training plot directory')
+    parser.add_argument('--seg', default=None,
+                        help='seg method')
+    parser.add_argument('--seg-win', type=int, help='segmented window size')
     args = parser.parse_args()
-    use_cuda = not args.no_cuda and torch.cuda.is_available()
-    print('use_cuda is', use_cuda)
-    # print('temperature is', temperature)
 
-    # Setup logs
+    torch.cuda.empty_cache()
+
+    # Init model & Setup logs
+    if args.seg is None:
+        model = AttenResNet4(atten_activation, atten_channel, size1=(257, M))
+        run_name = "AFN4" + time.strftime("-%Y_%m_%d-%H_%M_%S-") + str(M) + "-orig"
+    else:
+        model = AttenResNet4DeformAll(atten_activation, atten_channel, size1=(257, args.seg_win))  # noqa
+        run_name = "AFN4De" + time.strftime("-%Y_%m_%d-%H_%M_%S-") + str(args.seg_win) + "-" + args.seg  # noqa
     logger = setup_logs(args.logging_dir, run_name)
+
+    use_cuda = not args.no_cuda and torch.cuda.is_available()
+    logger.info("use_cuda is {}".format(use_cuda))
 
     # Global timer
     global_timer = timer()
@@ -136,22 +126,13 @@ def main():
     validation_set = SpoofDataset(args.validation_dir, args.validation_utt2label)
     train_loader = data.DataLoader(
         training_set,
-        batch_size=batch_size,
+        batch_size=BATCH_SIZE,
         shuffle=True,
         **params
     )  # set shuffle to True
     validation_loader = data.DataLoader(
         validation_set,
-        batch_size=test_batch_size,
-        shuffle=False,
-        **params
-    )  # set shuffle to False
-
-    logger.info('===> loading eval dataset')
-    eval_set = SpoofDataset(args.eval_dir, args.eval_utt2label)
-    eval_loader = data.DataLoader(
-        eval_set,
-        batch_size=test_batch_size,
+        batch_size=TEST_BATCH_SIZE,
         shuffle=False,
         **params
     )  # set shuffle to False
@@ -160,20 +141,19 @@ def main():
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=1)  # noqa
 
     model_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    logger.info('### Model summary below###\n {}\n'.format(str(model)))
-    logger.info('===> Model total parameter: {}\n'.format(model_params))
+    logger.info('#### Model summary below ####\n {}\n'.format(str(model)))
+    logger.info('===> Model total # parameter: {}\n'.format(model_params))
     ###########################################################
-    # Start training
+    # Training
     best_eer, best_loss = np.inf, np.inf
     early_stopping, max_patience = 0, 5  # early stopping and maximum patience
-    print(run_name)
+
     total_train_time = []
     for epoch in range(1, args.epochs + 1):
         epoch_timer = timer()
 
         # Train and validate
         train(args, model, device, train_loader, optimizer, epoch, rnn)
-        # train(args, model, device, train_loader, optimizer, epoch, args.plot_wd, rnn=False)
         val_loss, eer = validation(
             args,
             model,
@@ -184,10 +164,10 @@ def main():
         )
         scheduler.step(val_loss)
         # Save
-        if select_best == 'eer':
+        if SELECT_BEST == 'eer':
             is_best = eer < best_eer
             best_eer = min(eer, best_eer)
-        elif select_best == 'val':
+        elif SELECT_BEST == 'val':
             is_best = val_loss < best_loss
             best_loss = min(val_loss, best_loss)
         snapshot(args.logging_dir, run_name, is_best, {
@@ -210,20 +190,26 @@ def main():
     logger.info("#### Avg. training+validation time per epoch: {}".format(np.average(total_train_time)))  # noqa
     ###########################################################
     # Prediction
-    logger.info('===> loading best model for prediction')
-    checkpoint = torch.load(
-        os.path.join(args.logging_dir, run_name + '-model_best.pth')
-    )
-    # checkpoint = torch.load(
-    #     "/home/ndmobilecomp/efficient_spoof/efficient-voice-antispoof/model_AFN/snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth",
-    #     map_location=torch.device('cpu')
-    # )
-    model.load_state_dict(checkpoint['state_dict'])
-    t_start_eval = timer()
-    eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_utt2label, rnn)  # noqa
+    if args.eval_dir and args.eval_utt2label:
+        logger.info('===> loading eval dataset')
+        eval_set = SpoofDataset(args.eval_dir, args.eval_utt2label)
+        eval_loader = data.DataLoader(
+            eval_set,
+            batch_size=TEST_BATCH_SIZE,
+            shuffle=False,
+            **params
+        )  # set shuffle to False
+
+        logger.info('===> loading best model for prediction')
+        checkpoint = torch.load(
+            os.path.join(args.logging_dir, run_name + '-model_best.pth')
+        )
+        model.load_state_dict(checkpoint['state_dict'])
+        t_start_eval = timer()
+        eval_loss, eval_eer = prediction(args, model, device, eval_loader, args.eval_utt2label, rnn)  # noqa
+        end_global_timer = timer()
+        logger.info("#### Total prediction time: {}".format(end_global_timer - t_start_eval))  # noqa
     ###########################################################
-    end_global_timer = timer()
-    logger.info("#### Total prediction time: {}".format(end_global_timer - t_start_eval))
     logger.info("################## Success #########################")
     logger.info("Total elapsed time: %s" % (end_global_timer - global_timer))
 
