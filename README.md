@@ -29,6 +29,14 @@ Some later experiments will also use segmented logspec, for this purpose, run th
 ```bash
 ./extract_feat.sh 1
 ```
+The above command segments the full length (1091) logspec into reduced length logspec, with length $win_size$ in 64, 128, 256, 512. For each reduced length, there are 6 different ways of segmentation as follows:
+
+- s: taking the starting $win_size$ of the full length logspec
+- e: taking the ending $win_size$ of the full length logspec
+- h: taking the continuous $win_size$ segment with the highest energy sum
+- l: taking the continuous $win_size$ segment with the lowest energy sum
+- hl: the first half with the highest energy sum and the second with the lowest
+- lh: the first half with the lowest energy sum and the second with the highest
 
 ### GMM
 To run the full procedure of GMM model (training + prediction), change directory to "*model_cqcc_gmm*" and run the following command:
@@ -44,11 +52,29 @@ To use trained models and run only prediction, run the following:
 ```bash
 ./run.sh 1
 ```
-All timeing info and logs are saved in the "*model_cqcc_gmm/logs*" directory.
+All timing info and logs are saved in the "*model_cqcc_gmm/logs*" directory.
 
 
 ### AFN
+#### Baseline AFN
+The baseline AFN model (*AttenResNet4*) used here directly adopts the code from the [original project](https://github.com/jefflai108/Attentive-Filtering-Network), with minimal modifications to fit into the torchaudio-extracted features and the update Python version (original work was in Python 2). To run the full process of AFN model (training + validation + prediction) with the full dataset, change directory to "*model_AFN*" and run the following command:
 
+```bash
+./run.sh 0
+```
+
+The training process will be repeated for 5 times, and we pick the best-performed model (from the log information) that will be used later for prediction and compression. 
+
+#### Deformed AFN
+The deformed AFN model (*AttenResNet4DeformAll*) is modified based on the original AFN model (*AttenResNet4*), so that the network can take in input features with reduced dimensions. 
+
+To run the training process for all combinations of the deformed AFN model, change directory to "*model_AFN*" and run the following command:
+
+```bash
+./run.sh 1
+```
+
+For each combination, the training process will be repeated for 5 times, the best one will be chosen for later prediction and compression usage.
 
 ### Spearker Recognition
 
