@@ -76,6 +76,30 @@ To run the training process for all combinations of the deformed AFN model, chan
 
 For each combination, the training process will be repeated for 5 times, the best one will be chosen for later prediction and compression usage.
 
+#### Network compression
+In this work, we've implemented and tested 3 general compression methods: pruning, quantization, and decomposition. Each method has been applied to the best model for AFN and the deformed AFN, correspondingly. After the model compression, we measure the predicition efficiency on the evaluation set. All the following experiments use the similar commands as below (under "*model_AFN*" directory):
+
+```bash
+./run.sh $N$
+```
+where $N$ correpsonds to different experiments shown below
+| $N$ | Device | Model                   | Note                                    |
+|-----|--------|-------------------------|-----------------------------------------|
+| 10  | CPU    | Original baseline AFN   |                                         |
+| 11  | GPU    | Original baseline AFN   |                                         |
+| 20  | CPU    | Pruned AFN              | 2 prune methods, prune pct: 0-1         |
+| 21  | GPU    | Pruned AFN              | 2 prune methods, prune pct: 0-1         |
+| 30  | CPU    | Quantized AFN           | Only support CPU run.                   |
+| 40  | GPU    | Original baseline AFN   | Fine-tune the model after decomposition |
+| 41  | CPU    | Decomposed AFN          | Load weights from the fine-tuned model  |
+| 42  | GPU    | Decomposed AFN          | Load weights from the fine-tuned model  |
+| 200 | CPU    | Pruned deformed AFN     | 2 prune methods, prune pct: 0-1         |
+| 201 | GPU    | Pruned deformed AFN     | 2 prune methods, prune pct: 0-1         |
+| 300 | CPU    | Quantized deformed AFN  | Only support CPU run.                   |
+| 400 | GPU    | Deformed AFN            | Fine-tune the model after decomposition |
+| 401 | CPU    | Decomposed deformed AFN | Load weights from the fine-tuned model  |
+| 402 | GPU    | Decomposed deformed AFN | Load weights from the fine-tuned model  |
+
 ### Spearker Recognition
 
 
