@@ -2,7 +2,9 @@
 # Utilities
 import argparse
 import random
-import os,sys,inspect
+import os
+import sys
+import inspect
 from timeit import default_timer as timer
 
 # Libraries
@@ -19,11 +21,11 @@ from src.data_reader.v0_dataset import SpoofDataset
 from src.v4_validation import validation
 from src.v1_training import train, snapshot
 from src.attention_neuro.simple_attention_network import AttenResNet4
-# network pruning imports
+# network decomposition imports
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from acceleration_compression.decomposition import NetworkDecomposition
+from acceleration_compression.decomposition import NetworkDecomposition  # noqa
 
 ##############################################################
 ############ Control Center and Hyperparameter ###############
@@ -31,9 +33,8 @@ feat_dim = 257
 M = 1091
 select_best = 'eer'  # eer or val
 rnn = False  # rnn
-batch_size = test_batch_size = 4
+batch_size = test_batch_size = 8
 atten_channel = 16
-temperature = 2
 atten_activation = 'sigmoid'
 
 
@@ -47,24 +48,31 @@ def load_model(model, model_path, freeze=False):
     return model
 
 
+def get_size_of_model(model):
+    torch.save(model.state_dict(), "temp.p")
+    size = os.path.getsize("temp.p") / 1e6
+    os.remove('temp.p')
+    return size
+
+
 def apply_net_decomp(model, logger, rank, decomp_type='tucker'):
     net_decomp = NetworkDecomposition(model, rank=rank, decomp_type=decomp_type)
     logger.info(
-        "orignal model size (MB): {}"
+        "#### orignal model size (MB): {}"
         .format(net_decomp.print_size_of_model(model))
     )
     logger.info(
-        '# non-zero params before decomp: {}'
+        '#### non-zero params before decomp: {}'
         .format(net_decomp.get_num_parameters(model, is_nonzero=True))
     )
     model = net_decomp.decomposition()
     logger.info('apply [{}] DECOMP with rank: {}'.format(decomp_type, rank))
     logger.info(
-        "decomp-ed model size (MB): {}"
+        "#### decomp-ed model size (MB): {}"
         .format(net_decomp.print_size_of_model(model))
     )
     logger.info(
-        '# non-zero params after decomp: {}'
+        '#### non-zero params after decomp: {}'
         .format(net_decomp.get_num_parameters(model, is_nonzero=True))
     )
     return model
@@ -83,6 +91,8 @@ def main():
                         help='dev feature dir')
     parser.add_argument('--validation-utt2label', required=True,
                         help='dev utt2label')
+    parser.add_argument('--model-path',
+                        help='path to the pretrained model')
     parser.add_argument('--logging-dir', required=True,
                         help='model save directory')
     parser.add_argument('--epochs', type=int, default=10, metavar='N',
@@ -95,23 +105,28 @@ def main():
                         help='random seed (default: 1)')
     parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                         help='how many batches to wait before logging training status')
-    parser.add_argument('--hidden-dim', type=int, default=100,
-                        help='number of neurones in the hidden dimension')
+    parser.add_argument('--seg', default=None,
+                        help='seg method')
+    parser.add_argument('--seg-win', type=int, help='segmented window size')
     parser.add_argument('--rank', type=int, required=True,
-                        help="rank for decomp")
-    parser.add_argument('--type', required=True,
-                        help='decomp type')
+                        help='rank value for decomposition: 2 or 4')
+    parser.add_argument('--decomp-type', default='tucker',
+                        help='decomposition type: tucker cp')
     args = parser.parse_args()
-    use_cuda = not args.no_cuda and torch.cuda.is_available()
-    print('use_cuda is', use_cuda)
-    # print('temperature is', temperature)
 
-    # Setup logs
-    run_name = "decomp" + '-2020-10-14_21_53_09-rank'+ str(args.rank) + '-' + args.type  # noqa
+    torch.cuda.empty_cache()
+
+    # Init model & Setup logs
+    if args.seg is None:
+        model = AttenResNet4(atten_activation, atten_channel, size1=(257, M))
+        run_name = "fine_decomp-AFN4-" + str(M) + "-orig-rank_" + str(args.rank) + '-' + args.decomp_type  # noqa
+    else:
+        model = AttenResNet4DeformAll(atten_activation, atten_channel, size1=(257, args.seg_win))  # noqa
+        run_name = "fine_decomp-AFN4De-" + str(args.seg_win) + "-" + args.seg + "-rank_" + str(args.rank) + '-' + args.decomp_type  # noqa
     logger = setup_logs(args.logging_dir, run_name)
 
-    # Global timer
-    global_timer = timer()
+    use_cuda = not args.no_cuda and torch.cuda.is_available()
+    logger.info("use_cuda is {}".format(use_cuda))
 
     # Setting random seeds for reproducibility.
     np.random.seed(args.seed)
@@ -123,19 +138,18 @@ def main():
     torch.backends.cudnn.deterministic = True  # CUDA determinism
 
     device = torch.device("cuda" if use_cuda else "cpu")
-    model = AttenResNet4(atten_activation, atten_channel)
-    model_path = '/home/ndmobilecomp/efficient_spoof/efficient-voice-antispoof/model_AFN/snapshots/attention/attention-2020-10-14_21_53_09-model_best.pth'
-    model = load_model(model, model_path)
+    model = load_model(model, args.model_path)
+
     # perform decomposition
     model = apply_net_decomp(
             model=model,
             logger=logger,
             rank=args.rank,
-            decomp_type=args.type
+            decomp_type=args.decomp_type
     )
     model.to(device)
     ##############################################################
-    # Loading the dataset
+    # Loading the dataset and fine tune the compressed model
     params = {'num_workers': 0,
               'pin_memory': False,
               'worker_init_fn': np.random.seed(args.seed)} if use_cuda else {}
@@ -160,13 +174,13 @@ def main():
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=1)  # noqa
 
     model_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    logger.info('### Model summary below###\n {}\n'.format(str(model)))
+    logger.info('#### Decomposed model summary below####\n {}\n'.format(str(model)))
     logger.info('===> Model total parameter: {}\n'.format(model_params))
     ###########################################################
     # Start training
     best_eer, best_loss = np.inf, np.inf
     early_stopping, max_patience = 0, 5  # early stopping and maximum patience
-    print(run_name)
+
     total_train_time = []
     for epoch in range(1, args.epochs + 1):
         epoch_timer = timer()
@@ -186,9 +200,11 @@ def main():
         if select_best == 'eer':
             is_best = eer < best_eer
             best_eer = min(eer, best_eer)
+            best_model = model
         elif select_best == 'val':
             is_best = val_loss < best_loss
             best_loss = min(val_loss, best_loss)
+            best_model = model
         snapshot(args.logging_dir, run_name, is_best, {
                 'epoch': epoch + 1,
                 'best_eer': best_eer,
@@ -207,11 +223,17 @@ def main():
         if early_stopping == max_patience:
             break
     logger.info("#### Avg. training+validation time per epoch: {}".format(np.average(total_train_time)))  # noqa
-
     ###########################################################
-    end_global_timer = timer()
+    logger.info(
+        "#### fine-tuned decomp model size (MB): {}"
+        .format(get_size_of_model(best_model))
+    )
+    model_params = sum(p.numel() for p in best_model.parameters() if p.requires_grad)
+    logger.info(
+        '#### non-zero params after fine-tuning: {}'
+        .format(model_params)
+    )
     logger.info("################## Done fine-tuning decomp model ######################")
-    logger.info("Total elapsed time: %s" % (end_global_timer - global_timer))
 
 
 if __name__ == '__main__':
