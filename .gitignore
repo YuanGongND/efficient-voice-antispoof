@@ -22,3 +22,4 @@ predict_only/
 feat_extraction/
 attention_tmp/
 logs/
+snapshots/
