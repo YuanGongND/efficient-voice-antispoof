@@ -255,7 +255,7 @@ fi
 if [ $stage -eq 300 ]; then
     for win in 64 128 256 512; do
         for seg in s e h l hl lh; do
-            for qmethod in dynamic static; do
+            for qmethod in dynamic; do
                 eval $cmd quant_pred.py \
                     --eval-dir ../feat_257_${win}/seg_${seg}/eval \
                     --eval-utt2label ../data/ASVspoof2017/protocol_V2/eval_1k.utt2label \
