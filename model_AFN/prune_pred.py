@@ -142,7 +142,8 @@ def main():
     )  # set shuffle to False
     logger.info('===> loading best model for prediction: ' + args.model_path)
     checkpoint = torch.load(
-        os.path.join(args.model_path)
+        os.path.join(args.model_path),
+        map_location=device
     )
     model.load_state_dict(checkpoint['state_dict'])
 

@@ -12,7 +12,6 @@ import numpy as np
 # Torch
 import torch
 from torch.utils import data
-import torch.optim as optim
 
 # Customized Imports
 from src.v1_logger import setup_logs
@@ -154,7 +153,8 @@ def main():
     )
     logger.info('===> loading fine-tuned model for prediction: ' + args.model_path)
     checkpoint = torch.load(
-        os.path.join(args.model_path)
+        os.path.join(args.model_path),
+        map_location=device
     )
     model.load_state_dict(checkpoint['state_dict'])
     model.to(device)
