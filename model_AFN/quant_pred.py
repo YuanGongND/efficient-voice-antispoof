@@ -51,7 +51,7 @@ def get_size_of_model(model):
 def apply_net_quant(model, logger, quant_method='dynamic', config=HW_CONFIG):
     # quantized model is only executable via CPU.
     model.to(torch.device('cpu'))
-    net_quant = NetworkQuantization(model, quant_method=quant_method)
+    net_quant = NetworkQuantization(model, quant_method=quant_method, config=HW_CONFIG)
     logger.info(
         "#### orignal model size (MB): {}"
         .format(net_quant.print_model_size(model))
