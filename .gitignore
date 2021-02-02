@@ -7,7 +7,7 @@
 **/debug_main.py
 **debug_main.ipynb
 pyCQCC/
-/data/
+data/
 model_draft/
 /feat/
 feat_aligned/
@@ -26,3 +26,4 @@ snapshots/
 sid*
 steps*
 utils*
+model_voxceleb_v1/
