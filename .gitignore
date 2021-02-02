@@ -9,7 +9,7 @@
 pyCQCC/
 /data/
 model_draft/
-feat/
+/feat/
 feat_aligned/
 feat_257_512/
 feat_257_256/
