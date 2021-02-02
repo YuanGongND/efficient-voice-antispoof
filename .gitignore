@@ -23,3 +23,6 @@ feat_extraction/
 attention_tmp/
 logs/
 snapshots/
+sid/
+steps/
+ivector/utils/
