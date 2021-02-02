@@ -7,7 +7,7 @@
 **/debug_main.py
 **debug_main.ipynb
 pyCQCC/
-data/
+/data/
 model_draft/
 feat/
 feat_aligned/
