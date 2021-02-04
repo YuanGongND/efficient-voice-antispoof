@@ -26,6 +26,7 @@ FIXDATA=1
 FeatureForMfcc=1
 VAD=1
 EXTRACT=1
+ToTXT=1
 
 for name in train dev eval; do
     datadir=`pwd`/data/$name
@@ -86,5 +87,14 @@ for name in train dev eval; do
         model_voxceleb_v1 $datadir $featdir/ivectors_enroll_mfcc
         
         echo ========= $name EXTRACT just for testing `date`=============
+    fi
+
+    if [ $ToTXT -eq 1 ]; then
+        echo ==========================================
+        echo "ToTXT start on" `date`
+        echo ==========================================
+        # transform the ark file to txt file
+        $KALDI_ROOT/src/bin/copy-vector ark:$datadir/feat/ivectors_enroll_mfcc/ivector.1.ark ark,t:- >$datadir/feat/ivectors_enroll_mfcc/vector.txt
+        echo ========= ToTXT $name success `date`=============
     fi
 done
