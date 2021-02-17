@@ -35,6 +35,7 @@ from acceleration_compression.quantization import NetworkQuantization  # noqa
 # Control Center and Hyperparameter
 M = 1091
 rnn = False  # rnn
+BATCH_SIZE = 8
 TEST_BATCH_SIZE = 1
 atten_channel = 16
 atten_activation = 'sigmoid'
@@ -48,10 +49,13 @@ def get_size_of_model(model):
     return size
 
 
-def apply_net_quant(model, logger, quant_method='dynamic', config=HW_CONFIG):
+def apply_net_quant(model, logger, quant_method='dynamic', calibration_loader=None, config=HW_CONFIG):
     # quantized model is only executable via CPU.
     model.to(torch.device('cpu'))
-    net_quant = NetworkQuantization(model, quant_method=quant_method, config=HW_CONFIG)
+    net_quant = NetworkQuantization(model,
+                                    quant_method=quant_method,
+                                    calibration_loader=calibration_loader,
+                                    config=HW_CONFIG)
     logger.info(
         "#### orignal model size (MB): {}"
         .format(net_quant.print_model_size(model))
@@ -77,10 +81,14 @@ def main():
     ##############################################################
     # Settings
     parser = argparse.ArgumentParser(description='Model AFN')
+    parser.add_argument('--train-dir',
+                        help='train feature dir')
+    parser.add_argument('--train-utt2label',
+                        help='train utt2label')
     parser.add_argument('--eval-dir',
                         help='eval feature dir')
     parser.add_argument('--eval-utt2label',
-                        help='train utt2label')
+                        help='eval utt2label')
     parser.add_argument('--model-path',
                         help='path to the pretrained model')
     parser.add_argument('--test-batch-size', type=int, default=100, metavar='N',
@@ -101,7 +109,7 @@ def main():
 
     # Init model & Setup logs
     if args.seg is None:
-        model = AttenResNet4(atten_activation, atten_channel, size1=(257, M))
+        model = AttenResNet4(atten_activation, atten_channel, size1=(257, M), static_quant=True)
         run_name = "quant_pred-AFN4-1091-orig" + time.strftime("-%Y_%m_%d")
     else:
         if args.seg_win not in (64, 128, 256, 512):
@@ -129,6 +137,13 @@ def main():
     params = {}
 
     logger.info('===> loading eval dataset: ' + args.eval_utt2label)
+    train_set = SpoofDataset(args.train_dir, args.train_utt2label)
+    train_loader = data.DataLoader(
+        train_set,
+        batch_size=BATCH_SIZE,
+        shuffle=True,
+        **params
+    )  # set shuffle to True
     eval_set = SpoofDataset(args.eval_dir, args.eval_utt2label)
     eval_loader = data.DataLoader(
         eval_set,
@@ -148,7 +163,8 @@ def main():
     model = apply_net_quant(
         model=model,
         logger=logger,
-        quant_method=args.quant_method
+        quant_method=args.quant_method,
+        calibration_loader=train_loader
     )
 
     t_start_eval = timer()
