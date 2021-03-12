@@ -1,14 +1,26 @@
 # Improving the Computational Efficiency of Voice Anti-spoofing Models
 
 ## Introduction
-(ToDo: add project description here)
+With the proliferation of smart voice-controlled systems in recent years, many voice-based IoT applications are becoming increasingly vulnerable to various types of replay attacks. Voice anti-spoofing tasks provide effective countermeasures by detecting spoofing speech utterances in such attacks using machine learning. Compared to conventional machine learning models, deep neural networks (DNNs) show significantly higher effectiveness in anti-spoofing tasks. However, DNN-based models usually require extremely powerful computational resources and are often not suitable for deployment on resource-constrained systems such as consumer products or IoT devices. Therefore, there is a need for new techniques to accelerate and compress such models while maintaining their inference effectiveness. In this work, we propose and explore a series of acceleration and compression methods for voice anti-spoofing models. The proposed methods include general-purpose compression methods and task-specific compression methods. We evaluate the compressed models on both their efficiency and effectiveness. Experiments are also conducted on a variety of platforms including low-resource devices and high-performance computing machines. In our evaluation, the best general-purpose compression method shows 80.55\% inference efficiency improvement with an increase in EER of about 10\%, while the best method of task-specific compression yields a 96.63\% improvement in inference efficiency with the EER increasing by 5.4\%.
 
 ## Citation
+This work has been submitted to IEEE/ACM Transactions on Audio Speech and Language Processing on March 12th, 2021. Further citation information will be followed.
 
 ## Experiments
 
 ### Setup
-(TODO: add hardware description and software dependency here, also point out file hierachy)
+
+#### Hardware
+|        Platform        |                         CPU                         |                GPU               | CUDA version | RAM  (GB) |       Operating System      |
+|:----------------------:|:---------------------------------------------------:|:--------------------------------:|:------------:|:---------:|:---------------------------:|
+|         Desktop        |   Intel(R) i9-9820X 64-bit CPU @ 3.30GHz, 8 cores   |    2 * Nvidia GeForce RTX 2080   |     10.2     |    128    |         Ubuntu 18.04        |
+|   Nvidia Jetson Nano   | Cortex-A57 (ARM v8-A) 64-bit SoC @ 1.5 GHz, 6 cores | 1 *  Built-in Nvidia Maxwell GPU |     10.2     |     4     |         Ubuntu 18.04        |
+| Raspberry Pi 4 model B |   Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz, 4 cores  |                N/A               |      N/A     |     4     | Raspberry Pi OS 64-bit beta |
+
+#### Software
+- Python: 3.7
+- scikit-learn: 0.23.2
+- PyTorch: 1.6.0 (PyTorch build for Raspberry Pi: http://mathinf.com/pytorch/arm64/)
 
 ### Feature Extraction
 
@@ -65,7 +77,7 @@ The baseline AFN model (*AttenResNet4*) used here directly adopts the code from 
 
 The training process will be repeated for 5 times, and we pick the best-performed model (from the log information) that will be used later for prediction and compression. 
 
-#### Deformed AFN
+#### Deformed AFN (with input pruning)
 The deformed AFN model (*AttenResNet4DeformAll*) is modified based on the original AFN model (*AttenResNet4*), so that the network can take in input features with reduced dimensions. 
 
 To run the training process for all combinations of the deformed AFN model, change directory to "*model_AFN*" and run the following command:
@@ -93,14 +105,30 @@ where $N$ correpsonds to different experiments shown below
 | 40  | GPU    | Original baseline AFN   | Fine-tune the model after decomposition |
 | 41  | CPU    | Decomposed AFN          | Load weights from the fine-tuned model  |
 | 42  | GPU    | Decomposed AFN          | Load weights from the fine-tuned model  |
-| 200 | CPU    | Pruned deformed AFN     | 2 prune methods, prune pct: 0-1         |
-| 201 | GPU    | Pruned deformed AFN     | 2 prune methods, prune pct: 0-1         |
-| 300 | CPU    | Quantized deformed AFN  | Only support CPU run.                   |
-| 400 | GPU    | Deformed AFN            | Fine-tune the model after decomposition |
-| 401 | CPU    | Decomposed deformed AFN | Load weights from the fine-tuned model  |
-| 402 | GPU    | Decomposed deformed AFN | Load weights from the fine-tuned model  |
+| 200* | CPU    | Pruned deformed AFN     | 2 prune methods, prune pct: 0-1         |
+| 201* | GPU    | Pruned deformed AFN     | 2 prune methods, prune pct: 0-1         |
+| 300* | CPU    | Quantized deformed AFN  | Only support CPU run.                   |
+| 400* | GPU    | Deformed AFN            | Fine-tune the model after decomposition |
+| 401* | CPU    | Decomposed deformed AFN | Load weights from the fine-tuned model  |
+| 402* | GPU    | Decomposed deformed AFN | Load weights from the fine-tuned model  |
 
-### Spearker Recognition
+*: only executable on desktop machine.
 
+### Multi-task Framework with Spearker Recognition
+THe pretrained VoxCeleb i-vector/x-vector extractors are obtained at https://kaldi-asr.org/models/m7
+#### ivector_gmm
+First, extract ivector. Change directory to model_ivector_gmm/ivector/
+```bash
+./enroll.sh ../../data/ASVspoof2017
+```
+
+Then use the ivector as input for GMM classifier
+```bash
+./run.sh 0
+```
+
+#### xvector_gmm
+x-vector realted experiments follow the same directory structure as the i-vector experiments.
 
 ## Authors
+[Jian Yang](https://github.com/jlinear), [Bryan (Ning) Xia](https://github.com/ningxia), John Bailey, [Yuan Gong](https://github.com/YuanGongND), and Christian Poellabauer.
