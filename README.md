@@ -127,6 +127,11 @@ Then use the ivector as input for GMM classifier
 ./run.sh 0
 ```
 
+If use the ivector as input for MLP classifier, change directory to src and run
+```bash
+./run.sh 0
+```
+
 #### xvector_gmm
 x-vector realted experiments follow the same directory structure as the i-vector experiments.
 
