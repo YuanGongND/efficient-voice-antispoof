@@ -28,3 +28,5 @@ steps*
 utils*
 model_voxceleb_v1/
 exp/
+**/paper_figs_plot.ipynb
+**/tmp.sh
