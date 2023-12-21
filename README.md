@@ -1,10 +1,21 @@
 # Improving the Computational Efficiency of Voice Anti-spoofing Models
 
+[Paper](https://ieeexplore.ieee.org/document/10298569)
+
 ## Introduction
 With the proliferation of smart voice-controlled systems in recent years, many voice-based IoT applications are becoming increasingly vulnerable to various types of replay attacks. Voice anti-spoofing tasks provide effective countermeasures by detecting spoofing speech utterances in such attacks using machine learning. Compared to conventional machine learning models, deep neural networks (DNNs) show significantly higher effectiveness in anti-spoofing tasks. However, DNN-based models usually require extremely powerful computational resources and are often not suitable for deployment on resource-constrained systems such as consumer products or IoT devices. Therefore, there is a need for new techniques to accelerate and compress such models while maintaining their inference effectiveness. In this work, we propose and explore a series of acceleration and compression methods for voice anti-spoofing models. The proposed methods include general-purpose compression methods and task-specific compression methods. We evaluate the compressed models on both their efficiency and effectiveness. Experiments are also conducted on a variety of platforms including low-resource devices and high-performance computing machines. In our evaluation, the best general-purpose compression method shows 80.55\% inference efficiency improvement with an increase in EER of about 10\%, while the best method of task-specific compression yields a 96.63\% improvement in inference efficiency with the EER increasing by 5.4\%.
 
 ## Citation
-This work has been submitted to IEEE/ACM Transactions on Audio Speech and Language Processing on March 12th, 2021. Further citation information will be followed.
+```
+@inproceedings{yang2023improving,
+  title={Improving Computational Efficiency of Voice Anti-Spoofing Models},
+  author={Yang, Jian and Xia, Bryan Ning and Bailey, John and Gong, Yuan and Templeton, John Michael and Poellabauer, Christian},
+  booktitle={2023 IEEE 20th International Conference on Mobile Ad Hoc and Smart Systems (MASS)},
+  pages={46--54},
+  year={2023},
+  organization={IEEE}
+}
+```
 
 ## Experiments
 
